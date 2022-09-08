@@ -34,7 +34,7 @@ export class HistoryPostsComponent implements OnInit {
     //   console.log(error);
     // }
 
-    this._postService.getAllPostsById(this.user_id as string).subscribe(
+    this._postService.getAllPostsById(this.user_id+'').subscribe(
       posts => {
         this.myPosts = posts;
         this.myPublicPosts = posts.filter(post => post.statut == "public");

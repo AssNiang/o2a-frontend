@@ -9,10 +9,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./left-side-bar.component.css'],
 })
 export class LeftSideBarComponent implements OnInit {
-  static typeUser: String = 'unknown';
+  static typeUser: string = 'unknown';
   lsbRef = LeftSideBarComponent;
 
-  static user_id: String;
+  static user_id: string;
   //  temp!: string[];
 
 

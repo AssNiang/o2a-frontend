@@ -17,12 +17,12 @@ export class PostItemComponent implements OnInit {
   // piRef = PostItemComponent;
   updateActivated: boolean = false; // utiliser une variable d'instance plutôt qu'une variable de classe (pour ne pas affecter tous les posts)
 
-  public profile: String = '../../../assets/images/blank-profile-picture.webp';
+  public profile: string = '../../../assets/images/blank-profile-picture.webp';
 
   // A rappeler à Abdoukhadre : liste de pictures, not only one (backend)
-  images: String[] = [];
+  images: string[] = [];
 
-  // public images: String[] = [
+  // public images: string[] = [
   //   '../../../assets/images/rhume-foins1.jpg',
   //   '../../../assets/images/rhume-foins2.webp',
   // ];

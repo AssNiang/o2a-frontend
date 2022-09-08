@@ -10,8 +10,8 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
   styleUrls: ['./connected-user.component.css'],
 })
 export class ConnectedUserComponent implements OnInit {
-  user_id!: String;
-  page_url!: String;
+  user_id!: string;
+  page_url!: string;
 
   constructor(private router: Router, private _userService: UserService) {}
 

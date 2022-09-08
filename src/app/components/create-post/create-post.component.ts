@@ -14,7 +14,7 @@ import { PostItemComponent } from '../post-item/post-item.component';
   styleUrls: ['./create-post.component.css'],
 })
 export class CreatePostComponent implements OnInit {
-  profile: String = '../../../assets/images/blank-profile-picture.webp';
+  profile: string = '../../../assets/images/blank-profile-picture.webp';
   user_id!: string;
   user!: User;
 
