@@ -1,0 +1,75 @@
+<div *ngIf="user">
+  <div class="text-start m-3 p-3 rounded componentFormat shadow row">
+    <!--profil-->
+    <div class="col-1">
+      <img
+        [src]="profile"
+        class="rounded-circle border border-dark"
+        width="50px"
+        alt=""
+      />
+    </div>
+
+    <div class="col-11">
+      <div class="fs-4 text-secondary mt-2">
+        {{ user.first_name }} {{ user.last_name }}
+      </div>
+    </div>
+
+    <div class="col-1 my-2"></div>
+
+    <div class="col-11">
+      <div>
+        <form action="" #send="ngForm">
+          <select class="form-select form-select-lg mb-3 bg-select fs-6" aria-label=".form-select-lg" name="statut" ngModel="public">
+            <option value="public">Post public</option>
+            <option value="private">Post privé</option>
+          </select>
+
+          <!-- {{send.value|json}} -->
+
+          <textarea
+            ngModel
+            rows="4"
+            name="message"
+            placeholder="Emettre un post"
+            class="w-100 textAreaFormat"
+            [value]="content"
+          ></textarea>
+        </form>
+      </div>
+      <div class="row text-center fs-6 text-secondary">
+        <div class="col" (click)="onSave(send)">
+          <img
+            src="../../../assets/images/send-svgrepo-com.svg"
+            height="30px"
+            alt=""
+            class="m-1"
+          />
+          <span>Envoyer</span>
+        </div>
+
+        <div class="col">
+          <img
+            src="../../../assets/images/camera-svgrepo-com.svg"
+            height="30px"
+            alt=""
+            class="m-2"
+          />
+          <span>Photo/Vidéo</span>
+        </div>
+
+        <div class="col">
+          <img
+            src="../../../assets/images/microphone-svgrepo-com.svg"
+            height="30px"
+            alt=""
+            class="m-1"
+          />
+          <span>Audio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

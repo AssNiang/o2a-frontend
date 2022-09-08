@@ -1,0 +1,58 @@
+<mat-card>
+  <h2>Connexion</h2>
+  <div>
+    <img [src]="registerIcon" alt="img_not_found" class="shadw">
+  </div>
+
+  <form #login="ngForm" (ngSubmit)="submit(login)" class="w-75 m-auto my-3">
+    <div class="form-group text-center">
+
+      <div class="my-2"></div>
+
+
+      <!-- <input
+        type="text"
+        name="user_name"
+        class="form-control"
+        placeholder="Nom d'utilisateur"
+        ngModel
+      > -->
+
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Adresse email"
+        ngModel
+      >
+
+
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        name="password"
+        class="form-control"
+        placeholder="Mot de passe"
+        ngModel
+      >
+
+      <div class="text-start position-relative">
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+
+        <span class="position-absolute bottom-25 m-1">Visibilité du mot de passe</span>
+
+      </div>
+
+
+
+      <button type="submit">Se connecter</button>
+
+    </div>
+  </form>
+
+  <!-- <div>{{ login.value | json }}</div> -->
+
+
+</mat-card>
+

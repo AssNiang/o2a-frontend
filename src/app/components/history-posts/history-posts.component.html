@@ -1,0 +1,20 @@
+<div class="text-center m-4">
+  <input type="button" class="btn p-2" [ngClass]="a" value="Tous les posts" (click)="onAll()">
+  <input type="button" class="btn p-2" [ngClass]="pu" value="Posts publics" (click)="onPublic()">
+  <input type="button" class="btn p-2" [ngClass]="pr" value="Posts privés" (click)="onPrivate()">
+</div>
+
+<div *ngIf="onlyPrivates">
+  <app-post-item *ngFor="let post of myPrivatePosts" [post]="post" [deleteUpdateButtonPresent]="true"></app-post-item>
+</div>
+
+<div *ngIf="onlyPublics">
+  <app-post-item *ngFor="let post of myPublicPosts" [post]="post" [deleteUpdateButtonPresent]="true"></app-post-item>
+</div>
+
+<div *ngIf="all">
+  <app-post-item *ngFor="let post of myPosts" [post]="post" [deleteUpdateButtonPresent]="true"></app-post-item>
+</div>
+
+
+

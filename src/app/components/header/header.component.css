@@ -1,0 +1,43 @@
+nav
+{
+    background-color:rgb(240, 229, 229);
+}
+input{
+
+    box-sizing: border-box;
+    border-radius: 25px;
+    width:500px;
+    border: 3px solid #814069;
+    text-align: center;
+}
+
+input:focus {
+    border: 3px solid #b68ea7;
+}
+
+
+#searchButton{
+    border-radius: 25px;
+    justify-content: center;
+    margin-left: -65px;
+    background-color:#814069;
+    border: 1px solid #814069;
+}
+
+button:hover{
+    background-color:#b68ea7;
+    border: 1px solid #814069;
+}
+
+form
+{
+    margin-right: 5%;
+    justify-content:center;
+
+}
+
+.register {
+    margin:3px;
+    background-color:#814069;
+
+}

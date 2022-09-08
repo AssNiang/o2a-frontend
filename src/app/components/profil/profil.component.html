@@ -1,0 +1,114 @@
+<div *ngIf="user">
+  <div class="container">
+    <div class="myCard">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="myRightCtn">
+            <div class="box">
+              <img
+                src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/saint-algue-carre-court-femme-coiffure-tendance-2022.jpg"
+                alt="profil"
+                style="width: 200px; border-radius: 50%"
+              />
+              <input type="button" class="butt_out" value="Changer Profil" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="myLeftCtn">
+
+            <form class="myForm text-center" #update="ngForm" (ngSubmit)="onUpdate(update)">
+              <h3>Mon Compte</h3>
+              <div class="form-group">
+                <!-- <label for="" class="form-label fs-7 text-secondary">Nom</label> -->
+                <input
+                  class="myInput"
+                  type="text"
+                  name="last_name"
+                  ngModel
+                  required
+
+                  [placeholder]="['Nom : '+ user.last_name+'']"
+                />
+              </div>
+              <div class="form-group">
+                <!-- <label for="" class="form-label fs-7 text-secondary">Prénom</label> -->
+                <input
+                  class="myInput"
+                  type="text"
+                  name="first_name"
+                  ngModel
+                  required
+
+                  [placeholder]="['Prénom : '+ user.first_name+'']"
+                />
+              </div>
+              <div class="form-group">
+                <!-- <label for="" class="form-label fs-7 text-secondary">Nom d'utilisateur</label> -->
+                <input
+                  class="myInput"
+                  type="text"
+                  id="username"
+                  name="user_name"
+                  ngModel
+                  required
+
+                  [placeholder]="['Nom d\'utilisateur: '+ user.user_name+'']"
+                />
+              </div>
+              <div class="form-group">
+                <!-- <label for="" class="form-label fs-7 text-secondary">Adresse</label> -->
+                <input
+                  class="myInput"
+                  type="text"
+                  name="address"
+                  ngModel
+                  required
+
+                  [placeholder]="['Adresse : '+ user.address+'']"
+                />
+              </div>
+              <div class="form-group">
+                <!-- <label for="" class="form-label fs-7 text-secondary">Email</label> -->
+                <input
+                  class="myInput"
+                  type="text"
+                  id="email"
+                  name="email"
+                  ngModel
+                  required
+
+                  [placeholder]="['Email : '+ user.email+'']"
+                />
+              </div>
+              <div class="form-group">
+                <!-- <label for="" class="form-label fs-7 text-secondary">Mot de passe</label> -->
+                <input
+                  class="myInput"
+                  [type]="showPassword ? 'text' : 'password'"
+                  id="password"
+                  name="password"
+                  ngModel
+                  required
+
+                  [placeholder]="['Mot de passe : ********']"
+                />
+              </div>
+              <div class="text-start position-relative">
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                  {{showPassword?'visibility_off':'visibility'}}
+                </mat-icon>
+
+                <span class="position-absolute bottom-25 m-1">Visibilité du mot de passe</span>
+
+              </div>
+              <input type="submit" class="butt" value="Modifier" />
+            </form>
+            <!-- {{update.value|json}} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

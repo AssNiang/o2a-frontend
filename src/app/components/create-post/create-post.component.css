@@ -1,0 +1,15 @@
+.textAreaFormat {
+  background-color: rgb(246, 244, 244);
+  border: 1px solid #814069;
+  border-bottom: 3px solid #814069;
+  margin-bottom: 10px;
+}
+
+.bg-select {
+  background-color: rgb(246, 244, 244);
+  border: 1px solid #814069;
+}
+
+.componentFormat {
+  border: 1px solid #814069;
+}

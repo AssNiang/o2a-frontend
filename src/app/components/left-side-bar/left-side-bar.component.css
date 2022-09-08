@@ -1,0 +1,10 @@
+.container{
+  background-color:#b68ea7;;
+  padding: 0px;
+  height: 100%;
+}
+
+div{
+  padding: 10px;
+  border-bottom: solid 1px black;
+}

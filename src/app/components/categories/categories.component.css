@@ -1,0 +1,52 @@
+
+body,html
+{
+    overflow-y:scroll;
+}
+
+.row
+{
+    margin-top: 20px;
+    width:auto;
+}
+
+img
+{
+    width:365px;
+    height:200px;
+    border-radius: 15px 15px 0 0;
+}
+
+.card
+{
+    background-color:#814069;
+    width: 23rem;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;  
+    border-radius: 15px;
+}
+
+.card:hover
+{
+    color:white;
+    cursor:pointer;
+    transform:scale(1.03);
+    transition : all 1s ease;
+}
+
+a
+{
+    text-decoration: none;
+    color:black;
+}
+
+a:hover
+{
+    color:#814069;
+}
+
+.last
+{
+    border-radius: 0 0 15px 15px;
+}

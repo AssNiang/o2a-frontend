@@ -1,0 +1,22 @@
+.container{
+  background-color: #6F5164;
+  height: 100%;
+}
+
+.pItem{
+  border: 1px solid #6F5164;
+  background-color: #faf6f9;
+
+}
+
+.profile img{
+  width: 50px;
+  border: 1px solid #6F5164;
+}
+
+.deleteUpdateButtonFormat{
+  margin: 3px;
+  width: 100px;
+  border: 1px solid #6F5164;
+  background-color: rgb(240, 229, 229);
+}

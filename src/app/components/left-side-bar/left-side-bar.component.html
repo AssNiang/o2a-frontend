@@ -1,0 +1,50 @@
+<!-- <div class="container">
+  <div routerLink="homeAppli" routerLinkActive="active">Accueil</div>
+  <div>Catégories</div>
+  <div routerLink="login" routerLinkActive="active">Se Connecter</div>
+  <div routerLink="registration" routerLinkActive="active">S'inscrire</div>
+</div> -->
+
+<div class="container" *ngIf="lsbRef.typeUser == 'unknown'">
+  <div routerLink="homeAppli" routerLinkActive="active">Accueil</div>
+  <div routerLink="categories" routerLinkActive="active">Categories</div>
+  <div routerLink="login" routerLinkActive="active">Se connecter</div>
+  <div routerLink="registration" routerLinkActive="active">S'inscrire</div>
+</div>
+
+<div class="container" *ngIf="lsbRef.typeUser == 'connected'">
+
+  <div [routerLink]="['connected-user', lsbRef.user_id]" routerLinkActive="active">Accueil</div>
+  <div [routerLink]="['categories', lsbRef.user_id]" routerLinkActive="active">Catégories</div>
+  <div [routerLink]="['profil', lsbRef.user_id]" routerLinkActive="active">Profil</div>
+  <div [routerLink]="['notification', lsbRef.user_id]" routerLinkActive="active">Notifications</div>
+  <div [routerLink]="['history-posts', lsbRef.user_id]" routerLinkActive="active">Historique Posts</div>
+  <div routerLink="" routerLinkActive="">Localiser Structures</div>
+  <div (click)="disconnect()">Se déconnecter</div>
+</div>
+
+<div class="container" *ngIf="lsbRef.typeUser == 'specialist'">
+
+  <div [routerLink]="['connected-user', lsbRef.user_id]" routerLinkActive="active">Accueil</div>
+  <div [routerLink]="['categories', lsbRef.user_id]" routerLinkActive="active">Catégories</div>
+  <div [routerLink]="['profil', lsbRef.user_id]" routerLinkActive="active">Profil</div>
+  <div [routerLink]="['notification', lsbRef.user_id]" routerLinkActive="active">Notifications</div>
+  <div [routerLink]="['history-posts', lsbRef.user_id]" routerLinkActive="active">Historique Posts</div>
+  <div routerLink="" routerLinkActive="">Localiser Structures</div>
+  <div routerLink="" routerLinkActive="">Demandes de conseils</div>
+  <div routerLink="" routerLinkActive="">Données Aggrégées</div>
+  <div routerLink="" routerLinkActive="">Se déconnecter</div>
+</div>
+
+<div class="container" *ngIf="lsbRef.typeUser == 'admin'">
+  <div [routerLink]="['connected-user', lsbRef.user_id]" routerLinkActive="active">Accueil</div>
+  <div [routerLink]="['categories', lsbRef.user_id]" routerLinkActive="active">Catégories</div>
+  <div [routerLink]="['profil', lsbRef.user_id]" routerLinkActive="active">Profil</div>
+  <div [routerLink]="['notification', lsbRef.user_id]" routerLinkActive="active">Notifications</div>
+  <div [routerLink]="['history-posts', lsbRef.user_id]" routerLinkActive="active">Historique Posts</div>
+  <div routerLink="" routerLinkActive="">Localiser Structures</div>
+  <div routerLink="" routerLinkActive="">Posts Signalés</div>
+  <div routerLink="" routerLinkActive="">Spécialistes</div>
+  <div routerLink="" routerLinkActive="">Comptes</div>
+  <div routerLink="" routerLinkActive="">Se déconnecter</div>
+</div>

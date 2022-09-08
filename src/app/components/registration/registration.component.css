@@ -1,0 +1,36 @@
+mat-card {
+  background-color: rgb(235, 220, 183);
+  color: #6F5164;
+  border: solid 2px #6F5164;
+  margin-top: 10px;
+}
+
+/* mat-icon {
+  position: relative;
+  bottom: 35px;
+  right: -150px;
+} */
+
+img {
+  height: 100px;
+
+}
+
+.shadw {
+  border: solid 2px #6F5164;
+  box-shadow: 12px -12px 2px #b5adb2;
+}
+
+input {
+  border: solid 2px #6F5164;
+  box-shadow: 2px 2px 2px #b5adb2;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #6F5164;
+  color: antiquewhite;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10%;
+}
