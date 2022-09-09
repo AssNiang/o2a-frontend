@@ -29,9 +29,26 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     #- run: sudo apt-get install google-chrome-stable
-    - run: npm test
-    env:
-      CI: true
+    # - run: npm test
+    # env:
+    #   CI: true
+    - name: NPM Test
+        run: |
+          export CHROME_BIN=/usr/bin/chromium-browser
+          CI=true npm run test-headless
+        env:
+          CI: true
+
+    # - run: sudo apt install chromium-browser
+    #   - name: Install dependencies
+    #     run: npm ci
+
+    #   - name: NPM Test
+    #     run: |
+    #       export CHROME_BIN=/usr/bin/chromium-browser
+    #       CI=true npm run test-headless
+    #     env:
+    #       CI: true
 
     - name:  Quality Gate
       uses: sonarsource/sonarqube-scan-action@master
