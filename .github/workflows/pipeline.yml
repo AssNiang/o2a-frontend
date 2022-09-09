@@ -33,9 +33,8 @@ jobs:
     # env:
     #   CI: true
     - name: NPM Test
-        run: |
-          export CHROME_BIN=/usr/bin/chromium-browser
-          CI=true npm run test-headless
+      - run:
+          export CHROME_BIN=/usr/bin/chromium-browser && CI=true npm run test-headless
         env:
           CI: true
 
