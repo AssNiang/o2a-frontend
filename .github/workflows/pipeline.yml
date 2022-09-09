@@ -33,6 +33,7 @@ jobs:
     - run: chrome --version
     - run: npm run test-headless
 
+
     - name: SonarQube Scan
     uses: kitabisa/sonarqube-action@v1.2.0
     with:
