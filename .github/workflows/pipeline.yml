@@ -34,18 +34,10 @@ jobs:
     - run: npm run test-headless
 
 
-    - name:  Quality Gate
-      uses: sonarsource/sonarqube-scan-action@master
+    - name: Analyse with SonarCloud
+      uses: sonarSource/sonarcloud-github-actions@v1.3
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-
-    - name: "Check Quality Gate" #can also use simple or double quotes
-      id: sonarqube-quality-gate-check
-      uses: sonarsource/sonarqube-quality-gate-action@master
-      timeout-minutes: 5
-      env:
-       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
