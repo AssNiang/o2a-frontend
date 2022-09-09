@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -29,6 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     #- run: sudo apt-get install google-chrome-stable
+    - uses: browser-actions/setup-chrome@latest
+    - run: chrome --version
     - run: npm run test-headless
 
 
