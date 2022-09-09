@@ -33,6 +33,11 @@ jobs:
     - run: chrome --version
     - run: npm run test-headless
 
+    - name: SonarQube Scan
+      uses: monstar-lab-oss/sonarqube-github-action@v1.0.1
+      with:
+        url: ${{ secrets.SONARQUBE_HOST }}
+        token: ${{ secrets.SONARQUBE_TOKEN }}
 
 
     # - name:  Quality Gate
