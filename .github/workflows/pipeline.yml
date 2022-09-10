@@ -58,7 +58,9 @@ jobs:
     - name: Build the Docker image
       run: |
         docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
-        docker build . --file Dockerfile --tag sas792/frontend:$(date +%s)
-        docker push sas792/frontend:$(date +%s)
+        docker build . --file Dockerfile --tag sas792/frontend:${{ env.unique_tag }}
+        docker push sas792/frontend:${{ env.unique_tag }}
+      env:
+        unique_tag: $(date +%s)
 
 
