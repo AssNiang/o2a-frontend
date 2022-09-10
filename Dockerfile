@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:10-alpine as build-step
+FROM node:16-alpine as build-step
 
 RUN mkdir -p /app
 
@@ -7,10 +7,6 @@ WORKDIR /app
 
 COPY package.json /app
 
-RUN apt-get update
-RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_16.x  | bash -
-RUN apt-get -y install nodejs
 RUN npm install
 
 COPY . /app
