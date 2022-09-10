@@ -77,4 +77,3 @@ jobs:
       with:
         app-name: '${{ env.AZURE_WEB_APP }}'
         images: '$ {{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest'
-
