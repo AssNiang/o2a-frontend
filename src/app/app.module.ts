@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RightSideBarComponent } from './components/right-side-bar/right-side-bar.component';
 import { LeftSideBarComponent } from './components/left-side-bar/left-side-bar.component';
-import { ContentComponent } from './components/content/content.component';
 import { HomeAppliComponent } from './components/home-appli/home-appli.component';
 import { PostItemComponent } from './components/post-item/post-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -40,7 +39,6 @@ import { PostService } from './services/post.service';
     HeaderComponent,
     RightSideBarComponent,
     LeftSideBarComponent,
-    ContentComponent,
     routingComponents,
     HomeAppliComponent,
     PostItemComponent,
