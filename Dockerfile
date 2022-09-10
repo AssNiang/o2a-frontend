@@ -11,9 +11,8 @@ RUN npm install
 
 COPY . /app
 
-RUN sudo npm cache clean -f
-RUN sudo npm install -g n
-RUN sudo n stable
+RUN npm install -g n
+RUN n stable
 
 RUN npm run build --prod
 
