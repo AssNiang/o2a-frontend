@@ -38,5 +38,7 @@ export class RegistrationComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //...
+  }
 }

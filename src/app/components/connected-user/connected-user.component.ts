@@ -22,7 +22,6 @@ export class ConnectedUserComponent implements OnInit {
     // refresh the left-side-bar and the app-component
     this._userService.getUserById(this.user_id+'').subscribe(
       user => {
-        //console.log("user:", user); // just for test
         LeftSideBarComponent.user_id = this.user_id;
         if(user.is_specialist){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
