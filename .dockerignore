@@ -5,7 +5,7 @@
 
 /coverage
 
-/dist/o2a
+# /dist/o2a
 
 .gitignore
 
