@@ -59,6 +59,6 @@ jobs:
       run: |
         docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
         docker build . --file Dockerfile --tag sas792/frontend:$(date +%s)
-        docker push sas/frontend:$(date +%s)
+        docker push sas792/frontend:$(date +%s)
 
 
