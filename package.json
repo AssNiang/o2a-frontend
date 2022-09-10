@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
+    "test-cicd": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
+    "clean-cicd": "rimraf ./dist",
+    "build-cicd": "ng build --prod",
+
     "sonar": "sonar-scanner"
   },
   "private": true,

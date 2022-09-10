@@ -27,18 +27,21 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        
+
     - name: Install Dependencies
       run: npm ci
-    - run: npm run build --if-present
+    #- run: npm run build --if-present
     #- run: sudo apt-get install google-chrome-stable
     #- uses: browser-actions/setup-chrome@latest
     #- run: chrome --version
     - name: Run Tests
-      run: npm run test-headless
-      
-#     - name: Clean Distribution Directory
-#       run: npm run clean
+      run: npm run test-cicd
+
+    - name: Clean Distribution Directory
+      run: npm run clean-cicd
+
+    - name: Build Application
+      run: npm run build-cicd
 
 
     - name: Analyse with SonarCloud
@@ -46,6 +49,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        
-    
+
+
 
