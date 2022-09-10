@@ -7,12 +7,13 @@ WORKDIR /app
 
 COPY package.json /app
 
+RUN apt-get update
+RUN apt-get -y install curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_16.x  | bash -
+RUN apt-get -y install nodejs
 RUN npm install
 
 COPY . /app
-
-RUN npm install -g n
-RUN n latest
 
 RUN npm run build --prod
 
