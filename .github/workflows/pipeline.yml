@@ -59,6 +59,7 @@ jobs:
     #     docker build . --file Dockerfile --tag o2a/frontend:$(date +%s)
     #     dockr push o2a/frontend
 
+
     - name: Build the Docker image
       run: |
         docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
