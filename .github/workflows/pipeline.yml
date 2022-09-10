@@ -36,15 +36,15 @@ jobs:
     #- run: chrome --version
 
 
-    # - name: Run Tests
-    #   run: npm run test-cicd
+    - name: Run Tests
+      run: npm run test-cicd
 
 
-    # - name: Analyse with SonarCloud
-    #   uses: sonarsource/sonarcloud-github-action@master
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Analyse with SonarCloud
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
     - name: Clean Distribution Directory
