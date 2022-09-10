@@ -12,7 +12,7 @@ RUN npm install
 COPY . /app
 
 RUN npm install -g n
-RUN n stable
+RUN n latest
 
 RUN npm run build --prod
 
