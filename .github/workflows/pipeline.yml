@@ -34,23 +34,25 @@ jobs:
     #- run: sudo apt-get install google-chrome-stable
     #- uses: browser-actions/setup-chrome@latest
     #- run: chrome --version
-    - name: Run Tests
-      run: npm run test-cicd
 
 
-    - name: Analyse with SonarCloud
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    # - name: Run Tests
+    #   run: npm run test-cicd
 
 
-    - name: Clean Distribution Directory
-      run: npm run clean-cicd
+    # - name: Analyse with SonarCloud
+    #   uses: sonarsource/sonarcloud-github-action@master
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
-    - name: Build Application
-      run: npm run build-cicd
+    # - name: Clean Distribution Directory
+    #   run: npm run clean-cicd
+
+
+    # - name: Build Application
+    #   run: npm run build-cicd
 
 
     - name: Build the Docker image
