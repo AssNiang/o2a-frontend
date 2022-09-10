@@ -9,6 +9,10 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+env:
+  DOCKER_IMAGE_NAME: 'sas792/frontend'
+  AZURE_WEB_APP: 'o2acr'
+
 
 jobs:
   build:
@@ -58,7 +62,18 @@ jobs:
     - name: Build the Docker image
       run: |
         docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
-        docker build . --file Dockerfile --tag sas792/frontend:$(date +%s)
-        docker push -a sas792/frontend
+        docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE_NAME }}:latest
+        docker push ${{ env.DOCKER_IMAGE_NAME }}:latest
 
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure WebApp Deployment
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: '${{ env.AZURE_WEB_APP }}'
+        images: '$ {{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest'
 
