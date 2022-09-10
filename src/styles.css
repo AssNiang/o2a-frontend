@@ -6,6 +6,8 @@ html, body {
   left:0;
   right:0;
   overflow: auto;
+  height: 100%;
+  background-color:rgb(240, 229, 229);
 }
 
 app-root {
@@ -17,6 +19,4 @@ app-root {
   background-color: #814069;
 }
 
-
-html, body { height: 100%;  background-color:rgb(240, 229, 229); }
 body { margin: 0; font-family: "poppins", sans-serif;}

@@ -14,18 +14,12 @@ export class PostItemComponent implements OnInit {
   @Input() deleteUpdateButtonPresent!: boolean;
   postAuthor!: User;
 
-  // piRef = PostItemComponent;
   updateActivated: boolean = false; // utiliser une variable d'instance plutôt qu'une variable de classe (pour ne pas affecter tous les posts)
 
   public profile: string = '../../../assets/images/blank-profile-picture.webp';
 
   // A rappeler à Abdoukhadre : liste de pictures, not only one (backend)
   images: string[] = [];
-
-  // public images: string[] = [
-  //   '../../../assets/images/rhume-foins1.jpg',
-  //   '../../../assets/images/rhume-foins2.webp',
-  // ];
 
   constructor(
     private _userService: UserService,
@@ -46,13 +40,10 @@ export class PostItemComponent implements OnInit {
 
   onDelete() {
     // to delete a post. It's working !
-    // try {
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // a tryCatch may be a good idea
 
     this._postService.deletePost(this.post._id as string).subscribe(() => {
-      //window.location.reload();
+      // use window.locate.reload() to refresh the page
     });
   }
 

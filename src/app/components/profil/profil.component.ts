@@ -18,20 +18,14 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_id = this.router.url.split('/')[2];
-    //console.log(this.user_id);
 
     this._userService.getUserById(this.user_id).subscribe((data) => {
       this.user = data;
-      //console.log(this.user.email);
     });
   }
 
   onUpdate(update: NgForm) {
-    // try {
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // a tryCatch may be a good idea
 
     update.value.id = this.user._id;
 

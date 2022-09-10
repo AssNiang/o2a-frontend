@@ -13,23 +13,16 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 export class LoginComponent implements OnInit {
   registerIcon: string = '../../../assets/images/register-icon2.jpg';
   public showPassword: boolean = false;
-  // userInfos = {};
-  //id = 0;
 
   constructor(private router: Router, private _userService: UserService) {}
 
   submit(login: NgForm) {
-    // try {
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // a tryCatch may be agood idaea
 
     this._userService.signInUser(login.value).subscribe((data) => {
       //get user by id
       this._userService.getUserById(data.id).subscribe(
         user => {
-          //console.log("user:", user); // just for test
           LeftSideBarComponent.user_id = data.id;
           if(user.is_specialist){
             AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
@@ -43,7 +36,7 @@ export class LoginComponent implements OnInit {
         }
       );
 
-      //login.reset();
+      // use login.reset() to to remove data in the input
 
       /*
         - add verifications before switching (user found)
@@ -51,7 +44,6 @@ export class LoginComponent implements OnInit {
         - get the user type to initialize `LeftSideBarComponent.typeUser`
       */
 
-      //LeftSideBarComponent.typeUser = 'admin'; // just for test purposes
       this.router.navigate(['connected-user', data.id]);
     });
   }
@@ -60,5 +52,7 @@ export class LoginComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //...
+  }
 }

@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
-import { __classPrivateFieldGet } from 'tslib';
 import { PostItemComponent } from '../post-item/post-item.component';
 
 @Component({
@@ -33,24 +32,16 @@ export class CreatePostComponent implements OnInit {
   onSave(send: NgForm) {
     send.value.posterId = this.user._id;
 
-    //console.log(send.value);
-
     //if toUpdate is not defined, then we create the post
     if (!this.toUpdate) {
-      // try {
-
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      // a tryCatch may be a good idea
       if (send.value.statut == 'public') {
         this._postService.createPublicPost(send.value).subscribe((data) => {
-          alert(data);
-          //window.location.reload();
+          // use window.location.reload() to refresh. It would be better if we had another solution
         });
       } else if (send.value.statut == 'private') {
         this._postService.createPrivatePost(send.value).subscribe((data) => {
-          // alert(data);
-          // window.location.reload();
+          // use window.location.reload() to refresh. It would be better if we had another solution
         });
       } else {
         alert('Le statut est soit public soit private !');
@@ -58,11 +49,7 @@ export class CreatePostComponent implements OnInit {
     }
     // if toUpdate is defined (it contains the id of the post to update), then we update the post
     else {
-      // try {
-
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      // a tryCatch may be a good idea
       this._postService
         .updatePost(send.value, this.toUpdate)
         .subscribe((data) => {
@@ -71,20 +58,18 @@ export class CreatePostComponent implements OnInit {
           // l'importance des variables de classe et des variables d'instance.
           // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)
           this.piRef.setUpdateActivatedToFalse();
-          //window.location.reload();
+          // use window.location.reload() to refresh. It would be better if we had another solution
         });
     }
 
-    //send.reset();
+    // use send.reset() to erase the entered data
   }
 
   ngOnInit(): void {
     this.user_id = this.router.url.split('/')[2];
-    //console.log(this.user_id);
 
     this._userService.getUserById(this.user_id).subscribe((data) => {
       this.user = data;
-      //console.log(this.user._id);
     });
     // l'importance des variables de classe et des variables d'instance.
     // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)
@@ -92,13 +77,8 @@ export class CreatePostComponent implements OnInit {
 
     // get the post to update
     if (this.toUpdate) {
-      // try {
-
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      // a tryCatch may be a good idea
       this._postService.getAllPosts().subscribe((posts) => {
-        //this.postToUpdate =
         this.content = posts.filter(
           (post) => post._id == this.toUpdate
         )[0].message;

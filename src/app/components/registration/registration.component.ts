@@ -12,7 +12,6 @@ export class RegistrationComponent implements OnInit {
   registerIcon: string = '../../../assets/images/register-icon2.jpg';
   public showPassword: boolean = false;
   notValid: boolean = false;
-  // userInfos = {};
 
   constructor(private router: Router, private _userService: UserService) {}
 
@@ -22,15 +21,11 @@ export class RegistrationComponent implements OnInit {
       return;
     }
 
-    // try {
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // a tryCathc may be a good answer
 
     this._userService.signUpUser(register.value).subscribe((data) => {
 
-      //register.reset();
+      // use RegistoryComponent
       /*
         - add verifications before switching (validators)
         - save infos in the db

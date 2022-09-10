@@ -27,12 +27,7 @@ export class HistoryPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_id = this.router.url.split('/')[2];
-    //alert(this.user_id)
-    // try {
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // a tryCatch may be a good idea
 
     this._postService.getAllPostsById(this.user_id+'').subscribe(
       posts => {
@@ -46,7 +41,6 @@ export class HistoryPostsComponent implements OnInit {
     // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect user_id is given
     this._userService.getUserById(this.user_id+'').subscribe(
       user => {
-        //console.log("user:", user); // just for test
         LeftSideBarComponent.user_id = this.user_id;
         if(user.is_specialist){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';

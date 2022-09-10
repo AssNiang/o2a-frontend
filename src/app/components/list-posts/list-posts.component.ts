@@ -13,16 +13,11 @@ export class ListPostsComponent implements OnInit {
   constructor(private _postService:PostService) { }
 
   ngOnInit(): void {
-    // try {
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // a tryCatch may be a good idea
 
     this._postService.getAllPosts().subscribe(
       posts => {
         this.allPosts = posts.filter(post => post.statut == "public");
-        //console.log(this.allPosts);
       }
     )
 

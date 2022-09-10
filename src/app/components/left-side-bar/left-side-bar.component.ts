@@ -13,18 +13,12 @@ export class LeftSideBarComponent implements OnInit {
   lsbRef = LeftSideBarComponent;
 
   static user_id: string;
-  //  temp!: string[];
 
 
   constructor(private router: Router, private _userService: UserService) {}
 
   disconnect() {
-    // try {
-
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // a tryCatch may be a good idea
 
     this._userService.logoutUser().subscribe();
       AppComponent.typeUser = LeftSideBarComponent.typeUser = "unknown";
@@ -32,8 +26,7 @@ export class LeftSideBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.temp = this.router.url.split('/');
-    // alert(this.temp[1]);
+    //...
 
   }
 }
