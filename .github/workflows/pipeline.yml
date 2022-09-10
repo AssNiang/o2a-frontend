@@ -47,12 +47,12 @@ jobs:
     #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
-    # - name: Clean Distribution Directory
-    #   run: npm run clean-cicd
+    - name: Clean Distribution Directory
+      run: npm run clean-cicd
 
 
-    # - name: Build Application
-    #   run: npm run build-cicd
+    - name: Build Application
+      run: npm run build-cicd
 
 
     - name: Build the Docker image
