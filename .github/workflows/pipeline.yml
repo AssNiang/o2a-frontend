@@ -58,7 +58,7 @@ jobs:
     - name: Build the Docker image
       run: |
         docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
-        docker build . --file Dockerfile --tag o2a/frontend:latest
-        docker push o2a/frontend:latest
+        docker build . --file Dockerfile --tag sas792/frontend:latest
+        docker push sas792/frontend:latest
 
 
