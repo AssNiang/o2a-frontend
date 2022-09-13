@@ -51,8 +51,8 @@ jobs:
         repo-token: '{{ secrets.GITHUB_TOKEN }}'
 #         # Don't block PRs below this severity. Possible values are `low`, `moderate`, `high`, `critical`.
 #         fail-on-severity: # optional, default is low
-        # The base git ref to be used for this check. Has a default value when the workflow event is `pull_request` or `pull_request_target`. Must be provided otherwise.
-        base-ref: 'head_ref'
+#         # The base git ref to be used for this check. Has a default value when the workflow event is `pull_request` or `pull_request_target`. Must be provided otherwise.
+#         base-ref: 'head_ref'
 #         # The head git ref to be used for this check. Has a default value when the workflow event is `pull_request` or `pull_request_target`. Must be provided otherwise.
 #         head-ref: # optional
 #         # Comma-separated list of allowed licenses (e.g. "MIT, GPL 3.0, BSD 2 Clause")
