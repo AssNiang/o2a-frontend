@@ -37,6 +37,18 @@ jobs:
     #- run: sudo apt-get install google-chrome-stable
     #- uses: browser-actions/setup-chrome@latest
     #- run: chrome --version
+    
+    - name: OWASP Dependency Track check
+      # You may pin to the exact commit or the version.
+      # uses: Quobis/action-owasp-dependecy-track-check@2d4568e0746b85da804fe390b519631c88edf8fe
+      uses: Quobis/action-owasp-dependecy-track-check@v1.3
+      with:
+        # URL of OWASP Dependency Track REST API
+        url: https://dtrack.quobis.com/
+        # Key to access OWASP Dependency Track REST API
+        key: USEAVALIDKEY
+        # Programming language
+        language: nodejs
 
 
     - name: Run Tests
