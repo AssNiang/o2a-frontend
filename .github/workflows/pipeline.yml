@@ -57,6 +57,7 @@ jobs:
 #         # Comma-separated list of forbidden licenses (e.g. "MIT, GPL 3.0, BSD 2 Clause")
 #         deny-licenses: # optional
 
+
     - name: Install Dependencies
       run: npm ci
       
