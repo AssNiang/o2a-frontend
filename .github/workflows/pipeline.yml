@@ -120,6 +120,17 @@ jobs:
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         name: aci-frontend
         location: 'central us'
+        
+    - name: Azure CLI script to get the url
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az container show \
+          --resource-group o2aResourceGroup \
+          --name aci-frontend \
+          --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
+          --output table
 
   # for the deployment, this link helped a lot :
     # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-github-action
