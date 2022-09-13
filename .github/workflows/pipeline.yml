@@ -4,8 +4,7 @@ permissions:
   contents: read
 
 on:
-  push:
-    branches: [ "main" ]
+
   pull_request:
     branches: [ "main" ]
 env:
@@ -32,25 +31,13 @@ jobs:
         cache: 'npm'
 
 
-#     - name: OWASP Dependency Track check
-#       # You may pin to the exact commit or the version.
-#       # uses: Quobis/action-owasp-dependecy-track-check@2d4568e0746b85da804fe390b519631c88edf8fe
-#       uses: Quobis/action-owasp-dependecy-track-check@v1.3
-#       with:
-#         # URL of OWASP Dependency Track REST API
-#         url: 'https://dtrack.quobis.com'
-#         # Key to access OWASP Dependency Track REST API
-#         key: 'USEAVALIDKEY'
-#         # Programming language
-#         language: 'nodejs'
-
-    - name: Dependency Review
+    - name: Dependency Review To Check For Vulnerabilities
       uses: actions/dependency-review-action@v2.1.0
       with:
         # Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.
-        repo-token: '{{ secrets.GITHUB_TOKEN }}'
-#         # Don't block PRs below this severity. Possible values are `low`, `moderate`, `high`, `critical`.
-#         fail-on-severity: # optional, default is low
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        # Don't block PRs below this severity. Possible values are `low`, `moderate`, `high`, `critical`.
+        fail-on-severity: low
         # # The base git ref to be used for this check. Has a default value when the workflow event is `pull_request` or `pull_request_target`. Must be provided otherwise.
         # base-ref: 'head_ref'
 #         # The head git ref to be used for this check. Has a default value when the workflow event is `pull_request` or `pull_request_target`. Must be provided otherwise.
@@ -110,13 +97,15 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: 'Build and push image'
+    - name: 'Login to azure/docker'
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-    - run: |
+        
+    - name: 'Build and push image'
+      run: |
         docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
         docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
 
@@ -131,6 +120,17 @@ jobs:
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         name: aci-frontend
         location: 'central us'
+        
+    - name: Azure CLI script to get the url
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az container show \
+          --resource-group o2aResourceGroup \
+          --name aci-frontend \
+          --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
+          --output table
 
   # for the deployment, this link helped a lot :
     # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-github-action
