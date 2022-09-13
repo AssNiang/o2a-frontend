@@ -1,5 +1,8 @@
 name: Pipeline Angular
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ "main" ]
