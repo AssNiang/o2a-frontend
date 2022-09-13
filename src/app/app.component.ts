@@ -11,5 +11,4 @@ export class AppComponent {
   static typeUser : string = 'unknown';
   appRef = AppComponent;
 
-
 }
