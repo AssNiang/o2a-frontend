@@ -6,7 +6,7 @@ permissions:
 on:
 
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
 env:
   DOCKER_IMAGE_NAME: 'sas792/frontend'
   AZURE_WEB_APP: 'o2a-frontend'
@@ -50,7 +50,7 @@ jobs:
 
     - name: Install Dependencies
       run: npm ci
-      
+
 
     - name: Run Tests
       run: npm run test-cicd
@@ -103,7 +103,7 @@ jobs:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-        
+
     - name: 'Build and push image'
       run: |
         docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
@@ -120,7 +120,7 @@ jobs:
         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         name: aci-frontend
         location: 'central us'
-        
+
     - name: Azure CLI script to get the url
       uses: azure/CLI@v1
       with:
