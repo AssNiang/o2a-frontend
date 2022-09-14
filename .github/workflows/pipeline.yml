@@ -55,11 +55,14 @@ jobs:
     # - name: Run Tests
     #   run: npm run test-cicd
 
-    - name:  Quality Gate
+    - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN1 }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      with:
+        projectBaseDir: app/src
+        args: >
+          -Dsonar.python.coverage.reportPaths=coverage.xml
+          -Dsonar.tests=tests/
+          -Dsonar.verbose=true
 
 
     - name: "Check Quality Gate" #can also use simple or double quotes
