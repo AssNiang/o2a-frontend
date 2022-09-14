@@ -2,5 +2,5 @@ projectKey=o2a-frontend
 serverUrl=http://localhost:9000
 serverVersion=7.8.0.26217
 dashboardUrl=http://localhost:9000/dashboard?id=o2a-frontend
-ceTaskId=AYMj0z-7ZTRfkg_4mF5l
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYMj0z-7ZTRfkg_4mF5l
+ceTaskId=AYM9v-iFmuWjo0THVBHW
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYM9v-iFmuWjo0THVBHW
