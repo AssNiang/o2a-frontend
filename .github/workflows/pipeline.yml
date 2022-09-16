@@ -56,6 +56,7 @@ jobs:
     # - name: Run Tests
     #   run: npm run test-cicd
 
+
     - name:  SonarScanner
       uses: sonarsource/sonarqube-scan-action@master
       env:
