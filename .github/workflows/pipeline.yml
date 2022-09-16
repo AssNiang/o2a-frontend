@@ -53,8 +53,8 @@ jobs:
       run: npm ci
 
 
-    # - name: Run Tests
-    #   run: npm run test-cicd
+    - name: Run Tests
+      run: npm run test-cicd
 
     - name:  SonarScanner
       uses: sonarsource/sonarqube-scan-action@master
