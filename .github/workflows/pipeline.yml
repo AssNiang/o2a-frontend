@@ -38,15 +38,6 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         # Don't block PRs below this severity. Possible values are `low`, `moderate`, `high`, `critical`.
         fail-on-severity: low
-        # # The base git ref to be used for this check. Has a default value when the workflow event is `pull_request` or `pull_request_target`. Must be provided otherwise.
-        # base-ref: 'head_ref'
-#         # The head git ref to be used for this check. Has a default value when the workflow event is `pull_request` or `pull_request_target`. Must be provided otherwise.
-#         head-ref: # optional
-#         # Comma-separated list of allowed licenses (e.g. "MIT, GPL 3.0, BSD 2 Clause")
-#         allow-licenses: # optional
-#         # Comma-separated list of forbidden licenses (e.g. "MIT, GPL 3.0, BSD 2 Clause")
-#         deny-licenses: # optional
-
 
 
     - name: Install Dependencies
@@ -56,14 +47,15 @@ jobs:
     - name: Run Tests
       run: npm run test-cicd
 
-    - name:  SonarScanner
+
+    - name:  SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN1 }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
 
-    - name: "Check Quality Gate" #can also use simple or double quotes
+    - name: "Check Quality Gate"
       id: sonarqube-quality-gate-check
       uses: sonarsource/sonarqube-quality-gate-action@master
       timeout-minutes: 5
@@ -79,12 +71,12 @@ jobs:
 #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
-#     - name: Clean Distribution Directory
-#       run: npm run clean-cicd
+    - name: Clean Distribution Directory
+      run: npm run clean-cicd
 
 
-#     - name: Build Application
-#       run: npm run build-cicd
+    - name: Build Application
+      run: npm run build-cicd
 
 
 #     # - name: Build the Docker image
@@ -108,45 +100,63 @@ jobs:
 
 # #***************************************************
 
-#     - name: 'Login via Azure CLI'
-#       uses: azure/login@v1
-#       with:
-#         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-#     - name: 'Login to azure/docker'
-#       uses: azure/docker-login@v1
-#       with:
-#         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-#         username: ${{ secrets.REGISTRY_USERNAME }}
-#         password: ${{ secrets.REGISTRY_PASSWORD }}
+    - name: 'Login to azure/docker'
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
 
-#     - name: 'Build and push image'
-#       run: |
-#         docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
-#         docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+    - name: 'Build and push image'
+      run: |
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
 
-#     - name: 'Deploy to Azure Container Instances'
-#       uses: 'azure/aci-deploy@v1'
-#       with:
-#         resource-group: ${{ secrets.RESOURCE_GROUP }}
-#         dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-#         image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
-#         registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-#         registry-username: ${{ secrets.REGISTRY_USERNAME }}
-#         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-#         name: aci-frontend
-#         location: 'central us'
+    - name: 'Deploy to Azure Container Instances'
+      uses: 'azure/aci-deploy@v1'
+      with:
+        resource-group: ${{ secrets.RESOURCE_GROUP }}
+        dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+        image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+        registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        registry-username: ${{ secrets.REGISTRY_USERNAME }}
+        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+        name: aci-frontend
+        location: 'central us'
 
-#     - name: Azure CLI script to get the url
-#       uses: azure/CLI@v1
-#       with:
-#         azcliversion: 2.30.0
-#         inlineScript: |
-#           az container show \
-#           --resource-group o2aResourceGroup \
-#           --name aci-frontend \
-#           --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
-#           --output table
+    - name: Azure CLI script to get the url
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az container show \
+          --resource-group o2aResourceGroup \
+          --name aci-frontend \
+          --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
+          --output table
+          
+    
+    - name: Wait for deploy to finish
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '30s'
+        
+
+    - name : Test deploy
+      id: tes-deploy-dev
+      uses: indiesdev/curl@v1.1
+      with:
+          url: http:${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}.centralus.azurecontainer.io/homeAppli
+          method: "GET"
+          accept: 200
+          timeout: 5000
+          log-response: true
+          retries: 2
 
 #   # for the deployment, this link helped a lot :
 #     # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-github-action
