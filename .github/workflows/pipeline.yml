@@ -11,7 +11,7 @@ env:
   DOCKER_IMAGE_NAME: 'sas792/frontend'
   AZURE_WEB_APP: 'o2a-frontend'
 
-
+# add a line in order to commit a pr after
 jobs:
   build:
 
