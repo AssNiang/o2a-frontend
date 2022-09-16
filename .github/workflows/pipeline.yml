@@ -48,98 +48,114 @@ jobs:
 #         deny-licenses: # optional
 
 
+
     - name: Install Dependencies
       run: npm ci
 
 
-    - name: Run Tests
-      run: npm run test-cicd
+    # - name: Run Tests
+    #   run: npm run test-cicd
 
-
-    - name: Analyse with SonarCloud
-      uses: sonarsource/sonarcloud-github-action@master
+    - name:  SonarScanner
+      uses: sonarsource/sonarqube-scan-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN1 }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
 
-    - name: Clean Distribution Directory
-      run: npm run clean-cicd
+    - name: "Check Quality Gate" #can also use simple or double quotes
+      id: sonarqube-quality-gate-check
+      uses: sonarsource/sonarqube-quality-gate-action@master
+      timeout-minutes: 5
+      env:
+       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN1 }}
+       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
 
-    - name: Build Application
-      run: npm run build-cicd
+#     - name: Analyse with SonarCloud
+#       uses: sonarsource/sonarcloud-github-action@master
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
-    # - name: Build the Docker image
-    #   run: |
-    #     docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
-    #     docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE_NAME }}:latest
-    #     docker push ${{ env.DOCKER_IMAGE_NAME }}:latest
+#     - name: Clean Distribution Directory
+#       run: npm run clean-cicd
 
 
-    # - name: Azure Login
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+#     - name: Build Application
+#       run: npm run build-cicd
 
 
-    # - name: Azure WebApp Deployment
-    #   uses: Azure/webapps-deploy@v2
-    #   with:
-    #     app-name: '${{ env.AZURE_WEB_APP }}'
-    #     images: '$ {{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest'
-
-#***************************************************
-
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: 'Login to azure/docker'
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-
-    - name: 'Build and push image'
-      run: |
-        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
-
-    - name: 'Deploy to Azure Container Instances'
-      uses: 'azure/aci-deploy@v1'
-      with:
-        resource-group: ${{ secrets.RESOURCE_GROUP }}
-        dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-        image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
-        registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        registry-username: ${{ secrets.REGISTRY_USERNAME }}
-        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-        name: aci-frontend
-        location: 'central us'
-
-    - name: Azure CLI script to get the url
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.30.0
-        inlineScript: |
-          az container show \
-          --resource-group o2aResourceGroup \
-          --name aci-frontend \
-          --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
-          --output table
-
-  # for the deployment, this link helped a lot :
-    # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-github-action
+#     # - name: Build the Docker image
+#     #   run: |
+#     #     docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
+#     #     docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE_NAME }}:latest
+#     #     docker push ${{ env.DOCKER_IMAGE_NAME }}:latest
 
 
-  # to validate the workflow, we put in the azure cli :
-    #   az container show \
-    #   --resource-group o2aResourceGroup \
-    #   --name aci-frontend \
-    #   --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
-    #   --output table
-  # then we copy the url !
+#     # - name: Azure Login
+#     #   uses: azure/login@v1
+#     #   with:
+#     #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+#     # - name: Azure WebApp Deployment
+#     #   uses: Azure/webapps-deploy@v2
+#     #   with:
+#     #     app-name: '${{ env.AZURE_WEB_APP }}'
+#     #     images: '$ {{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest'
+
+# #***************************************************
+
+#     - name: 'Login via Azure CLI'
+#       uses: azure/login@v1
+#       with:
+#         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+#     - name: 'Login to azure/docker'
+#       uses: azure/docker-login@v1
+#       with:
+#         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+#         username: ${{ secrets.REGISTRY_USERNAME }}
+#         password: ${{ secrets.REGISTRY_PASSWORD }}
+
+#     - name: 'Build and push image'
+#       run: |
+#         docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+#         docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+
+#     - name: 'Deploy to Azure Container Instances'
+#       uses: 'azure/aci-deploy@v1'
+#       with:
+#         resource-group: ${{ secrets.RESOURCE_GROUP }}
+#         dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+#         image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+#         registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+#         registry-username: ${{ secrets.REGISTRY_USERNAME }}
+#         registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+#         name: aci-frontend
+#         location: 'central us'
+
+#     - name: Azure CLI script to get the url
+#       uses: azure/CLI@v1
+#       with:
+#         azcliversion: 2.30.0
+#         inlineScript: |
+#           az container show \
+#           --resource-group o2aResourceGroup \
+#           --name aci-frontend \
+#           --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
+#           --output table
+
+#   # for the deployment, this link helped a lot :
+#     # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-github-action
+
+
+#   # to validate the workflow, we put in the azure cli :
+#     #   az container show \
+#     #   --resource-group o2aResourceGroup \
+#     #   --name aci-frontend \
+#     #   --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
+#     #   --output table
+#   # then we copy the url !
