@@ -31,6 +31,10 @@ jobs:
         cache: 'npm'
 
 
+    - name: Install Dependencies
+      run: npm ci
+
+
     - name: Dependency Review To Check For Vulnerabilities
       uses: actions/dependency-review-action@v2.1.0
       with:
@@ -38,11 +42,7 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         # Don't block PRs below this severity. Possible values are `low`, `moderate`, `high`, `critical`.
         fail-on-severity: low
-
-
-    - name: Install Dependencies
-      run: npm ci
-
+        
 
     - name: Run Tests
       run: npm run test-cicd
@@ -79,24 +79,12 @@ jobs:
       run: npm run build-cicd
 
 
-#     # - name: Build the Docker image
+#     # - name: Build and push the Docker image in my dockerHub
 #     #   run: |
 #     #     docker login -u=${{secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
 #     #     docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE_NAME }}:latest
 #     #     docker push ${{ env.DOCKER_IMAGE_NAME }}:latest
 
-
-#     # - name: Azure Login
-#     #   uses: azure/login@v1
-#     #   with:
-#     #     creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-
-#     # - name: Azure WebApp Deployment
-#     #   uses: Azure/webapps-deploy@v2
-#     #   with:
-#     #     app-name: '${{ env.AZURE_WEB_APP }}'
-#     #     images: '$ {{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest'
 
 # #***************************************************
 
