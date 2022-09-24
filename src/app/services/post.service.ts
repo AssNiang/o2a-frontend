@@ -25,7 +25,7 @@ export class PostService {
   }
 
   updatePost(post: Post, postId: string){
-    return this.http.put(this.baseUrl+'/'+postId, post);
+    return this.http.put(this.baseUrl+'/update/'+postId, post);
   }
 
   getAllPosts(): Observable<Post[]>{

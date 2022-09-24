@@ -38,10 +38,12 @@ export class CreatePostComponent implements OnInit {
       if (send.value.statut == 'public') {
         this._postService.createPublicPost(send.value).subscribe((data) => {
           // use window.location.reload() to refresh. It would be better if we had another solution
+          window.location.reload();
         });
       } else if (send.value.statut == 'private') {
         this._postService.createPrivatePost(send.value).subscribe((data) => {
           // use window.location.reload() to refresh. It would be better if we had another solution
+          window.location.reload();
         });
       } else {
         alert('Le statut est soit public soit private !');
@@ -59,6 +61,7 @@ export class CreatePostComponent implements OnInit {
           // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)
           this.piRef.setUpdateActivatedToFalse();
           // use window.location.reload() to refresh. It would be better if we had another solution
+          window.location.reload();
         });
     }
 

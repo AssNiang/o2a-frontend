@@ -22,16 +22,20 @@ export class RegistrationComponent implements OnInit {
     }
 
     // a tryCathc may be a good answer
+    try {
+      this._userService.signUpUser(register.value).subscribe((data) => {
+        console.log(data);
+        // use RegistoryComponent
+        /*
+          - add verifications before switching (validators)
+          - save infos in the db
+        */
+        this.router.navigate(['login']);
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
-    this._userService.signUpUser(register.value).subscribe((data) => {
-
-      // use RegistoryComponent
-      /*
-        - add verifications before switching (validators)
-        - save infos in the db
-      */
-      this.router.navigate(['login']);
-    });
   }
 
   public togglePasswordVisibility(): void {

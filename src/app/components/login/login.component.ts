@@ -18,34 +18,35 @@ export class LoginComponent implements OnInit {
 
   submit(login: NgForm) {
     // a tryCatch may be agood idaea
-
-    this._userService.signInUser(login.value).subscribe((data) => {
-      //get user by id
-      this._userService.getUserById(data.id).subscribe(
-        user => {
+    try {
+      this._userService.signInUser(login.value).subscribe((data) => {
+        console.log(login.value);
+        //get user by id
+        this._userService.getUserById(data.id).subscribe((user) => {
           LeftSideBarComponent.user_id = data.id;
-          if(user.is_specialist){
-            AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-          }
-          else if(user.is_admin){
+          if (user.is_specialist) {
+            AppComponent.typeUser = LeftSideBarComponent.typeUser =
+              'specialist';
+          } else if (user.is_admin) {
             AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
-          }
-          else{
+          } else {
             AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';
           }
-        }
-      );
+        });
 
-      // use login.reset() to to remove data in the input
+        // use login.reset() to to remove data in the input
 
-      /*
-        - add verifications before switching (user found)
-        - get the userId, pass it through the url
-        - get the user type to initialize `LeftSideBarComponent.typeUser`
-      */
+        /*
+          - add verifications before switching (user found)
+          - get the userId, pass it through the url
+          - get the user type to initialize `LeftSideBarComponent.typeUser`
+        */
 
-      this.router.navigate(['connected-user', data.id]);
-    });
+        this.router.navigate(['connected-user', data.id]);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   public togglePasswordVisibility(): void {
