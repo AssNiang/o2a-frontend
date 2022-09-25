@@ -36,4 +36,20 @@ export class PostService {
     return this.http.get<Post[]>(this.baseUrl+'/historique-posts/'+id);
   }
 
+  likePost(postId: string, userId: string): Observable<any>{
+    return this.http.patch<any>(this.baseUrl+'/like-post/'+postId, {id:userId});
+  }
+
+  unlikePost(postId: string, userId: string): Observable<any>{
+    return this.http.patch<any>(this.baseUrl+'/unlike-post/'+postId, {id:userId});
+  }
+
+  reportPost(postId: string, userId: string): Observable<any>{
+    return this.http.patch<any>(this.baseUrl+'/report-post/'+postId, {id:userId});
+  }
+
+  unreportPost(postId: string, userId: string): Observable<any>{
+    return this.http.patch<any>(this.baseUrl+'/unreport-post/'+postId, {id:userId});
+  }
+
 }

@@ -37,13 +37,12 @@ export class CreatePostComponent implements OnInit {
       // a tryCatch may be a good idea
       if (send.value.statut == 'public') {
         this._postService.createPublicPost(send.value).subscribe((data) => {
-          // use window.location.reload() to refresh. It would be better if we had another solution
-          window.location.reload();
+          this.piRef.reloadComponent();
         });
       } else if (send.value.statut == 'private') {
         this._postService.createPrivatePost(send.value).subscribe((data) => {
-          // use window.location.reload() to refresh. It would be better if we had another solution
-          window.location.reload();
+          this.piRef.reloadComponent();
+
         });
       } else {
         alert('Le statut est soit public soit private !');
@@ -60,8 +59,7 @@ export class CreatePostComponent implements OnInit {
           // l'importance des variables de classe et des variables d'instance.
           // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)
           this.piRef.setUpdateActivatedToFalse();
-          // use window.location.reload() to refresh. It would be better if we had another solution
-          window.location.reload();
+          this.piRef.reloadComponent();
         });
     }
 
@@ -76,7 +74,7 @@ export class CreatePostComponent implements OnInit {
     });
     // l'importance des variables de classe et des variables d'instance.
     // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)
-    this.piRef = new PostItemComponent(this._userService, this._postService);
+    this.piRef = new PostItemComponent(this._userService, this._postService, this.router);
 
     // get the post to update
     if (this.toUpdate) {

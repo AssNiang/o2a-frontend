@@ -1,22 +1,35 @@
-.container{
-  background-color: #6F5164;
+.container {
+  background-color: #6f5164;
   height: 100%;
 }
 
-.pItem{
-  border: 1px solid #6F5164;
+.pItem {
+  border: 1px solid #6f5164;
   background-color: #faf6f9;
-
 }
 
-.profile img{
+.bg-like {
+  padding: 5px;
+  border-radius: 10%;
+  border: 1px solid #6f5164;
+  background-color: rgb(131, 236, 170);
+}
+
+.bg-report {
+  padding: 5px;
+  border-radius: 10%;
+  border: 1px solid #6f5164;
+  background-color: rgb(244, 88, 88);
+}
+
+.profile img {
   width: 50px;
-  border: 1px solid #6F5164;
+  border: 1px solid #6f5164;
 }
 
-.deleteUpdateButtonFormat{
+.deleteUpdateButtonFormat {
   margin: 3px;
   width: 100px;
-  border: 1px solid #6F5164;
+  border: 1px solid #6f5164;
   background-color: rgb(240, 229, 229);
 }
