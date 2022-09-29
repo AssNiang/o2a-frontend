@@ -19,9 +19,14 @@
     <div class="col-1 my-2"></div>
 
     <div class="col-11">
-      <div>
-        <form action="" #send="ngForm">
-          <select class="form-select form-select-lg mb-3 bg-select fs-6" aria-label=".form-select-lg" name="statut" ngModel="public">
+      <form action="" #send="ngForm">
+        <div>
+          <select
+            class="form-select form-select-lg mb-3 bg-select fs-6"
+            aria-label=".form-select-lg"
+            name="statut"
+            ngModel="public"
+          >
             <option value="public">Post public</option>
             <option value="private">Post privé</option>
           </select>
@@ -34,40 +39,54 @@
             class="w-100 textAreaFormat"
             [value]="content"
           ></textarea>
-        </form>
-      </div>
-      <div class="row text-center fs-6 text-secondary">
-        <div class="col" (click)="onSave(send)">
-          <img
-            src="../../../assets/images/send-svgrepo-com.svg"
-            height="30px"
-            alt=""
-            class="m-1"
-          />
-          <span>Envoyer</span>
         </div>
 
-        <div class="col">
-          <img
-            src="../../../assets/images/camera-svgrepo-com.svg"
-            height="30px"
-            alt=""
-            class="m-2"
-          />
-          <span>Photo/Vidéo</span>
+        <div *ngIf="imageData" class="text-center my-2">
+          <img [src]="imageData" alt="preview_im_failed" class="w-100">
         </div>
 
-        <div class="col">
-          <img
-            src="../../../assets/images/microphone-svgrepo-com.svg"
-            height="30px"
-            alt=""
-            class="m-1"
-          />
-          <span>Audio</span>
+        <div class="row text-center fs-6 text-secondary">
+          <div class="col" (click)="onSave(send)">
+            <img
+              src="../../../assets/images/send-svgrepo-com.svg"
+              height="30px"
+              alt=""
+              class="m-1"
+            />
+            <span>Envoyer</span>
+          </div>
+
+          <div class="col">
+            <img
+              src="../../../assets/images/camera-svgrepo-com.svg"
+              height="30px"
+              alt=""
+              class="m-2"
+              (click)="fileInput.click()"
+            />
+            <input
+              type="file"
+              #fileInput
+              name="picture"
+              (change)="onFileSelect($event)"
+              id=""
+              class="d-none"
+              ngModel
+            />
+            <span>Photo/Vidéo</span>
+          </div>
+
+          <div class="col">
+            <img
+              src="../../../assets/images/microphone-svgrepo-com.svg"
+              height="30px"
+              alt=""
+              class="m-1"
+            />
+            <span>Audio</span>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-
 </div>

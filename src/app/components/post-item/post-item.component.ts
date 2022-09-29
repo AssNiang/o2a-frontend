@@ -45,6 +45,8 @@ export class PostItemComponent implements OnInit {
       console.log(error);
     }
 
+    // this.images = [this.post.picture+''];
+
     if (this.post.likers?.includes(this.user_id)) {
       this.liked = 'bg-like';
     }
@@ -58,11 +60,16 @@ export class PostItemComponent implements OnInit {
 
   onDelete() {
     // to delete a post. It's working !
-    // a tryCatch may be a good idea
+    // add tryCatch may be a good idea
+    try {
+      this._postService
+      .deletePost(this.post._id + '')
+      .subscribe(() => window.location.reload());
 
-    this._postService.deletePost(this.post._id as string).subscribe(() => {
-      // use window.locate.reload() to refresh the page
-    });
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   onUpdate() {

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { reduce } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
 import { PostService } from 'src/app/services/post.service';
@@ -22,6 +23,7 @@ export class CreatePostComponent implements OnInit {
   private piRef!: PostItemComponent;
   postToUpdate!: Post;
   content: string = '';
+  imageData!: string;
 
   constructor(
     private router: Router,
@@ -38,11 +40,12 @@ export class CreatePostComponent implements OnInit {
       if (send.value.statut == 'public') {
         this._postService.createPublicPost(send.value).subscribe((data) => {
           this.piRef.reloadComponent();
+          console.log(data);
+          console.log(send.value);
         });
       } else if (send.value.statut == 'private') {
         this._postService.createPrivatePost(send.value).subscribe((data) => {
           this.piRef.reloadComponent();
-
         });
       } else {
         alert('Le statut est soit public soit private !');
@@ -66,6 +69,21 @@ export class CreatePostComponent implements OnInit {
     // use send.reset() to erase the entered data
   }
 
+  onFileSelect(event: Event) {
+    console.log('file selected !');
+    const file = (event.target as HTMLInputElement).files?.[0];
+    const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+
+    if (file && allowedMimeTypes.includes(file.type)) {
+      console.log('mimeTypeAllowed');
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageData = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   ngOnInit(): void {
     this.user_id = this.router.url.split('/')[2];
 
@@ -74,7 +92,11 @@ export class CreatePostComponent implements OnInit {
     });
     // l'importance des variables de classe et des variables d'instance.
     // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)
-    this.piRef = new PostItemComponent(this._userService, this._postService, this.router);
+    this.piRef = new PostItemComponent(
+      this._userService,
+      this._postService,
+      this.router
+    );
 
     // get the post to update
     if (this.toUpdate) {
