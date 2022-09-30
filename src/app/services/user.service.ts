@@ -40,5 +40,10 @@ export class UserService {
     return this.http.delete(this.baseUrl + '/delete/'+id);
   }
 
+  // images
+  getProfile():Observable<File>{
+    return this.http.get<File>(this.baseUrl+'/file/profile.1664281704325_++++.png');
+  }
+
 
 }

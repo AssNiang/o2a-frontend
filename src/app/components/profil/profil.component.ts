@@ -13,6 +13,8 @@ export class ProfilComponent implements OnInit {
   user!: User;
   user_id!: string;
   showPassword: boolean = false;
+  //profile!: File;
+  profile: string = '';
 
   constructor(private router: Router, private _userService: UserService) {}
 
@@ -22,6 +24,12 @@ export class ProfilComponent implements OnInit {
     this._userService.getUserById(this.user_id).subscribe((data) => {
       this.user = data;
     });
+
+    // this._userService.getProfile().subscribe((data) => {
+    //   this.profile = data;
+
+    // });
+    this.profile = "http://localhost:5000/api/user/file/profile.1664281704325_++++.png";
   }
 
   onUpdate(update: NgForm) {

@@ -20,7 +20,7 @@ export class PostService {
   }
 
   deletePost(postId: string): Observable<any> {
-    return this.http.delete(this.baseUrl + '/' + postId);
+    return this.http.delete(this.baseUrl + '/delete/' + postId);
   }
 
   updatePost(post: Post, postId: string) {
@@ -57,5 +57,9 @@ export class PostService {
     return this.http.patch<any>(this.baseUrl + '/unreport-post/' + postId, {
       id: userId,
     });
+  }
+
+  addPicture(formData: FormData, idPost: string) {
+    return this.http.post(this.baseUrl + '/file/'+idPost, formData);
   }
 }

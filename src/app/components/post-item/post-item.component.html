@@ -52,10 +52,10 @@
     </div>
 
     <!--Afficher les images ici-->
-    <ngb-carousel *ngIf="images" class="text-center">
+    <ngb-carousel *ngIf="post.picture" class="text-center">
       <ng-template ngbSlide *ngFor="let image of images">
         <div class="picsum-img-wrapper">
-          <img [src]="image" [alt]="image" />
+          <img [src]="image" class="w-100" [alt]="image" />
         </div>
         <div class="carousel-caption">
           <h3></h3>

@@ -24,6 +24,7 @@ export class CreatePostComponent implements OnInit {
   postToUpdate!: Post;
   content: string = '';
   imageData!: string;
+  formData!: FormData;
 
   constructor(
     private router: Router,
@@ -39,9 +40,16 @@ export class CreatePostComponent implements OnInit {
       // a tryCatch may be a good idea
       if (send.value.statut == 'public') {
         this._postService.createPublicPost(send.value).subscribe((data) => {
+          // save the image
+          this._postService
+            .addPicture(this.formData, data._id)
+            .subscribe((im) => {
+              console.log(im);
+            });
+
           this.piRef.reloadComponent();
           console.log(data);
-          console.log(send.value);
+          //console.log(send.value);
         });
       } else if (send.value.statut == 'private') {
         this._postService.createPrivatePost(send.value).subscribe((data) => {
@@ -70,17 +78,21 @@ export class CreatePostComponent implements OnInit {
   }
 
   onFileSelect(event: Event) {
-    console.log('file selected !');
     const file = (event.target as HTMLInputElement).files?.[0];
     const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
 
+    this.formData = new FormData();
+    this.formData.append('file', file as File);
+
     if (file && allowedMimeTypes.includes(file.type)) {
-      console.log('mimeTypeAllowed');
+      console.log('image selected');
+
       const reader = new FileReader();
       reader.onload = () => {
         this.imageData = reader.result as string;
       };
       reader.readAsDataURL(file);
+      // console.log(file)
     }
   }
 

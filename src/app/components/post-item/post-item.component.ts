@@ -45,7 +45,7 @@ export class PostItemComponent implements OnInit {
       console.log(error);
     }
 
-    // this.images = [this.post.picture+''];
+    this.images = [this._postService.baseUrl + '/file/' + this.post.picture+''];
 
     if (this.post.likers?.includes(this.user_id)) {
       this.liked = 'bg-like';
