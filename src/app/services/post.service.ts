@@ -23,7 +23,7 @@ export class PostService {
     return this.http.delete(this.baseUrl + '/delete/' + postId);
   }
 
-  updatePost(post: Post, postId: string) {
+  updatePost(post: Post, postId: string): Observable<any> {
     return this.http.put(this.baseUrl + '/update/' + postId, post);
   }
 

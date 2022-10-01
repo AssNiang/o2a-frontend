@@ -41,8 +41,12 @@ export class UserService {
   }
 
   // images
-  getProfile():Observable<File>{
-    return this.http.get<File>(this.baseUrl+'/file/profile.1664281704325_++++.png');
+  // getProfile():Observable<File>{
+  //   return this.http.get<File>(this.baseUrl+'/file/profile.1664281704325_++++.png');
+  // }
+
+  addPicture(formData: FormData, idUser: string) {
+    return this.http.post(this.baseUrl + '/file/'+idUser, formData);
   }
 
 

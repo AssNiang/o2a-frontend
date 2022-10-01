@@ -14,7 +14,13 @@
     <div class="row">
       <div class="profile text-secondary col-8 row">
         <div class="col-6">
-          <img class="my-2 rounded-circle" [src]="profile" alt="profile" />
+          <img
+            class="my-2 rounded-circle"
+            [src]="profile"
+            width="60px"
+            height="60px"
+            alt="profile"
+          />
           <span class="my-2 fs-6">
             {{ postAuthor.first_name }} {{ postAuthor.last_name }}
           </span>
@@ -52,7 +58,7 @@
     </div>
 
     <!--Afficher les images ici-->
-    <ngb-carousel *ngIf="post.picture" class="text-center">
+    <ngb-carousel *ngIf="post.picture" class="text-center m-2 shadw">
       <ng-template ngbSlide *ngFor="let image of images">
         <div class="picsum-img-wrapper">
           <img [src]="image" class="w-100" [alt]="image" />

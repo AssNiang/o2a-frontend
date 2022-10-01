@@ -14,7 +14,7 @@ import { PostItemComponent } from '../post-item/post-item.component';
   styleUrls: ['./create-post.component.css'],
 })
 export class CreatePostComponent implements OnInit {
-  profile: string = '../../../assets/images/blank-profile-picture.webp';
+  profile: string = '';
   user_id!: string;
   user!: User;
 
@@ -48,11 +48,18 @@ export class CreatePostComponent implements OnInit {
             });
 
           this.piRef.reloadComponent();
-          console.log(data);
+          //console.log(data);
           //console.log(send.value);
         });
       } else if (send.value.statut == 'private') {
         this._postService.createPrivatePost(send.value).subscribe((data) => {
+          // save the image
+          this._postService
+            .addPicture(this.formData, data._id)
+            .subscribe((im) => {
+              console.log(im);
+            });
+
           this.piRef.reloadComponent();
         });
       } else {
@@ -66,6 +73,13 @@ export class CreatePostComponent implements OnInit {
         .updatePost(send.value, this.toUpdate)
         .subscribe((data) => {
           console.log(data);
+
+          // save the image; ------------------must also delete images with this post id--------------------
+          this._postService
+            .addPicture(this.formData, data._id)
+            .subscribe((im) => {
+              console.log(im);
+            });
           // set 'updateActivated' to false in order to print the updated post (not the text-area field)
           // l'importance des variables de classe et des variables d'instance.
           // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)
@@ -101,6 +115,7 @@ export class CreatePostComponent implements OnInit {
 
     this._userService.getUserById(this.user_id).subscribe((data) => {
       this.user = data;
+      this.profile = this._userService.baseUrl + '/file/' + data.picture;
     });
     // l'importance des variables de classe et des variables d'instance.
     // On veut que la modification affecte seulement l'instance de post en question (post sélectionné)

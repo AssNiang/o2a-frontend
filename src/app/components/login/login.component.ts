@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     // a tryCatch may be agood idaea
     try {
       this._userService.signInUser(login.value).subscribe((data) => {
-        console.log(login.value);
+        // console.log(login.value);
         //get user by id
         this._userService.getUserById(data.id).subscribe((user) => {
           LeftSideBarComponent.user_id = data.id;

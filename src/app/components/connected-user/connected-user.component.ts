@@ -19,20 +19,20 @@ export class ConnectedUserComponent implements OnInit {
     this.page_url = this.router.url;
     this.user_id = this.page_url.split('/')[2];
 
-    // refresh the left-side-bar and the app-component
-    this._userService.getUserById(this.user_id+'').subscribe(
-      user => {
-        LeftSideBarComponent.user_id = this.user_id;
-        if(user.is_specialist){
-          AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-        }
-        else if(user.is_admin){
-          AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
-        }
-        else{
-          AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';
-        }
+    this.user_id = this.router.url.split('/')[2];
+
+
+    this._userService.getUserById(this.user_id + '').subscribe((user) => {
+
+      // refresh the left-side-bar and the app-component
+      LeftSideBarComponent.user_id = this.user_id;
+      if (user.is_specialist) {
+        AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
+      } else if (user.is_admin) {
+        AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
+      } else {
+        AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';
       }
-    );
+    });
   }
 }

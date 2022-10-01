@@ -40,6 +40,7 @@ export class PostItemComponent implements OnInit {
         .getUserById(this.post.posterId + '')
         .subscribe((author) => {
           this.postAuthor = author;
+          this.profile = this._userService.baseUrl + '/file/' + author.picture;
         });
     } catch (error) {
       console.log(error);

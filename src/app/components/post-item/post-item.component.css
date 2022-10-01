@@ -23,7 +23,6 @@
 }
 
 .profile img {
-  width: 50px;
   border: 1px solid #6f5164;
 }
 
@@ -32,4 +31,11 @@
   width: 100px;
   border: 1px solid #6f5164;
   background-color: rgb(240, 229, 229);
+}
+
+.shadw {
+  /* border: solid 2px #6F5164;*/
+  box-shadow: 4px 4px 2px #b5adb2;
+  border-radius: 20px;
+
 }
