@@ -25,6 +25,7 @@ export class CreatePostComponent implements OnInit {
   content: string = '';
   imageData!: string;
   formData!: FormData;
+  videoData!: string;
 
   constructor(
     private router: Router,
@@ -95,6 +96,8 @@ export class CreatePostComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files?.[0];
     const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
 
+    const allowedVideoTypes = ['video/mp4'];
+
     this.formData = new FormData();
     this.formData.append('file', file as File);
 
@@ -104,6 +107,17 @@ export class CreatePostComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = () => {
         this.imageData = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+      // console.log(file)
+    }
+
+    if (file && allowedVideoTypes.includes(file.type)) {
+      console.log('video selected');
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.videoData = reader.result as string;
       };
       reader.readAsDataURL(file);
       // console.log(file)

@@ -1,9 +1,12 @@
 .app-contain {
   height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
   border-top: solid 1px black;
 }
 
 .header{
-  
+
   border-bottom : solid 2px #814069;
 }

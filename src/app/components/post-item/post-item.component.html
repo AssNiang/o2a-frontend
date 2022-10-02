@@ -13,17 +13,20 @@
     <!-- Afficher la photo de profil, le prénom et le nom ici -->
     <div class="row">
       <div class="profile text-secondary col-8 row">
-        <div class="col-6">
-          <img
-            class="my-2 rounded-circle"
-            [src]="profile"
-            width="60px"
-            height="60px"
-            alt="profile"
-          />
-          <span class="my-2 fs-6">
+        <div class="col-6 row">
+          <div class="col-4">
+            <img
+              class="my-2 rounded-circle"
+              [src]="profile"
+              width="60px"
+              height="60px"
+              alt="profile"
+            />
+          </div>
+
+          <div class="my-2 fs-6 col py-3">
             {{ postAuthor.first_name }} {{ postAuthor.last_name }}
-          </span>
+          </div>
         </div>
         <div class="col-4 mt-3 text-center">
           <div class="">
