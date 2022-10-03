@@ -26,6 +26,7 @@ export class PostItemComponent implements OnInit {
   nbLikes: number | undefined;
   reported: string = '';
   nbReports: number | undefined;
+  media: string = '';
 
   constructor(
     private _userService: UserService,
@@ -46,7 +47,19 @@ export class PostItemComponent implements OnInit {
       console.log(error);
     }
 
-    this.images = [this._postService.baseUrl + '/file/' + this.post.picture+''];
+    if(this.post.picture){
+      //this.images = [this._postService.baseUrl + '/file/' + this.post.picture];
+      this.media = this._postService.baseUrl + '/file/' + this.post.picture;
+    }
+    if(this.post.video){
+      //this.images = [this._postService.baseUrl + '/file/' + this.post.video];
+      this.media = this._postService.baseUrl + '/file/' + this.post.video;
+    }
+    if(this.post.audio){
+      //this.images = [this._postService.baseUrl + '/file/' + this.post.audio];
+      this.media = this._postService.baseUrl + '/file/' + this.post.audio;
+    }
+
 
     if (this.post.likers?.includes(this.user_id)) {
       this.liked = 'bg-like';

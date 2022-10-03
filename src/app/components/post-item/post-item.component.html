@@ -61,7 +61,16 @@
     </div>
 
     <!--Afficher les images ici-->
-    <ngb-carousel *ngIf="post.picture" class="text-center m-2 shadw">
+    <div *ngIf="post.picture" class="text-center m-2">
+      <img [src]="media" class="w-100 shadw" [alt]="media" />
+    </div>
+    <div *ngIf="post.video" class="text-center m-2">
+      <video [src]="media" class="w-100 shadw" controls></video>
+    </div>
+    <div *ngIf="post.audio" class="text-center m-2">
+      <audio [src]="media" class="w-100 shadw" controls></audio>
+    </div>
+    <!-- <ngb-carousel *ngIf="post.picture" class="text-center m-2 shadw">
       <ng-template ngbSlide *ngFor="let image of images">
         <div class="picsum-img-wrapper">
           <img [src]="image" class="w-100" [alt]="image" />
@@ -72,6 +81,28 @@
         </div>
       </ng-template>
     </ngb-carousel>
+    <ngb-carousel *ngIf="post.video" class="text-center m-2 shadw">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+          <video [src]="image" class="w-100" controls></video>
+        </div>
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <ngb-carousel *ngIf="post.audio" class="text-center m-2 shadw">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+          <audio [src]="image" class="w-100" controls></audio>
+        </div>
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </ng-template>
+    </ngb-carousel> -->
 
     <!--reactions-->
     <hr class="bg-" />

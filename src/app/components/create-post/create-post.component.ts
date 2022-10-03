@@ -26,6 +26,7 @@ export class CreatePostComponent implements OnInit {
   imageData!: string;
   formData!: FormData;
   videoData!: string;
+  audioData!: string;
 
   constructor(
     private router: Router,
@@ -94,35 +95,62 @@ export class CreatePostComponent implements OnInit {
 
   onFileSelect(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
-    const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-
-    const allowedVideoTypes = ['video/mp4'];
+    const allowedImageMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+    const allowedVideoMimeTypes = ['video/mp4'];
 
     this.formData = new FormData();
     this.formData.append('file', file as File);
 
-    if (file && allowedMimeTypes.includes(file.type)) {
+    if (file && allowedImageMimeTypes.includes(file.type)) {
       console.log('image selected');
 
       const reader = new FileReader();
       reader.onload = () => {
         this.imageData = reader.result as string;
+        // log the result
+        console.log(this.imageData);
       };
       reader.readAsDataURL(file);
       // console.log(file)
     }
 
-    if (file && allowedVideoTypes.includes(file.type)) {
+    if (file && allowedVideoMimeTypes.includes(file.type)) {
       console.log('video selected');
 
       const reader = new FileReader();
       reader.onload = () => {
         this.videoData = reader.result as string;
+        // log the result
+        console.log(this.videoData);
+
+      };
+      reader.readAsDataURL(file);
+      // console.log(file)
+    }
+
+  }
+
+  onAudioSelect(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    const allowedAudioMimeTypes = ['audio/mpeg', 'audio/wav', 'audio/wave'];
+
+    this.formData = new FormData();
+    this.formData.append('file', file as File);
+    console.log(file)
+
+    if (file && allowedAudioMimeTypes.includes(file.type)) {
+      console.log('Audio selected');
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.audioData = reader.result as string;
+        // log the result
+        console.log(this.audioData);
       };
       reader.readAsDataURL(file);
       // console.log(file)
     }
   }
+
 
   ngOnInit(): void {
     this.user_id = this.router.url.split('/')[2];
