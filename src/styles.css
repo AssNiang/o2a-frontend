@@ -8,6 +8,7 @@ html, body {
   overflow: auto;
   height: 100%;
   background-color:rgb(240, 229, 229);
+  margin:0;
 }
 
 app-root {
