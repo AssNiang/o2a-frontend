@@ -18,6 +18,8 @@
           src="https://www.svgrepo.com/show/86907/bell.svg"
           alt="notifications"
           width="33"
+          [routerLink]="['notification', user_id]"
+          routerLinkActive="active"
         />
       </li>
       <li>
@@ -53,6 +55,8 @@
         width="60px"
         height="60px"
         alt="profile_pic"
+        [routerLink]="['profil', user_id]"
+        routerLinkActive="active"
       />
     </div>
   </div>

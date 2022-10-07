@@ -31,6 +31,7 @@ import { ReceiverComponent } from './components/receiver/receiver.component';
 import { HistoryPostsComponent } from './components/history-posts/history-posts.component';
 import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
+import { NotificationItemComponent } from './components/notification-item/notification-item.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { PostService } from './services/post.service';
     DiscussionComponent,
     SenderComponent,
     ReceiverComponent,
-    HistoryPostsComponent
+    HistoryPostsComponent,
+    NotificationItemComponent
   ],
   imports: [
     BrowserModule,
