@@ -19,7 +19,11 @@ export class CommentService {
     return this.http.get<Comment[]>(this.baseUrl + '/' + postId);
   }
 
-  editComment(comment: any, postId: string): Observable<Comment> {
-    return this.http.put<Comment>(this.baseUrl + '/edit-comment/' + postId, comment);
+  editComment(comment: any, commentId: string): Observable<Comment> {
+    return this.http.put<Comment>(this.baseUrl + '/edit-comment/' + commentId, comment);
+  }
+
+  deleteComment(commentId: string) : Observable<any> {
+    return this.http.delete<any>(this.baseUrl + '/delete-comment/' + commentId);
   }
 }

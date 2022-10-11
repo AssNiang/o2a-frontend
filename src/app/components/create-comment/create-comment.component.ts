@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Comment } from 'src/app/models/comment';
@@ -18,6 +18,9 @@ export class CreateCommentComponent implements OnInit {
   user!: User;
   postId: string = '';
 
+  @Input() toUpdateCommentId: string = '';
+  commentContent: string = '';
+
   constructor(
     private router: Router,
     private _userService: UserService,
@@ -33,18 +36,39 @@ export class CreateCommentComponent implements OnInit {
       this.user = data;
       this.profile = this._userService.baseUrl + '/file/' + data.picture;
     });
+
+    // get the comment content if `toUpdateCommentId` isn't empty.
+    if (this.toUpdateCommentId) {
+      this._commentService
+        .getPostComments(this.postId)
+        .subscribe((comments) => {
+          this.commentContent = comments.filter(
+            (comment) => comment._id == this.toUpdateCommentId
+          )[0].text;
+        });
+    }
   }
 
   onSave(send: NgForm) {
     send.value.commenterId = this.user_id;
 
+    // create a comment if `toUpdateCommentId` is empty, else update the existing comment
     try {
-      this._commentService
-        .addComment(send.value, this.postId)
-        .subscribe((comment: Comment) => {
-          //console.log(comment);
-          this.reloadComponent();
-        });
+      if (!this.toUpdateCommentId) {
+        this._commentService
+          .addComment(send.value, this.postId)
+          .subscribe((comment: Comment) => {
+            //console.log(comment);
+            this.reloadComponent();
+          });
+      } else {
+        this._commentService
+          .editComment(send.value, this.toUpdateCommentId)
+          .subscribe((comment: Comment) => {
+            //console.log(comment);
+            this.reloadComponent();
+          });
+      }
     } catch (error) {
       console.log(error);
     }

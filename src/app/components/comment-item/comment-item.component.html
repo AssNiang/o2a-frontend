@@ -2,20 +2,18 @@
   <!-- Si on veut modifier le comment -->
   <!-- Afficher le contenu du comment à modifier. Réutiliser le 'create-comment' component -->
 
-  <!-- <div class="m-2 fs-6" *ngIf="updateActivated">
-    <app-create-comment [toUpdate]="comment._id + ''"></app-create-comment>
-  </div> -->
+  <div class="m-2 fs-6" *ngIf="updateActivated">
+    <app-create-comment [toUpdateCommentId]="comment._id + ''"></app-create-comment>
+  </div>
 
 
   <!-- Si on veut juste afficher le contenu, mais pas modifier le comment -->
 
-  <!-- <div
+  <div
     class="pItem shadow rounded text-start p-2 my-4"
     *ngIf="!updateActivated"
-  > -->
-  <div
-    class="pItem shadow rounded text-start p-2 m-3"
   >
+
     <!-- Afficher la photo de profil, le prénom et le nom ici -->
     <div class="row">
       <div class="profile text-secondary col-8 row">
@@ -42,7 +40,7 @@
         </div>
       </div>
 
-      <!-- <div class="col text-end" *ngIf="deleteUpdateButtonPresent">
+      <div class="col text-end" *ngIf="deleteUpdateButtonPresent">
         <input
           type="button"
           value="Modifier"
@@ -55,7 +53,7 @@
           class="btn p-1 deleteUpdateButtonFormat"
           (click)="onDelete()"
         />
-      </div> -->
+      </div>
     </div>
 
     <!-- Afficher le contenu du comment ici -->
