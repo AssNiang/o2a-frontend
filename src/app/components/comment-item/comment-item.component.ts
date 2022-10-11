@@ -19,6 +19,11 @@ export class CommentItemComponent implements OnInit {
   deleteUpdateButtonPresent: boolean = false;
   userId: string = '';
 
+  liked: string = '';
+  nbLikes: number | undefined;
+  reported: string = '';
+  nbReports: number | undefined;
+
   constructor(private _commentService: CommentService, private _userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -37,6 +42,16 @@ export class CommentItemComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+
+    if (this.comment.likers?.includes(this.userId)) {
+      this.liked = 'bg-like';
+    }
+    this.nbLikes = this.comment.likers?.length;
+
+    if (this.comment.reporters?.includes(this.userId)) {
+      this.reported = 'bg-report';
+    }
+    this.nbReports = this.comment.reporters?.length;
   }
 
   onUpdate() {
@@ -49,6 +64,40 @@ export class CommentItemComponent implements OnInit {
         console.log(result.message);
         this.reloadComponent();
       })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onLike() {
+    try {
+      if (this.liked) {
+        this._commentService
+          .unlikeComment(this.comment._id + '', this.userId)
+          .subscribe(() => this.reloadComponent());
+        this.liked = '';
+      } else {
+        this._commentService
+          .likeComment(this.comment._id + '', this.userId)
+          .subscribe(() => this.reloadComponent());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onReport() {
+    try {
+      if (this.reported) {
+        this._commentService
+          .unreportComment(this.comment._id + '', this.userId)
+          .subscribe(() => this.reloadComponent());
+        this.reported = '';
+      } else {
+        this._commentService
+          .reportComment(this.comment._id + '', this.userId)
+          .subscribe(() => this.reloadComponent());
+      }
     } catch (error) {
       console.log(error);
     }

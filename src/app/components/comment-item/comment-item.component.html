@@ -6,11 +6,10 @@
     <app-create-comment [toUpdateCommentId]="comment._id + ''"></app-create-comment>
   </div>
 
-
   <!-- Si on veut juste afficher le contenu, mais pas modifier le comment -->
 
   <div
-    class="pItem shadow rounded text-start p-2 my-4"
+    class="pItem shadow rounded text-start p-2 m-3"
     *ngIf="!updateActivated"
   >
 
@@ -65,11 +64,11 @@
 
     <!--reactions-->
     <hr />
-    <!-- <div class="row text-center my-2">
+    <div class="row text-center my-2">
       <div class="col">
         <img
           src="../../../assets/images/heart-svgrepo-com.svg"
-          width="50px"
+          width="30px"
           alt=""
           srcset=""
           (click)="onLike()"
@@ -82,7 +81,7 @@
       <div class="col">
         <img
           src="../../../assets/images/error-svgrepo-com.svg"
-          width="50px"
+          width="30px"
           alt=""
           srcset=""
           (click)="onReport()"
@@ -93,15 +92,6 @@
         <span class="text-muted">[ {{ nbReports }} report(s) ]</span>
       </div>
 
-      <div class="col" (click)="onComment(comment._id + '')">
-        <img
-          src="../../../assets/images/comment-svgrepo-com.svg"
-          width="50px"
-          alt=""
-          srcset=""
-        />
-        Commenter
-      </div>
-    </div> -->
+    </div>
   </div>
 </div>

@@ -26,4 +26,28 @@ export class CommentService {
   deleteComment(commentId: string) : Observable<any> {
     return this.http.delete<any>(this.baseUrl + '/delete-comment/' + commentId);
   }
+
+  likeComment(commentId: string, userId: string): Observable<any> {
+    return this.http.patch<any>(this.baseUrl + '/like-comment/' + commentId, {
+      id: userId,
+    });
+  }
+
+  unlikeComment(commentId: string, userId: string): Observable<any> {
+    return this.http.patch<any>(this.baseUrl + '/unlike-comment/' + commentId, {
+      id: userId,
+    });
+  }
+
+  reportComment(commentId: string, userId: string): Observable<any> {
+    return this.http.patch<any>(this.baseUrl + '/report-comment/' + commentId, {
+      id: userId,
+    });
+  }
+
+  unreportComment(commentId: string, userId: string): Observable<any> {
+    return this.http.patch<any>(this.baseUrl + '/unreport-comment/' + commentId, {
+      id: userId,
+    });
+  }
 }
