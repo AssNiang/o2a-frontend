@@ -1,0 +1,41 @@
+.container {
+  background-color: #6f5164;
+  height: 100%;
+}
+
+.pItem {
+  border: 1px solid #6f5164;
+  background-color: #faf6f9;
+}
+
+.bg-like {
+  padding: 5px;
+  border-radius: 10%;
+  border: 1px solid #6f5164;
+  background-color: rgb(131, 236, 170);
+}
+
+.bg-report {
+  padding: 5px;
+  border-radius: 10%;
+  border: 1px solid #6f5164;
+  background-color: rgb(244, 88, 88);
+}
+
+.profile img {
+  border: 1px solid #6f5164;
+}
+
+.deleteUpdateButtonFormat {
+  margin: 3px;
+  width: 100px;
+  border: 1px solid #6f5164;
+  background-color: rgb(240, 229, 229);
+}
+
+.shadw {
+  /* border: solid 2px #6F5164;*/
+  box-shadow: 4px 4px 2px #b5adb2;
+  border-radius: 20px;
+
+}

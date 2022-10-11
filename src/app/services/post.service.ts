@@ -31,6 +31,10 @@ export class PostService {
     return this.http.get<Post[]>(this.baseUrl + '/');
   }
 
+  getPostById(postId: string): Observable<Post> {
+    return this.http.get<Post>(this.baseUrl + '/' + postId);
+  }
+
   getAllPostsById(id: string): Observable<Post[]> {
     return this.http.get<Post[]>(this.baseUrl + '/historique-posts/' + id);
   }
@@ -60,6 +64,6 @@ export class PostService {
   }
 
   addPicture(formData: FormData, idPost: string) {
-    return this.http.post(this.baseUrl + '/file/'+idPost, formData);
+    return this.http.post(this.baseUrl + '/file/' + idPost, formData);
   }
 }

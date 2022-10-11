@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
     // a tryCathc may be a good answer
     try {
       this._userService.signUpUser(register.value).subscribe((data) => {
-        console.log(data);
+        //console.log(data);
         // use RegistoryComponent
         /*
           - add verifications before switching (validators)

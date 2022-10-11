@@ -1,18 +1,21 @@
 <section class="section-50">
   <div class="container">
     <h1 class="m-b-50 heading-line">Notifications</h1>
+
+    <strong>Posts aimés</strong>
     <div class="notification-ui_dd-content" *ngFor="let likedPost of likedPosts">
       <div *ngFor="let liker of likedPost.likers">
         <app-notification-item [likedPost]="likedPost" [likerId]="liker"></app-notification-item>
       </div>
     </div>
 
+    <strong>Posts signalés</strong>
     <div class="notification-ui_dd-content" *ngFor="let reportedPost of reportedPosts">
       <app-notification-item [reportedPost]="reportedPost"></app-notification-item>
     </div>
 
-    <div class="text-center">
+    <!-- <div class="text-center">
       <button class="dark-link">Voir Plus...</button>
-    </div>
+    </div> -->
   </div>
 </section>

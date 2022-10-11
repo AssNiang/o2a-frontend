@@ -31,7 +31,7 @@ export class User {
 
   // date_of_birth?: Date;
 
-  sexe?: string;
+  // sexe?: string;
 
   is_patient: boolean = false;
 
@@ -39,7 +39,11 @@ export class User {
 
   is_admin: boolean = false;
 
-  likes?: string[];
-  //posts signales
-  reports?: string[];
+  postLikes?: string[];
+
+  postReports?: string[];
+
+  commentLikes?: string[];
+
+  commentReports?: string[];
 }

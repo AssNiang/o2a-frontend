@@ -32,6 +32,10 @@ import { HistoryPostsComponent } from './components/history-posts/history-posts.
 import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
 import { NotificationItemComponent } from './components/notification-item/notification-item.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
+import { ListCommentsComponent } from './components/list-comments/list-comments.component';
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
 
 
 @NgModule({
@@ -55,7 +59,11 @@ import { NotificationItemComponent } from './components/notification-item/notifi
     SenderComponent,
     ReceiverComponent,
     HistoryPostsComponent,
-    NotificationItemComponent
+    NotificationItemComponent,
+    PostDetailComponent,
+    CreateCommentComponent,
+    ListCommentsComponent,
+    CommentItemComponent
   ],
   imports: [
     BrowserModule,

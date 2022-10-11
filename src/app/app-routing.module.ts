@@ -10,6 +10,7 @@ import { ProfilComponent } from "./components/profil/profil.component";
 import { NotificationComponent } from "./components/notification/notification.component";
 import { DiscussionComponent } from "./components/discussion/discussion.component";
 import { HistoryPostsComponent } from "./components/history-posts/history-posts.component";
+import { PostDetailComponent } from "./components/post-detail/post-detail.component";
 
 export const routes: Routes = [
   { path: '', redirectTo:'homeAppli', pathMatch:'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'notification/:id', component: NotificationComponent},
   { path: 'discussion', component: DiscussionComponent},
   { path: 'history-posts/:id', component: HistoryPostsComponent},
+  { path: 'connected-user/:id/post-detail/:postId', component: PostDetailComponent},
 ];
 
 @NgModule({

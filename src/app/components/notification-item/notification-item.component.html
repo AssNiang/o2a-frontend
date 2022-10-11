@@ -1,18 +1,22 @@
-<div class="notification-list notification-list--unread rounded" *ngIf="liker">
+<div class="notification-list notification-list--unread rounded" *ngIf="liker && likedPost.likers">
   <div class="notification-list_content w-100">
     <div class="notification-list_img">
       <img [src]="profile" alt="liker" />
     </div>
     <div class="notification-list_detail w-100 text-start">
-      <p>
+      <p *ngIf="likerId != userId">
         <strong>{{ liker.first_name }} {{ liker.last_name }}</strong>
-        a aimé votre post
+        a aimé votre post<span *ngIf="likedPost.likers.length > 1"> ainsi que {{likedPost.likers.length}} autres personnes.</span>
+      </p>
+      <p *ngIf="likerId == userId">
+        <strong>Vous</strong>
+        avez aimé votre post<span *ngIf="likedPost.likers.length > 1"> ainsi que {{likedPost.likers.length}} autres personnes.</span>
       </p>
       <p class="m-2 w-100 bg-message p-2 rounded">
         {{ likedPost.message }}
       </p>
       <p class="text-muted">
-        <small>... mins ago</small>
+        <small>publié à : {{likedPost.createdAt | date: "hh:mm:ss a, le dd-MM-yyyy"}}</small>
       </p>
     </div>
   </div>

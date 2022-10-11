@@ -47,19 +47,18 @@ export class PostItemComponent implements OnInit {
       console.log(error);
     }
 
-    if(this.post.picture){
+    if (this.post.picture) {
       //this.images = [this._postService.baseUrl + '/file/' + this.post.picture];
       this.media = this._postService.baseUrl + '/file/' + this.post.picture;
     }
-    if(this.post.video){
+    if (this.post.video) {
       //this.images = [this._postService.baseUrl + '/file/' + this.post.video];
       this.media = this._postService.baseUrl + '/file/' + this.post.video;
     }
-    if(this.post.audio){
+    if (this.post.audio) {
       //this.images = [this._postService.baseUrl + '/file/' + this.post.audio];
       this.media = this._postService.baseUrl + '/file/' + this.post.audio;
     }
-
 
     if (this.post.likers?.includes(this.user_id)) {
       this.liked = 'bg-like';
@@ -77,13 +76,11 @@ export class PostItemComponent implements OnInit {
     // add tryCatch may be a good idea
     try {
       this._postService
-      .deletePost(this.post._id + '')
-      .subscribe(() => window.location.reload());
-
+        .deletePost(this.post._id + '')
+        .subscribe(() => window.location.reload());
     } catch (error) {
       console.log(error);
     }
-
   }
 
   onUpdate() {
@@ -122,6 +119,10 @@ export class PostItemComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  onComment(postId: string) {
+    this.router.navigate(['connected-user', this.user_id, 'post-detail', postId]);
   }
 
   public reloadComponent() {

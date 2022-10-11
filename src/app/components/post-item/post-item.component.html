@@ -134,7 +134,7 @@
         <span class="text-muted">[ {{ nbReports }} report(s) ]</span>
       </div>
 
-      <div class="col">
+      <div class="col" (click)="onComment(post._id + '')">
         <img
           src="../../../assets/images/comment-svgrepo-com.svg"
           width="50px"
