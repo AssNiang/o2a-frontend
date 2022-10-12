@@ -122,7 +122,9 @@ export class PostItemComponent implements OnInit {
   }
 
   onComment(postId: string) {
-    this.router.navigate(['connected-user', this.user_id, 'post-detail', postId]);
+    if(this.user_id && postId){
+      this.router.navigate(['connected-user', this.user_id, 'post-detail', postId]);
+    }
   }
 
   public reloadComponent() {
