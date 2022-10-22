@@ -34,7 +34,7 @@ export class HistoryPostsComponent implements OnInit {
         this.myPosts = posts;
         this.myPublicPosts = posts.filter(post => post.statut == "public");
         this.myPrivatePosts = posts.filter(post => post.statut == "private");
-        console.log(this.myPosts);
+        //console.log(this.myPosts);
       }
     )
 

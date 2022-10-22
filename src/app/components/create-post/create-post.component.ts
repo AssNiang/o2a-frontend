@@ -46,7 +46,7 @@ export class CreatePostComponent implements OnInit {
           this._postService
             .addPicture(this.formData, data._id)
             .subscribe((im) => {
-              console.log(im);
+            // console.log(im);
             });
 
           this.piRef.reloadComponent();
@@ -59,7 +59,7 @@ export class CreatePostComponent implements OnInit {
           this._postService
             .addPicture(this.formData, data._id)
             .subscribe((im) => {
-              console.log(im);
+            // console.log(im);
             });
 
           this.piRef.reloadComponent();
@@ -74,13 +74,13 @@ export class CreatePostComponent implements OnInit {
       this._postService
         .updatePost(send.value, this.toUpdate)
         .subscribe((data) => {
-          console.log(data);
+        // console.log(data);
 
           // save the image; ------------------must also delete images with this post id--------------------
           this._postService
             .addPicture(this.formData, data._id)
             .subscribe((im) => {
-              console.log(im);
+            // console.log(im);
             });
           // set 'updateActivated' to false in order to print the updated post (not the text-area field)
           // l'importance des variables de classe et des variables d'instance.
@@ -102,26 +102,26 @@ export class CreatePostComponent implements OnInit {
     this.formData.append('file', file as File);
 
     if (file && allowedImageMimeTypes.includes(file.type)) {
-      console.log('image selected');
+    // console.log('image selected');
 
       const reader = new FileReader();
       reader.onload = () => {
         this.imageData = reader.result as string;
         // log the result
-        console.log(this.imageData);
+        //console.log(this.imageData);
       };
       reader.readAsDataURL(file);
       // console.log(file)
     }
 
     if (file && allowedVideoMimeTypes.includes(file.type)) {
-      console.log('video selected');
+    // console.log('video selected');
 
       const reader = new FileReader();
       reader.onload = () => {
         this.videoData = reader.result as string;
         // log the result
-        console.log(this.videoData);
+        //console.log(this.videoData);
 
       };
       reader.readAsDataURL(file);
@@ -136,15 +136,15 @@ export class CreatePostComponent implements OnInit {
 
     this.formData = new FormData();
     this.formData.append('file', file as File);
-    console.log(file)
+    //console.log(file)
 
     if (file && allowedAudioMimeTypes.includes(file.type)) {
-      console.log('Audio selected');
+    // console.log('Audio selected');
       const reader = new FileReader();
       reader.onload = () => {
         this.audioData = reader.result as string;
         // log the result
-        console.log(this.audioData);
+        //console.log(this.audioData);
       };
       reader.readAsDataURL(file);
       // console.log(file)
