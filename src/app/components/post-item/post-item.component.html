@@ -39,14 +39,16 @@
           <span class="">({{ post.statut }})</span>
         </div>
       </div>
-      <div class="col text-end" *ngIf="deleteUpdateButtonPresent">
+      <div class="col text-end">
         <input
+          *ngIf="updateButtonPresent"
           type="button"
           value="Modifier"
           class="btn p-1 deleteUpdateButtonFormat"
           (click)="onUpdate()"
         />
         <input
+          *ngIf="deleteButtonPresent"
           type="button"
           value="Supprimer"
           class="btn p-1 deleteUpdateButtonFormat"

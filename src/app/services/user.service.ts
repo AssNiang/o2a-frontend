@@ -24,8 +24,8 @@ export class UserService {
     return this.http.get<any>(this.baseUrl+'/logout');
   }
 
-  getUsers():Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl+'/');
+  getUsers():Observable<User[]>{
+    return this.http.get<User[]>(this.baseUrl+'/');
   }
 
   getUserById(id:string):Observable<User>{

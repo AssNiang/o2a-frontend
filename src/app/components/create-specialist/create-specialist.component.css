@@ -1,15 +1,9 @@
 mat-card {
-  background-color: #ebdcb7;
+  background-color: rgb(235, 220, 183);
   color: #6F5164;
   border: solid 2px #6F5164;
   margin-top: 10px;
 }
-
-/* mat-icon {
-  position: relative;
-  bottom: 35px;
-  right: -150px;
-} */
 
 img {
   height: 100px;

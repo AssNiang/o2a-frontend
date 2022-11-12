@@ -1,0 +1,49 @@
+<mat-card>
+  <h2>Ajout de spécialiste</h2>
+  <div>
+    <img [src]="registerIcon" alt="img_not_found" class="shadw" />
+  </div>
+
+  <form
+    #addSpecialist="ngForm"
+    (ngSubmit)="submit(addSpecialist)"
+    class="w-75 m-auto my-3"
+  >
+    <div *ngIf="specialistToBe" class="text-start">
+      Candidat pour être spécialiste :
+      <span class="text-danger"
+        >{{ specialistToBe.first_name }} {{ specialistToBe.last_name }}</span
+      >
+    </div>
+
+    <div class="form-group text-center">
+      <div class="my-2"></div>
+
+      <input
+        type="text"
+        name="job"
+        class="form-control"
+        placeholder="Fonction"
+        ngModel
+      />
+
+      <input
+        type="text"
+        name="workplace"
+        class="form-control"
+        placeholder="Poste de travail"
+        ngModel
+      />
+
+      <input
+        type="text"
+        name="professionnal_address"
+        class="form-control"
+        placeholder="Adresse professionnelle"
+        ngModel
+      />
+
+      <button type="submit">Ajouter Spécialiste</button>
+    </div>
+  </form>
+</mat-card>

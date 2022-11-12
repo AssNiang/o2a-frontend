@@ -12,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PostItemComponent implements OnInit {
   @Input() post!: Post;
-  @Input() deleteUpdateButtonPresent!: boolean;
+  @Input() updateButtonPresent!: boolean;
+  @Input() deleteButtonPresent!: boolean;
   postAuthor!: User;
 
   updateActivated: boolean = false; // utiliser une variable d'instance plutôt qu'une variable de classe (pour ne pas affecter tous les posts)

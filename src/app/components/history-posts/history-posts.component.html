@@ -5,15 +5,15 @@
 </div>
 
 <div *ngIf="onlyPrivates">
-  <app-post-item *ngFor="let post of myPrivatePosts" [post]="post" [deleteUpdateButtonPresent]="true"></app-post-item>
+  <app-post-item *ngFor="let post of myPrivatePosts" [post]="post" [updateButtonPresent]="true" [deleteButtonPresent]="true"></app-post-item>
 </div>
 
 <div *ngIf="onlyPublics">
-  <app-post-item *ngFor="let post of myPublicPosts" [post]="post" [deleteUpdateButtonPresent]="true"></app-post-item>
+  <app-post-item *ngFor="let post of myPublicPosts" [post]="post" [updateButtonPresent]="true" [deleteButtonPresent]="true"></app-post-item>
 </div>
 
 <div *ngIf="all">
-  <app-post-item *ngFor="let post of myPosts" [post]="post" [deleteUpdateButtonPresent]="true"></app-post-item>
+  <app-post-item *ngFor="let post of myPosts" [post]="post" [updateButtonPresent]="true" [deleteButtonPresent]="true"></app-post-item>
 </div>
 
 

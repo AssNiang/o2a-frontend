@@ -2,25 +2,41 @@
   <div class="container">
     <h1 class="m-b-50 heading-line">Notifications</h1>
 
-    <strong class="d-block fs-5 m-2 text-start">>>> Posts aimés</strong>
-    <div class="notification-ui_dd-content" *ngFor="let likedPost of likedPosts">
-      <div *ngFor="let liker of likedPost.likers">
-        <app-notification-item [likedPost]="likedPost" [likerId]="liker"></app-notification-item>
+    <div class="border border-dark p-2 rounded shadow my-2">
+      <strong class="d-block fs-5 m-2 text-start">>>> Posts aimés</strong>
+      <div
+        class="notification-ui_dd-content"
+        *ngFor="let likedPost of likedPosts"
+      >
+        <div *ngFor="let liker of likedPost.likers">
+          <app-notification-item
+            [likedPost]="likedPost"
+            [likerId]="liker"
+          ></app-notification-item>
+        </div>
       </div>
     </div>
 
-    <strong class="d-block fs-5 m-2 text-start">>>> Posts signalés</strong>
-    <div class="notification-ui_dd-content" *ngFor="let reportedPost of reportedPosts">
-      <app-notification-item [reportedPost]="reportedPost"></app-notification-item>
+    <div class="border border-dark p-2 rounded shadow my-2">
+      <strong class="d-block fs-5 m-2 text-start">>>> Posts signalés</strong>
+      <div
+        class="notification-ui_dd-content"
+        *ngFor="let reportedPost of reportedPosts"
+      >
+        <app-notification-item
+          [reportedPost]="reportedPost"
+        ></app-notification-item>
+      </div>
     </div>
 
-    <strong class="d-block fs-5 m-2 text-start">>>> Posts commentés</strong>
-    <div class="notification-ui_dd-content" *ngFor="let comment of allComments">
+    <div class="border border-dark p-2 rounded shadow my-2">
+      <strong class="d-block fs-5 m-2 text-start">>>> Posts commentés</strong>
+      <div
+        class="notification-ui_dd-content"
+        *ngFor="let comment of allComments"
+      >
         <app-notification-item [comment]="comment"></app-notification-item>
+      </div>
     </div>
-
-    <!-- <div class="text-center">
-      <button class="dark-link">Voir Plus...</button>
-    </div> -->
   </div>
 </section>
