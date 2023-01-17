@@ -1,97 +1,150 @@
-<div *ngIf="post && postAuthor">
+<div *ngIf="post && postAuthor && profile">
   <!-- Si on veut modifier le post -->
-<!-- Afficher le contenu du post à modifier. Réutiliser le 'create-post' component -->
-<div class="m-2 fs-6" *ngIf="updateActivated">
-  <app-create-post [toUpdate]="post._id+''"></app-create-post>
-</div>
+  <!-- Afficher le contenu du post à modifier. Réutiliser le 'create-post' component -->
+  <div class="m-2 fs-6" *ngIf="updateActivated">
+    <app-create-post [toUpdate]="post._id + ''"></app-create-post>
+  </div>
 
-<!-- Si on veut juste afficher le contenu, mais pas modifier le post -->
-<div class="pItem shadow rounded text-start p-2 my-4" *ngIf="!updateActivated">
-  <!-- Afficher la photo de profil, le prénom et le nom ici -->
-  <div class="row">
-    <div class="profile text-secondary col-8 row">
-      <div class="col-4">
-        <img class="my-2 rounded-circle" [src]="profile" alt="profile"/>
-        <span class="my-2 fs-6">
-          {{ postAuthor.first_name }} {{ postAuthor.last_name }}
-        </span>
-      </div>
-      <div class="col-6 mt-3 text-center">
-        <div class="">{{ post.createdAt | date: "hh:mm:ss a -- dd-MM-yyyy" }}</div>
-        <div *ngIf="post.createdAt != post.updatedAt">
-          ( modifié )
+  <!-- Si on veut juste afficher le contenu, mais pas modifier le post -->
+  <div
+    class="pItem shadow rounded text-start p-2 my-4"
+    *ngIf="!updateActivated"
+  >
+    <!-- Afficher la photo de profil, le prénom et le nom ici -->
+    <div class="row">
+      <div class="profile text-secondary col-8 row">
+        <div class="col-6 row">
+          <div class="col-4">
+            <img
+              class="my-2 rounded-circle"
+              [src]="profile"
+              width="60px"
+              height="60px"
+              alt="profile"
+            />
+          </div>
+
+          <div class="my-2 fs-6 col py-3">
+            {{ postAuthor.first_name }} {{ postAuthor.last_name }}
+          </div>
+        </div>
+        <div class="col-4 mt-3 text-center">
+          <div class="">
+            {{ post.createdAt | date: "hh:mm:ss a -- dd-MM-yyyy" }}
+          </div>
+          <div *ngIf="post.createdAt != post.updatedAt">( modifié )</div>
+        </div>
+
+        <div class="col mt-3">
+          <span class="">({{ post.statut }})</span>
         </div>
       </div>
-
-      <div class="col mt-3">
-        <span class="">({{ post.statut }})</span>
+      <div class="col text-end">
+        <input
+          *ngIf="updateButtonPresent"
+          type="button"
+          value="Modifier"
+          class="btn p-1 deleteUpdateButtonFormat"
+          (click)="onUpdate()"
+        />
+        <input
+          *ngIf="deleteButtonPresent"
+          type="button"
+          value="Supprimer"
+          class="btn p-1 deleteUpdateButtonFormat"
+          (click)="onDelete()"
+        />
       </div>
     </div>
-    <div class="col text-end" *ngIf="deleteUpdateButtonPresent">
-      <input
-        type="button"
-        value="Modifier"
-        class="btn p-1 deleteUpdateButtonFormat"
-        (click)="onUpdate()"
-      />
-      <input
-        type="button"
-        value="Supprimer"
-        class="btn p-1 deleteUpdateButtonFormat"
-        (click)="onDelete()"
-      />
+
+    <!-- Afficher le contenu du post ici -->
+    <div class="m-2 fs-6">
+      {{ post.message }}
     </div>
-  </div>
 
-  <!-- Afficher le contenu du post ici -->
-  <div class="m-2 fs-6">
-    {{ post.message }}
-  </div>
+    <!--Afficher les images ici-->
+    <div *ngIf="post.picture" class="text-center m-2">
+      <img [src]="media" class="w-100 shadw" [alt]="media" />
+    </div>
+    <div *ngIf="post.video" class="text-center m-2">
+      <video [src]="media" class="w-100 shadw" controls></video>
+    </div>
+    <div *ngIf="post.audio" class="text-center m-2">
+      <audio [src]="media" class="w-100 shadw" controls></audio>
+    </div>
+    <!-- <ngb-carousel *ngIf="post.picture" class="text-center m-2 shadw">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+          <img [src]="image" class="w-100" [alt]="image" />
+        </div>
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <ngb-carousel *ngIf="post.video" class="text-center m-2 shadw">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+          <video [src]="image" class="w-100" controls></video>
+        </div>
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    <ngb-carousel *ngIf="post.audio" class="text-center m-2 shadw">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+          <audio [src]="image" class="w-100" controls></audio>
+        </div>
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>
+      </ng-template>
+    </ngb-carousel> -->
 
-  <!--Afficher les images ici-->
-  <ngb-carousel *ngIf="images" class="text-center">
-    <ng-template ngbSlide *ngFor="let image of images">
-      <div class="picsum-img-wrapper">
-        <img [src]="image" alt="Random first slide" />
+    <!--reactions-->
+    <hr class="bg-" />
+    <div class="row text-center my-2">
+      <div class="col">
+        <img
+          src="../../../assets/images/heart-svgrepo-com.svg"
+          width="50px"
+          alt=""
+          srcset=""
+          (click)="onLike()"
+          [class]="liked"
+        />
+        <span *ngIf="liked" class="m-2">Unlike</span>
+        <span *ngIf="!liked" class="m-2">Like</span>
+        <span class="text-muted">[ {{ nbLikes }} like(s) ]</span>
       </div>
-      <div class="carousel-caption">
-        <h3></h3>
-        <p></p>
+      <div class="col">
+        <img
+          src="../../../assets/images/error-svgrepo-com.svg"
+          width="50px"
+          alt=""
+          srcset=""
+          (click)="onReport()"
+          [class]="reported"
+        />
+        <span *ngIf="reported" class="m-2">Unreport</span>
+        <span *ngIf="!reported" class="m-2">Report</span>
+        <span class="text-muted">[ {{ nbReports }} report(s) ]</span>
       </div>
-    </ng-template>
-  </ngb-carousel>
 
-  <!--reactions-->
-  <hr class="bg-" />
-  <div class="row text-center my-2">
-    <div class="col">
-      <img
-        src="../../../assets/images/heart-svgrepo-com.svg"
-        width="50px"
-        alt=""
-        srcset=""
-      />
-      Liker
-    </div>
-    <div class="col">
-      <img
-        src="../../../assets/images/error-svgrepo-com.svg"
-        width="50px"
-        alt=""
-        srcset=""
-      />
-      Signaler
-    </div>
-    <div class="col">
-      <img
-        src="../../../assets/images/comment-svgrepo-com.svg"
-        width="50px"
-        alt=""
-        srcset=""
-      />
-      Commenter
+      <div class="col" (click)="onComment(post._id + '')">
+        <img
+          src="../../../assets/images/comment-svgrepo-com.svg"
+          width="50px"
+          alt=""
+          srcset=""
+        />
+        Commenter
+      </div>
     </div>
   </div>
-</div>
-
 </div>

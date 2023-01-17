@@ -1,0 +1,7 @@
+<div *ngIf="post">
+  <app-post-item *ngIf="post" [post]="post"></app-post-item>
+
+  <app-create-comment></app-create-comment>
+
+  <app-list-comments [postId]="post._id+''"></app-list-comments>
+</div>

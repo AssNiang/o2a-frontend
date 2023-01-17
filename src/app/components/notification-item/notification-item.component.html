@@ -1,0 +1,62 @@
+<div class="notification-list notification-list--unread rounded" *ngIf="liker && likedPost.likers">
+  <div class="notification-list_content w-100">
+    <div class="notification-list_img">
+      <img [src]="profile" alt="liker" />
+    </div>
+    <div class="notification-list_detail w-100 text-start">
+      <p *ngIf="likerId != userId">
+        <strong>{{ liker.first_name }} {{ liker.last_name }}</strong>
+        a aimé votre post <span *ngIf="likedPost.likers.length > 1"> ainsi que {{likedPost.likers.length}} autres personnes.</span>
+      </p>
+      <p *ngIf="likerId == userId">
+        <strong>Vous</strong>
+        avez aimé votre post <span *ngIf="likedPost.likers.length > 1"> ainsi que {{likedPost.likers.length}} autres personnes.</span>
+      </p>
+      <p class="m-2 w-100 bg-message p-2 rounded">
+        {{ likedPost.message }}
+      </p>
+      <p class="text-muted">
+        <small>publié à : {{likedPost.createdAt | date: "hh:mm:ss a, le dd-MM-yyyy"}}</small>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="notification-list notification-list--unread rounded" *ngIf="commentedPost && comment && commenter">
+  <div class="notification-list_content w-100">
+    <div class="notification-list_img">
+      <img [src]="profile" alt="liker" />
+    </div>
+    <div class="notification-list_detail w-100 text-start">
+      <p *ngIf="comment.commenterId != userId">
+        <strong>{{ commenter.first_name }} {{ commenter.last_name }}</strong>
+        a commenté votre post du <span class="text-danger">{{commentedPost.createdAt | date: "dd-MM-yyyy, hh:mm:ss a"}}</span>
+      </p>
+      <p *ngIf="comment.commenterId == userId">
+        <strong>Vous</strong>
+        avez commenté votre post du <span class="text-danger">{{commentedPost.createdAt | date: "dd-MM-yyyy, hh:mm:ss a"}}</span>
+      </p>
+      <p class="m-2 w-100 bg-message p-2 rounded">
+        {{ commentedPost.message }}
+      </p>
+      <p class="text-muted">
+        <small>à {{comment.createdAt | date: "hh:mm:ss a, le dd-MM-yyyy"}}</small>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="notification-list format-report rounded" *ngIf="reportedPost">
+  <div class="notification-list_content w-100">
+    <div class="notification-list_detail text-start w-100">
+      <p class="m-2 w-100 bg-message p-2 rounded">
+        {{ reportedPost.message }}
+      </p>
+      <p>
+        Votre post du <span class="text-danger">{{reportedPost.createdAt | date: "dd-MM-yyyy, hh:mm:ss a"}}</span> a été signalé
+        <u class="text-danger">{{ reportedPost.reporters?.length }} fois</u>.
+      </p>
+    </div>
+  </div>
+</div>

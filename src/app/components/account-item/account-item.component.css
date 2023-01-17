@@ -1,0 +1,11 @@
+.account {
+  border: 1px solid #b68ea7;
+  background-color: #f6f0f4;
+  padding: 2px;
+}
+
+.buttonFormat {
+  margin: 3px;
+  border: 1px solid #6f5164;
+  background-color: rgb(240, 229, 229);
+}

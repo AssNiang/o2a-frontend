@@ -31,6 +31,16 @@ import { ReceiverComponent } from './components/receiver/receiver.component';
 import { HistoryPostsComponent } from './components/history-posts/history-posts.component';
 import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
+import { NotificationItemComponent } from './components/notification-item/notification-item.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { CreateCommentComponent } from './components/create-comment/create-comment.component';
+import { ListCommentsComponent } from './components/list-comments/list-comments.component';
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
+import { ReportedPostsComponent } from './components/reported-posts/reported-posts.component';
+import { AccountsComponent } from './components/accounts/accounts.component';
+import { StructureLocationComponent } from './components/structure-location/structure-location.component';
+import { AccountItemComponent } from './components/account-item/account-item.component';
+import { CreateSpecialistComponent } from './components/create-specialist/create-specialist.component';
 
 
 @NgModule({
@@ -53,7 +63,17 @@ import { PostService } from './services/post.service';
     DiscussionComponent,
     SenderComponent,
     ReceiverComponent,
-    HistoryPostsComponent
+    HistoryPostsComponent,
+    NotificationItemComponent,
+    PostDetailComponent,
+    CreateCommentComponent,
+    ListCommentsComponent,
+    CommentItemComponent,
+    ReportedPostsComponent,
+    AccountsComponent,
+    StructureLocationComponent,
+    AccountItemComponent,
+    CreateSpecialistComponent
   ],
   imports: [
     BrowserModule,

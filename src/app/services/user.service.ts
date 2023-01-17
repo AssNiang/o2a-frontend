@@ -24,8 +24,8 @@ export class UserService {
     return this.http.get<any>(this.baseUrl+'/logout');
   }
 
-  getUsers():Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl+'/');
+  getUsers():Observable<User[]>{
+    return this.http.get<User[]>(this.baseUrl+'/');
   }
 
   getUserById(id:string):Observable<User>{
@@ -38,6 +38,15 @@ export class UserService {
 
   deleteUser(id:string){
     return this.http.delete(this.baseUrl + '/delete/'+id);
+  }
+
+  // images
+  // getProfile():Observable<File>{
+  //   return this.http.get<File>(this.baseUrl+'/file/profile.1664281704325_++++.png');
+  // }
+
+  addPicture(formData: FormData, idUser: string) {
+    return this.http.post(this.baseUrl + '/file/'+idUser, formData);
   }
 
 

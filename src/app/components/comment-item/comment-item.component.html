@@ -1,0 +1,97 @@
+<div *ngIf="comment && commentAuthor">
+  <!-- Si on veut modifier le comment -->
+  <!-- Afficher le contenu du comment à modifier. Réutiliser le 'create-comment' component -->
+
+  <div class="m-2 fs-6" *ngIf="updateActivated">
+    <app-create-comment [toUpdateCommentId]="comment._id + ''"></app-create-comment>
+  </div>
+
+  <!-- Si on veut juste afficher le contenu, mais pas modifier le comment -->
+
+  <div
+    class="pItem shadow rounded text-start p-2 m-3"
+    *ngIf="!updateActivated"
+  >
+
+    <!-- Afficher la photo de profil, le prénom et le nom ici -->
+    <div class="row">
+      <div class="profile text-secondary col-8 row">
+        <div class="col-6 row">
+          <div class="col-4">
+            <img
+              class="rounded-circle"
+              [src]="profile"
+              width="40px"
+              height="40px"
+              alt="profile"
+            />
+          </div>
+
+          <div class="col py-2">
+            {{ commentAuthor.first_name }} {{ commentAuthor.last_name }}
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="">
+            {{ comment.createdAt | date: "hh:mm:ss a, dd-MM-yyyy" }}
+          </div>
+          <div *ngIf="comment.createdAt != comment.updatedAt">( modifié )</div>
+        </div>
+      </div>
+
+      <div class="col text-end" *ngIf="deleteUpdateButtonPresent">
+        <input
+          type="button"
+          value="Modifier"
+          class="btn p-1 deleteUpdateButtonFormat"
+          (click)="onUpdate()"
+        />
+        <input
+          type="button"
+          value="Supprimer"
+          class="btn p-1 deleteUpdateButtonFormat"
+          (click)="onDelete()"
+        />
+      </div>
+    </div>
+
+    <!-- Afficher le contenu du comment ici -->
+    <div class="m-2">
+      {{ comment.text }}
+    </div>
+
+
+
+    <!--reactions-->
+    <hr />
+    <div class="row text-center my-2">
+      <div class="col">
+        <img
+          src="../../../assets/images/heart-svgrepo-com.svg"
+          width="30px"
+          alt=""
+          srcset=""
+          (click)="onLike()"
+          [class]="liked"
+        />
+        <span *ngIf="liked" class="m-2">Unlike</span>
+        <span *ngIf="!liked" class="m-2">Like</span>
+        <span class="text-muted">[ {{ nbLikes }} like(s) ]</span>
+      </div>
+      <div class="col">
+        <img
+          src="../../../assets/images/error-svgrepo-com.svg"
+          width="30px"
+          alt=""
+          srcset=""
+          (click)="onReport()"
+          [class]="reported"
+        />
+        <span *ngIf="reported" class="m-2">Unreport</span>
+        <span *ngIf="!reported" class="m-2">Report</span>
+        <span class="text-muted">[ {{ nbReports }} report(s) ]</span>
+      </div>
+
+    </div>
+  </div>
+</div>

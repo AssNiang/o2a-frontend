@@ -1,100 +1,112 @@
 <div *ngIf="user">
-  <div class="container">
+  <div class="container w-100">
     <div class="myCard">
       <div class="row">
         <div class="col-md-4">
           <div class="myRightCtn">
             <div class="box">
               <img
-                src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/saint-algue-carre-court-femme-coiffure-tendance-2022.jpg"
-                alt="profil"
-                style="width: 200px; border-radius: 50%"
+                [src]="profile"
+                alt="profile"
+                width="100px"
+                height="100px"
+                class="rounded-circle"
+                (click)="fileInput.click()"
               />
-              <input type="button" class="butt_out" value="Changer Profil" />
+              <input type="button" class="butt_out" value="Changer Profil" (click)="fileInput.click()" />
+
+
+            <input
+              type="file"
+              #fileInput
+              name="picture"
+              (change)="onFileSelect($event)"
+              id=""
+              class="d-none"
+              ngModel
+            />
             </div>
           </div>
         </div>
         <div class="col-md-8">
           <div class="myLeftCtn">
-
-            <form class="myForm text-center" #update="ngForm" (ngSubmit)="onUpdate(update)">
+            <form
+              class="myForm text-center"
+              #update="ngForm"
+              (ngSubmit)="onUpdate(update)"
+            >
               <h3>Mon Compte</h3>
               <div class="form-group">
                 <input
-                  class="myInput"
+                  class="myInput w-100"
                   type="text"
                   name="last_name"
                   ngModel
                   required
-
-                  [placeholder]="['Nom : '+ user.last_name+'']"
+                  [placeholder]="['Nom : ' + user.last_name + '']"
                 />
               </div>
               <div class="form-group">
                 <input
-                  class="myInput"
+                  class="myInput w-100"
                   type="text"
                   name="first_name"
                   ngModel
                   required
-
-                  [placeholder]="['Prénom : '+ user.first_name+'']"
+                  [placeholder]="['Prénom : ' + user.first_name + '']"
                 />
               </div>
               <div class="form-group">
                 <input
-                  class="myInput"
+                  class="myInput w-100"
                   type="text"
                   id="username"
                   name="user_name"
                   ngModel
                   required
-
-                  [placeholder]="['Nom d\'utilisateur: '+ user.user_name+'']"
+                  [placeholder]="['Nom d\'utilisateur: ' + user.user_name + '']"
                 />
               </div>
               <div class="form-group">
                 <input
-                  class="myInput"
+                  class="myInput w-100"
                   type="text"
                   name="address"
                   ngModel
                   required
-
-                  [placeholder]="['Adresse : '+ user.address+'']"
+                  [placeholder]="['Adresse : ' + user.address + '']"
                 />
               </div>
               <div class="form-group">
                 <input
-                  class="myInput"
+                  class="myInput w-100"
                   type="text"
                   id="email"
                   name="email"
                   ngModel
                   required
-
-                  [placeholder]="['Email : '+ user.email+'']"
+                  [placeholder]="['Email : ' + user.email + '']"
                 />
               </div>
               <div class="form-group">
                 <input
-                  class="myInput"
+                  class="myInput w-100"
                   [type]="showPassword ? 'text' : 'password'"
                   id="password"
                   name="password"
                   ngModel
                   required
-
                   [placeholder]="['Mot de passe : ********']"
                 />
               </div>
               <div class="text-start position-relative">
                 <mat-icon matSuffix (click)="togglePasswordVisibility()">
-                  {{showPassword?'visibility_off':'visibility'}}
+                  {{ showPassword ? "visibility_off" : "visibility" }}
                 </mat-icon>
 
-                <span class="position-absolute bottom-25 m-1">Visibilité du mot de passe</span>
-
+                <span class="position-absolute bottom-25 m-1"
+                  >Visibilité du mot de passe</span
+                >
               </div>
               <input type="submit" class="butt" value="Modifier" />
             </form>
@@ -103,5 +115,4 @@
       </div>
     </div>
   </div>
-
 </div>

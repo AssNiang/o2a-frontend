@@ -1,0 +1,18 @@
+<div class="text-center m-4">
+  <input type="button" class="btn p-2" [ngClass]="signed" value="Inscrits" (click)="onSignedUsers()">
+  <input type="button" class="btn p-2" [ngClass]="specialist" value="Spécialistes" (click)="onSpecialists()">
+  <input type="button" class="btn p-2" [ngClass]="blocked" value="Bloqués" (click)="onBlockedUsers()">
+</div>
+
+<div *ngIf="signed">
+  <app-account-item *ngFor="let signedUser of signedUsers" [user]="signedUser"></app-account-item>
+</div>
+
+<div *ngIf="specialist">
+  <app-account-item *ngFor="let specialist of specialists" [user]="specialist"></app-account-item>
+</div>
+
+<div *ngIf="blocked">
+  <app-account-item *ngFor="let blockedUser of blockedUsers" [user]="blockedUser"></app-account-item>
+</div>
+

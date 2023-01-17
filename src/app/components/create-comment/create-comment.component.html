@@ -1,0 +1,36 @@
+<div *ngIf="user">
+  <div class="text-start m-3 p-3 rounded componentFormat shadow row">
+    <!--profil-->
+    <div class="col-1 p-2">
+      <img
+        [src]="profile"
+        class="rounded-circle border border-dark w-100"
+        alt=""
+      />
+    </div>
+
+
+    <div class="col-10">
+      <form action="" #send="ngForm">
+        <div>
+          <textarea
+            ngModel
+            name="text"
+            placeholder="Ecrire votre commentaire ici ..."
+            class="w-100 textAreaFormat"
+            [value]="commentContent"
+          ></textarea>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-1 p-2" (click)="onSave(send)">
+      <img
+        src="../../../assets/images/send-svgrepo-com.svg"
+        alt=""
+        class="w-100"
+      />
+      <!-- <span class="text-center fs-6 text-secondary">Envoyer</span> -->
+    </div>
+  </div>
+</div>
