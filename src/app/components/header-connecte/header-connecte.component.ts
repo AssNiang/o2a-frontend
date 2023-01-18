@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-connecte.component.css']
 })
 export class HeaderConnecteComponent implements OnInit {
-
+  logoIcon: string = '../../../assets/images/logo.png';
   constructor() {
     //...
   }

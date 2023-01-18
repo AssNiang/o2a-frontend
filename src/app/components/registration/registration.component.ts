@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent implements OnInit {
-  registerIcon: string = '../../../assets/images/register-icon2.jpg';
+  registerIcon: string = '../../../assets/images/register-icon1.png';
   public showPassword: boolean = false;
   notValid: boolean = false;
 

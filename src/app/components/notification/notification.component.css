@@ -23,8 +23,8 @@ h1{
 .dark-link {
     padding: 10px;
     border-radius:25px;
-    border:2px solid #814069;
-    background-color:#b68ea7;
+    border:3px solid #b68ea7;
+    background-color:#814069; 
 }
 
 .heading-line {
@@ -55,7 +55,8 @@ h1{
     justify-content: space-between;
     padding: 20px;
     margin-bottom: 7px;
-    background: #b68ea7;
+   /* background: #b68ea7;*/
+   background: #e9c6dd;
     -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }

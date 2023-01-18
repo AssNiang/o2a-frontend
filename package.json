@@ -10,7 +10,6 @@
     "test-cicd": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
     "clean-cicd": "rimraf ./dist",
     "build-cicd": "ng build --prod",
-
     "sonar": "sonar-scanner"
   },
   "private": true,

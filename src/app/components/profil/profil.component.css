@@ -15,7 +15,8 @@
 .myRightCtn
 {
   position: relative;
-  background-color:#814069;
+  /*background-color:#814069;*/
+  background-color: #b68ea7;
   border-radius: 25px;
   height: 100%;
   padding: 25px;
@@ -28,7 +29,8 @@
 .myLeftCtn
  {
   position: relative;
-  background: #b68ea7;
+  /*background: #b68ea7;*/
+  background: #e9c6dd;
   border-radius: 25px;
   height: 100%;
   padding: 25px;
@@ -102,15 +104,16 @@ h3 {
 }
 
 .myLeftCtn .butt:hover {
-  background: #b68ea7;
+  border: 2px solid#eecbff;
 }
 .myLeftCtn .butt:focus {
   outline: none;
 }
 
 .butt_out {
-  background: #b68ea7;
-  color: black;
+  /*background: #b68ea7;*/
+  background: #814069;
+  color: white;
   width: 120px;
   border: 2px solid #b68ea7;
   border-radius: 25px;
