@@ -1,5 +1,5 @@
 mat-card {
-  background-color: rgb(235, 220, 183);
+  background-color:  #e9c6dd;
   color: #6F5164;
   border: solid 2px #6F5164;
   margin-top: 10px;
@@ -7,12 +7,12 @@ mat-card {
 
 img {
   height: 100px;
-
+  width:100px;
 }
 
 .shadw {
   border: solid 2px #6F5164;
-  box-shadow: 12px -12px 2px #b5adb2;
+  box-shadow: 12px -12px 2px #88366a;
 }
 
 input {
@@ -22,9 +22,9 @@ input {
 }
 
 button {
-  background-color: #6F5164;
+  background-color: #88366a;
   color: antiquewhite;
   padding: 10px;
   margin-top: 10px;
-  border-radius: 10%;
+  border-radius: 25px;
 }

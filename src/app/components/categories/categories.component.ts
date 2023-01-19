@@ -10,6 +10,10 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  AllergieAlimentaire: string = '../../../assets/images/AllergieAlimentaire.jpeg';
+  AllergieContact: string = '../../../assets/images/AllergieContact.jpeg';
+  AllergieSaisonniere: string = '../../../assets/images/AllergieSaisonniere.jpg';
+  AllergieInterieur: string = '../../../assets/images/AllergieInterieur.jpeg';
   user_id!: string;
 
 
