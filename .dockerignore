@@ -1,19 +1,12 @@
 .git
-.editorconfig
-
-/node_modules
-
-/coverage
-
-# /dist/o2a
-
 .gitignore
-
-*.zip
-
+.github
+.angular
+.vscode
+.scannerwork
+.editorconfig
+node_modules
+coverage
 *.md
 
-/.vscode
-/.github
-/.scannerwork
 

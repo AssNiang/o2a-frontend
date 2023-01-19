@@ -1,19 +1,12 @@
-# Stage 1
-FROM node:16-alpine as build-step
-
-RUN mkdir -p /app
-
+# stage 1
+FROM node:latest as node
 WORKDIR /app
-
-COPY package.json /app
-
-#RUN npm install
-
-COPY . /app
-
-#RUN npm run build --prod
-
+COPY . .
+RUN npm install
+RUN npm run build --prod
 
 # Stage 2
-FROM nginx:1.17.1-alpine
-COPY --from=build-step /app/dist/o2a /usr/share/nginx/html
+FROM nginx:alpine
+COPY --from=node /app/dist/o2a /usr/share/nginx/html
+
+EXPOSE 4200
