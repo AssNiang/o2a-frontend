@@ -28,3 +28,9 @@ button {
   margin-top: 10px;
   border-radius: 25px;
 }
+
+
+.bg-disabled {
+  background-color: #bfb6bb;
+
+}

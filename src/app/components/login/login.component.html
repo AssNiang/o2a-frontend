@@ -17,18 +17,51 @@
       <input
         type="text"
         name="user_name"
+        #user_name="ngModel"
         class="form-control"
         placeholder="Nom d'utilisateur"
         ngModel
+        minlength="3"
+        required
       />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="user_name.touched && user_name.errors?.['required']"
+      >
+        * Le champ nom d'utilisateur est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="user_name.errors?.['minlength']"
+      >
+        * Le champ nom d'utilisateur doit contenir au minimum 3 caractères
+      </div>
+
 
       <input
         [type]="showPassword ? 'text' : 'password'"
         name="password"
+        #password="ngModel"
         class="form-control"
         placeholder="Mot de passe"
         ngModel
+        minlength="6"
+        required
       />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="password.touched && password.errors?.['required']"
+      >
+        * Le champ mot de passe est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="password.errors?.['minlength']"
+      >
+        * Le champ mot de passe doit contenir au minimum 6 caractères
+      </div>
 
       <div class="text-start position-relative">
         <mat-icon matSuffix (click)="togglePasswordVisibility()">
@@ -40,7 +73,17 @@
         >
       </div>
 
-      <button type="submit">Se connecter</button>
+      <button type="submit" *ngIf="
+          user_name.invalid ||
+          password.invalid as invalid
+        "
+        [disabled]="invalid"
+        class="bg-disabled">Se connecter</button>
+
+        <button type="submit" *ngIf="!(
+          user_name.invalid ||
+          password.invalid)
+        ">Se connecter</button>
     </div>
   </form>
 </mat-card>

@@ -12,7 +12,6 @@ export class RegistrationComponent implements OnInit {
   registerIcon: string = '../../../assets/images/register-icon1.png';
   public showPassword: boolean = false;
   notValid: boolean = false;
-  notChecked: string = '';
 
   constructor(private router: Router, private _userService: UserService) {}
 
@@ -22,11 +21,6 @@ export class RegistrationComponent implements OnInit {
       return;
     }
 
-    if( !register.value.conditionsGeneralesUtilisation.checked) {
-      this.notChecked = 'bg-danger'
-    } else {
-      this.notChecked = 'bg-success'
-    }
 
     // a tryCathc may be a good answer
     try {

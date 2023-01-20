@@ -9,20 +9,7 @@
     (ngSubmit)="submit(register)"
     class="w-75 m-auto my-3"
   >
-    <div
-      class="form-group text-center"
-      [class.has-error]="
-        conditionsGeneralesUtilisation.touched &&
-        conditionsGeneralesUtilisation.invalid
-      "
-    >
-      <!-- <div
-        class="text-danger my-3 border border-danger rounded"
-        *ngIf="errorMessage"
-      >
-        {{ errorMessage }}
-      </div> -->
-
+    <div class="form-group text-center">
       <div class="row">
         <div class="col">
           <input
@@ -32,78 +19,176 @@
             class="form-control"
             placeholder="Prénom"
             ngModel
-            ng-minlength="2"
+            minlength="2"
             required
           />
+          <div
+            class="text-start text-danger p-1 mb-2"
+            *ngIf="first_name.touched && first_name.errors?.['required']"
+          >
+            * Le champ prénom est obligatoire.
+          </div>
+
+          <div
+          class="text-start text-danger p-1 mb-2"
+          *ngIf="first_name.errors?.['minlength']"
+        >
+          * Le champ prénom doit contenir au minimum 2 caractères
         </div>
+
+        </div>
+
         <div class="col">
           <input
             type="text"
             name="last_name"
+            #last_name="ngModel"
             class="form-control"
             placeholder="Nom"
             ngModel
-            ng-minlength="2"
+            minlength="2"
             required
           />
+          <div
+            class="text-start text-danger p-1 mb-2"
+            *ngIf="last_name.touched && last_name.errors?.['required']"
+          >
+            * Le champ nom est obligatoire.
+          </div>
+
+          <div
+          class="text-start text-danger p-1 mb-2"
+          *ngIf="last_name.errors?.['minlength']"
+        >
+          * Le champ nom doit contenir au minimum 2 caractères
+        </div>
+
         </div>
       </div>
 
       <input
         type="email"
         name="email"
+        #email="ngModel"
         class="form-control"
         placeholder="E-mail"
         ngModel
+        email="true"
         required
       />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="email.touched && email.errors?.['required']"
+      >
+        * L'adresse email est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="email.errors?.['email']"
+      >
+        * Le formatage de l'email est incorrect
+      </div>
 
       <input
         type="text"
         name="address"
+        #address="ngModel"
         class="form-control"
         placeholder="Adresse"
         ngModel
-        ng-minlength="5"
+        minlength="3"
         required
       />
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="address.touched && address.errors?.['required']"
+      >
+        * Le champ adresse est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="address.errors?.['minlength']"
+      >
+        * Le champ addresse doit contenir au minimum 3 caractères
+      </div>
 
       <div class="my-2"></div>
 
       <input
         type="text"
         name="user_name"
+        #user_name="ngModel"
         class="form-control"
         placeholder="Nom d'utilisateur"
         ngModel
-        ng-minlength="2"
+        minlength="3"
         required
       />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="user_name.touched && user_name.errors?.['required']"
+      >
+        * Le champ nom d'utilisateur est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="user_name.errors?.['minlength']"
+      >
+        * Le champ nom d'utilisateur doit contenir au minimum 3 caractères
+      </div>
 
       <input
         [type]="showPassword ? 'text' : 'password'"
         name="password"
+        #password="ngModel"
         class="form-control"
         placeholder="Mot de passe"
         ngModel
-        ng-minlength="4"
+        minlength="6"
         required
       />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="password.touched && password.errors?.['required']"
+      >
+        * Le champ mot de passe est obligatoire.
+      </div>
 
-      <div class="text-danger" *ngIf="notValid">
-        Vous avez saisi deux mots de passe différents. Veuillez réessayer s'il
-        vous plaît.
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="password.errors?.['minlength']"
+      >
+        * Le champ mot de passe doit contenir au minimum 6 caractères
       </div>
 
       <input
         [type]="showPassword ? 'text' : 'password'"
         name="passwordConfirmation"
+        #passwordConfirmation="ngModel"
         class="form-control"
         placeholder="Confirmer mot de passe"
         ngModel
-        ng-minlength="4"
         required
+        minlength="6"
       />
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="passwordConfirmation.touched && passwordConfirmation.errors?.['required']"
+      >
+        * Le champ confirmation du mot de passe est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="passwordConfirmation.errors?.['minlength']"
+      >
+        * Le champ confirmation du mot de passe doit contenir au minimum 6 caractères
+      </div>
 
       <div class="text-start position-relative">
         <mat-icon matSuffix (click)="togglePasswordVisibility()">
@@ -113,6 +198,10 @@
         <span class="position-absolute bottom-25 m-1"
           >Visibilité du mot de passe</span
         >
+      </div>
+
+      <div class="text-danger" *ngIf="notValid">
+        Echec de la confirmation du mot de passe. Assurez-vous que les mots de passe saisis soient identiques.
       </div>
 
       <div class="text-start p-0 m-0 d-flex border border-danger rounded">
@@ -132,16 +221,50 @@
       </div>
 
       <div
-        class="text-start text-danger p-1 help-block"
+        class="text-start text-danger p-1 mb-2"
         *ngIf="
           conditionsGeneralesUtilisation.touched &&
           conditionsGeneralesUtilisation.errors
         "
       >
-        * Ce champ obligatoire
+        * Veuillez accepter les conditions générales d'utilisation avant de continuer.
       </div>
 
-      <button type="submit" [disabled]="conditionsGeneralesUtilisation.invalid || first_name.invalid">
+      <button
+        type="submit"
+        *ngIf="
+          conditionsGeneralesUtilisation.invalid ||
+          first_name.invalid ||
+          last_name.invalid ||
+          user_name.invalid ||
+          email.invalid ||
+          address.invalid ||
+          user_name.invalid ||
+          password.invalid ||
+          passwordConfirmation.invalid as invalid
+        "
+        [disabled]="invalid"
+        class="bg-disabled"
+      >
+        S'inscrire
+      </button>
+
+      <button
+        type="submit"
+        *ngIf="
+          !(
+            conditionsGeneralesUtilisation.invalid ||
+            first_name.invalid ||
+            last_name.invalid ||
+            user_name.invalid ||
+            email.invalid ||
+            address.invalid ||
+            user_name.invalid ||
+            password.invalid ||
+            passwordConfirmation.invalid
+          )
+        "
+      >
         S'inscrire
       </button>
     </div>
