@@ -1,0 +1,33 @@
+#map {
+
+  margin-top: 10px;
+  border: solid 2px #6F5164;
+  box-shadow: 5px -5px 2px #b5adb2;
+  border-radius: 5px;
+  height: 500px;
+}
+
+.heading-line {
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.heading-line:after {
+  content: "";
+  height: 4px;
+  width: 75px;
+  background-color: #814069;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.m-b-50 {
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+h1{
+  font-weight: bold;
+  font-size: 35px;
+}

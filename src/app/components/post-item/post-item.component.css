@@ -3,6 +3,7 @@
   height: 100%;
 }
 
+/* <<<<<<< HEAD */
 .pItem {
   border: 1px solid #6f5164;
   background-color: #faf6f9;
@@ -14,6 +15,11 @@
   border: 1px solid #6f5164;
   background-color: rgb(131, 236, 170);
 }
+/* =======
+.pItem{
+  border: 1px solid #6F5164;
+  background-color: #e9c6dd;
+>>>>>>> modifOnFront */
 
 .bg-report {
   padding: 5px;

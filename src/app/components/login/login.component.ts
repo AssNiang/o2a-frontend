@@ -11,7 +11,7 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  registerIcon: string = '../../../assets/images/register-icon2.jpg';
+  registerIcon: string = '../../../assets/images/register-icon2.png';
   public showPassword: boolean = false;
   errorMessage: string = '';
 

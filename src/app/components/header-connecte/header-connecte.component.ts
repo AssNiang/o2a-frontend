@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header-connecte.component.css']
 })
 export class HeaderConnecteComponent implements OnInit {
+
   user_id: string = '';
   profile: string = '';
 
