@@ -1,23 +1,40 @@
 <mat-card>
   <h2>Inscription</h2>
   <div>
-    <img [src]="registerIcon" alt="img_not_found" class="shadw">
+    <img [src]="registerIcon" alt="img_not_found" class="shadw" />
   </div>
 
-  <form #register="ngForm" (ngSubmit)="submit(register)" class="w-75 m-auto my-3">
-    <div class="form-group text-center">
-
-      <div class="text-danger" *ngIf="notValid">Données saisies invalides, veuillez vérifier à nouveau.</div>
+  <form
+    #register="ngForm"
+    (ngSubmit)="submit(register)"
+    class="w-75 m-auto my-3"
+  >
+    <div
+      class="form-group text-center"
+      [class.has-error]="
+        conditionsGeneralesUtilisation.touched &&
+        conditionsGeneralesUtilisation.invalid
+      "
+    >
+      <!-- <div
+        class="text-danger my-3 border border-danger rounded"
+        *ngIf="errorMessage"
+      >
+        {{ errorMessage }}
+      </div> -->
 
       <div class="row">
         <div class="col">
           <input
             type="text"
             name="first_name"
+            #first_name="ngModel"
             class="form-control"
             placeholder="Prénom"
             ngModel
-          >
+            ng-minlength="2"
+            required
+          />
         </div>
         <div class="col">
           <input
@@ -26,7 +43,9 @@
             class="form-control"
             placeholder="Nom"
             ngModel
-          >
+            ng-minlength="2"
+            required
+          />
         </div>
       </div>
 
@@ -36,7 +55,8 @@
         class="form-control"
         placeholder="E-mail"
         ngModel
-      >
+        required
+      />
 
       <input
         type="text"
@@ -44,11 +64,11 @@
         class="form-control"
         placeholder="Adresse"
         ngModel
-      >
-
+        ng-minlength="5"
+        required
+      />
 
       <div class="my-2"></div>
-
 
       <input
         type="text"
@@ -56,8 +76,9 @@
         class="form-control"
         placeholder="Nom d'utilisateur"
         ngModel
-      >
-
+        ng-minlength="2"
+        required
+      />
 
       <input
         [type]="showPassword ? 'text' : 'password'"
@@ -65,7 +86,14 @@
         class="form-control"
         placeholder="Mot de passe"
         ngModel
-      >
+        ng-minlength="4"
+        required
+      />
+
+      <div class="text-danger" *ngIf="notValid">
+        Vous avez saisi deux mots de passe différents. Veuillez réessayer s'il
+        vous plaît.
+      </div>
 
       <input
         [type]="showPassword ? 'text' : 'password'"
@@ -73,22 +101,49 @@
         class="form-control"
         placeholder="Confirmer mot de passe"
         ngModel
-
-      >
+        ng-minlength="4"
+        required
+      />
 
       <div class="text-start position-relative">
         <mat-icon matSuffix (click)="togglePasswordVisibility()">
-          {{showPassword?'visibility_off':'visibility'}}
+          {{ showPassword ? "visibility_off" : "visibility" }}
         </mat-icon>
 
-        <span class="position-absolute bottom-25 m-1">Visibilité du mot de passe</span>
-
+        <span class="position-absolute bottom-25 m-1"
+          >Visibilité du mot de passe</span
+        >
       </div>
 
+      <div class="text-start p-0 m-0 d-flex border border-danger rounded">
+        <div class="p-1 form-control">
+          <label for="" class="checkbox-inline control-label">
+            <input
+              type="checkbox"
+              name="conditionsGeneralesUtilisation"
+              #conditionsGeneralesUtilisation="ngModel"
+              required
+              ngModel
+              id=""
+            />
+            J'accepte les conditions générales d'utilisations.
+          </label>
+        </div>
+      </div>
 
-      <button type="submit">S'inscrire</button>
+      <div
+        class="text-start text-danger p-1 help-block"
+        *ngIf="
+          conditionsGeneralesUtilisation.touched &&
+          conditionsGeneralesUtilisation.errors
+        "
+      >
+        * Ce champ obligatoire
+      </div>
 
+      <button type="submit" [disabled]="conditionsGeneralesUtilisation.invalid || first_name.invalid">
+        S'inscrire
+      </button>
     </div>
   </form>
-
 </mat-card>
