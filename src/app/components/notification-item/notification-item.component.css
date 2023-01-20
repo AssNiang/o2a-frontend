@@ -1,9 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
 
-
-
-
-
 .notification-list {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -13,7 +9,8 @@
     justify-content: space-between;
     padding: 20px;
     margin-bottom: 7px;
-    background: #cfa4bf;
+   /* background: #cfa4bf;*/
+   background: #e9c6dd;
     -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
@@ -48,7 +45,8 @@
 }
 
 .bg-message {
-  background-color:rgb(240, 229, 229);
+  /*background-color:rgb(240, 229, 229);*/
+  background-color: #cfa4bf
 }
 
 .format-report {

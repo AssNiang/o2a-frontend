@@ -13,7 +13,7 @@
   padding: 5px;
   border-radius: 10%;
   border: 1px solid #6f5164;
-  background-color: rgb(131, 236, 170);
+  background-color: #e9c6dd;
 }
 /* =======
 .pItem{
@@ -44,4 +44,10 @@
   box-shadow: 4px 4px 2px #b5adb2;
   border-radius: 20px;
 
+}
+
+.text-muted {
+    font-size: medium;
+    font-weight: 400;
+    font: 1em sans-serif;
 }
