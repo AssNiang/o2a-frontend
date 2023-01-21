@@ -20,15 +20,15 @@ export class LoginComponent implements OnInit {
   submit(login: NgForm) {
     try {
       this._userService.signInUser(login.value).subscribe((data) => {
-        // console.log(login.value);
+        console.log(data);
         //get user by id
-        if (data.id) {
-          this._userService.getUserById(data.id).subscribe((user) => {
-            LeftSideBarComponent.user_id = data.id;
-            if (user.is_specialist) {
+        if (data.userId) {
+          this._userService.getUserById(data.userId).subscribe((user) => {
+            LeftSideBarComponent.userId = data.userId;
+            if (user.role === 'specialist') {
               AppComponent.typeUser = LeftSideBarComponent.typeUser =
                 'specialist';
-            } else if (user.is_admin) {
+            } else if (user.role === 'admin') {
               AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
             } else {
               AppComponent.typeUser = LeftSideBarComponent.typeUser =
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
             }
           });
 
-          this.router.navigate(['connected-user', data.id]);
+          this.router.navigate(['connected-user', data.userId]);
         } else if (data.error) {
           this.errorMessage = data.error;
         }

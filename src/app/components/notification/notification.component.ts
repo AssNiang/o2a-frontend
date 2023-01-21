@@ -14,7 +14,7 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
   styleUrls: ['./notification.component.css'],
 })
 export class NotificationComponent implements OnInit {
-  user_id!: string;
+  userId!: string;
   likedPosts: Post[] = [];
   reportedPosts: Post[] = [];
   // commentedPosts: Post[] = [];
@@ -30,12 +30,12 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     // refresh the left-side-bar and the app-component
 
-    this.user_id = this.router.url.split('/')[2];
-    this._userService.getUserById(this.user_id + '').subscribe((user) => {
-      LeftSideBarComponent.user_id = this.user_id;
-      if (user.is_specialist) {
+    this.userId = this.router.url.split('/')[2];
+    this._userService.getUserById(this.userId + '').subscribe((user) => {
+      LeftSideBarComponent.userId = this.userId;
+      if (user.role = 'specialist') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-      } else if (user.is_admin) {
+      } else if (user.role == 'admin') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
       } else {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';
@@ -43,7 +43,7 @@ export class NotificationComponent implements OnInit {
     });
 
     // get posts
-    this._postService.getAllPostsById(this.user_id).subscribe((posts) => {
+    this._postService.getAllPostsById(this.userId).subscribe((posts) => {
       this.likedPosts = posts.filter(
         (post) => (post.likers?.length as number) > 0
       );

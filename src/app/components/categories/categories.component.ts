@@ -14,7 +14,7 @@ export class CategoriesComponent implements OnInit {
   AllergieContact: string = '../../../assets/images/AllergieContact.jpeg';
   AllergieSaisonniere: string = '../../../assets/images/AllergieSaisonniere.jpg';
   AllergieInterieur: string = '../../../assets/images/AllergieInterieur.jpeg';
-  user_id!: string;
+  userId!: string;
 
 
   constructor(private router: Router, private _userService: UserService) { }
@@ -23,14 +23,14 @@ export class CategoriesComponent implements OnInit {
 
     // refresh the left-side-bar and the app-component
 
-    this.user_id = this.router.url.split('/')[2];
-    this._userService.getUserById(this.user_id+'').subscribe(
+    this.userId = this.router.url.split('/')[2];
+    this._userService.getUserById(this.userId+'').subscribe(
       user => {
-        LeftSideBarComponent.user_id = this.user_id;
-        if(user.is_specialist){
+        LeftSideBarComponent.userId = this.userId;
+        if(user.role = 'specialist'){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
         }
-        else if(user.is_admin){
+        else if(user.role == 'admin'){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
         }
         else{

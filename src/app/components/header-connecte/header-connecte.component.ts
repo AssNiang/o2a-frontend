@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderConnecteComponent implements OnInit {
 
-  user_id: string = '';
+  userId: string = '';
   profile: string = '';
 
   constructor(private router: Router, private _userService: UserService) {
@@ -17,9 +17,9 @@ export class HeaderConnecteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
 
-    this._userService.getUserById(this.user_id).subscribe((data) => {
+    this._userService.getUserById(this.userId).subscribe((data) => {
       this.profile = this._userService.baseUrl + '/file/' + data.picture;
     });
 

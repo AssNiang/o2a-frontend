@@ -12,7 +12,7 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-  user_id: string = '';
+  userId: string = '';
   signedUsers!: User[];
   specialists!: User[];
 
@@ -25,15 +25,15 @@ export class AccountsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.user_id = this.router.url.split('/')[2];
-    // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect user_id is given
-    this._userService.getUserById(this.user_id+'').subscribe(
+    this.userId = this.router.url.split('/')[2];
+    // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect userId is given
+    this._userService.getUserById(this.userId+'').subscribe(
       user => {
-        LeftSideBarComponent.user_id = this.user_id;
-        if(user.is_specialist){
+        LeftSideBarComponent.userId = this.userId;
+        if(user.role == 'specialist') {
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
         }
-        else if(user.is_admin){
+        else if(user.role == 'admin'){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
         }
         else{
@@ -43,8 +43,8 @@ export class AccountsComponent implements OnInit {
     );
 
     this._adminService.getUnlockedAccounts().subscribe(users => {
-      this.signedUsers = users.filter(user => !user.is_admin && !user.is_specialist);
-      this.specialists = users.filter(user => user.is_specialist);
+      this.signedUsers = users.filter(user => user.role !== 'admin' && user.role !== 'specialist');
+      this.specialists = users.filter(user => user.role == 'specialist');
       //console.log(this.specialists)
     })
 

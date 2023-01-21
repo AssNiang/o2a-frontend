@@ -22,7 +22,7 @@ export class PostItemComponent implements OnInit {
 
   // A rappeler à Abdoukhadre : liste de pictures, not only one (backend)
   images: string[] = [];
-  user_id: string = '';
+  userId: string = '';
   liked: string = '';
   nbLikes: number | undefined;
   reported: string = '';
@@ -36,7 +36,7 @@ export class PostItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
     try {
       this._userService
         .getUserById(this.post.posterId + '')
@@ -61,12 +61,12 @@ export class PostItemComponent implements OnInit {
       this.media = this._postService.baseUrl + '/file/' + this.post.audio;
     }
 
-    if (this.post.likers?.includes(this.user_id)) {
+    if (this.post.likers?.includes(this.userId)) {
       this.liked = 'bg-like';
     }
     this.nbLikes = this.post.likers?.length;
 
-    if (this.post.reporters?.includes(this.user_id)) {
+    if (this.post.reporters?.includes(this.userId)) {
       this.reported = 'bg-report';
     }
     this.nbReports = this.post.reporters?.length;
@@ -92,12 +92,12 @@ export class PostItemComponent implements OnInit {
     try {
       if (this.liked) {
         this._postService
-          .unlikePost(this.post._id + '', this.user_id)
+          .unlikePost(this.post._id + '', this.userId)
           .subscribe(() => this.reloadComponent());
         this.liked = '';
       } else {
         this._postService
-          .likePost(this.post._id + '', this.user_id)
+          .likePost(this.post._id + '', this.userId)
           .subscribe(() => this.reloadComponent());
       }
     } catch (error) {
@@ -109,12 +109,12 @@ export class PostItemComponent implements OnInit {
     try {
       if (this.reported) {
         this._postService
-          .unreportPost(this.post._id + '', this.user_id)
+          .unreportPost(this.post._id + '', this.userId)
           .subscribe(() => this.reloadComponent());
         this.reported = '';
       } else {
         this._postService
-          .reportPost(this.post._id + '', this.user_id)
+          .reportPost(this.post._id + '', this.userId)
           .subscribe(() => this.reloadComponent());
       }
     } catch (error) {
@@ -123,8 +123,8 @@ export class PostItemComponent implements OnInit {
   }
 
   onComment(postId: string) {
-    if(this.user_id && postId){
-      this.router.navigate(['connected-user', this.user_id, 'post-detail', postId]);
+    if(this.userId && postId){
+      this.router.navigate(['connected-user', this.userId, 'post-detail', postId]);
     }
   }
 

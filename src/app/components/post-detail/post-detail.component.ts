@@ -14,7 +14,7 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 export class PostDetailComponent implements OnInit {
   postId: string = '';
   post!: Post;
-  user_id: string = '';
+  userId: string = '';
 
   constructor(
     private router: Router,
@@ -23,7 +23,7 @@ export class PostDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
     this.postId = this.router.url.split('/')[4];
 
     this._postService.getPostById(this.postId).subscribe((post) => {
@@ -31,11 +31,11 @@ export class PostDetailComponent implements OnInit {
       //console.log(post);
     });
 
-    this._userService.getUserById(this.user_id).subscribe((user) => {
-      LeftSideBarComponent.user_id = this.user_id;
-      if (user.is_specialist) {
+    this._userService.getUserById(this.userId).subscribe((user) => {
+      LeftSideBarComponent.userId = this.userId;
+      if (user.role = 'specialist') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-      } else if (user.is_admin) {
+      } else if (user.role == 'admin') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
       } else {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';

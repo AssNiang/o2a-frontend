@@ -12,7 +12,7 @@ export class LeftSideBarComponent implements OnInit {
   static typeUser: string = 'unknown';
   lsbRef = LeftSideBarComponent;
 
-  static user_id: string;
+  static userId: string;
 
 
   constructor(private router: Router, private _userService: UserService) {}

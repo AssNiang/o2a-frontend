@@ -7,37 +7,37 @@
 
 <div class="container" *ngIf="lsbRef.typeUser == 'connected'">
 
-  <div [routerLink]="['connected-user', lsbRef.user_id]" routerLinkActive="active">Accueil</div>
-  <div [routerLink]="['categories', lsbRef.user_id]" routerLinkActive="active">Catégories</div>
-  <div [routerLink]="['profil', lsbRef.user_id]" routerLinkActive="active">Profil</div>
-  <div [routerLink]="['notification', lsbRef.user_id]" routerLinkActive="active">Notifications</div>
-  <div [routerLink]="['history-posts', lsbRef.user_id]" routerLinkActive="active">Historique Posts</div>
-  <div [routerLink]="['structure-location', lsbRef.user_id]" routerLinkActive="active">Localiser Structures</div>
+  <div [routerLink]="['connected-user', lsbRef.userId]" routerLinkActive="active">Accueil</div>
+  <div [routerLink]="['categories', lsbRef.userId]" routerLinkActive="active">Catégories</div>
+  <div [routerLink]="['profil', lsbRef.userId]" routerLinkActive="active">Profil</div>
+  <div [routerLink]="['notification', lsbRef.userId]" routerLinkActive="active">Notifications</div>
+  <div [routerLink]="['history-posts', lsbRef.userId]" routerLinkActive="active">Historique Posts</div>
+  <div [routerLink]="['structure-location', lsbRef.userId]" routerLinkActive="active">Localiser Structures</div>
   <div (click)="disconnect()">Se déconnecter</div>
 </div>
 
 <div class="container" *ngIf="lsbRef.typeUser == 'specialist'">
 
-  <div [routerLink]="['connected-user', lsbRef.user_id]" routerLinkActive="active">Accueil</div>
-  <div [routerLink]="['categories', lsbRef.user_id]" routerLinkActive="active">Catégories</div>
-  <div [routerLink]="['profil', lsbRef.user_id]" routerLinkActive="active">Profil</div>
-  <div [routerLink]="['notification', lsbRef.user_id]" routerLinkActive="active">Notifications</div>
-  <div [routerLink]="['history-posts', lsbRef.user_id]" routerLinkActive="active">Historique Posts</div>
-  <div [routerLink]="['structure-location', lsbRef.user_id]" routerLinkActive="active">Localiser Structures</div>
+  <div [routerLink]="['connected-user', lsbRef.userId]" routerLinkActive="active">Accueil</div>
+  <div [routerLink]="['categories', lsbRef.userId]" routerLinkActive="active">Catégories</div>
+  <div [routerLink]="['profil', lsbRef.userId]" routerLinkActive="active">Profil</div>
+  <div [routerLink]="['notification', lsbRef.userId]" routerLinkActive="active">Notifications</div>
+  <div [routerLink]="['history-posts', lsbRef.userId]" routerLinkActive="active">Historique Posts</div>
+  <div [routerLink]="['structure-location', lsbRef.userId]" routerLinkActive="active">Localiser Structures</div>
   <div routerLink="" routerLinkActive="">Demandes de conseils</div>
   <div routerLink="" routerLinkActive="">Données Aggrégées</div>
   <div (click)="disconnect()">Se déconnecter</div>
 </div>
 
 <div class="container" *ngIf="lsbRef.typeUser == 'admin'">
-  <div [routerLink]="['connected-user', lsbRef.user_id]" routerLinkActive="active">Accueil</div>
-  <div [routerLink]="['categories', lsbRef.user_id]" routerLinkActive="active">Catégories</div>
-  <div [routerLink]="['profil', lsbRef.user_id]" routerLinkActive="active">Profil</div>
-  <div [routerLink]="['notification', lsbRef.user_id]" routerLinkActive="active">Notifications</div>
-  <div [routerLink]="['history-posts', lsbRef.user_id]" routerLinkActive="active">Historique Posts</div>
-  <div [routerLink]="['structure-location', lsbRef.user_id]" routerLinkActive="active">Localiser Structures</div>
-  <div [routerLink]="['reported-posts', lsbRef.user_id]" routerLinkActive="active">Posts Signalés</div>
+  <div [routerLink]="['connected-user', lsbRef.userId]" routerLinkActive="active">Accueil</div>
+  <div [routerLink]="['categories', lsbRef.userId]" routerLinkActive="active">Catégories</div>
+  <div [routerLink]="['profil', lsbRef.userId]" routerLinkActive="active">Profil</div>
+  <div [routerLink]="['notification', lsbRef.userId]" routerLinkActive="active">Notifications</div>
+  <div [routerLink]="['history-posts', lsbRef.userId]" routerLinkActive="active">Historique Posts</div>
+  <div [routerLink]="['structure-location', lsbRef.userId]" routerLinkActive="active">Localiser Structures</div>
+  <div [routerLink]="['reported-posts', lsbRef.userId]" routerLinkActive="active">Posts Signalés</div>
   <!-- <div routerLink="" routerLinkActive="">Spécialistes</div> -->
-  <div [routerLink]="['accounts', lsbRef.user_id]" routerLinkActive="active">Comptes</div>
+  <div [routerLink]="['accounts', lsbRef.userId]" routerLinkActive="active">Comptes</div>
   <div (click)="disconnect()">Se déconnecter</div>
 </div>

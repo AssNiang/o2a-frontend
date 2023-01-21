@@ -15,7 +15,7 @@ export class HistoryPostsComponent implements OnInit {
   myPublicPosts: Post[] = [];
   myPrivatePosts: Post[] = [];
   myPosts: Post[] = [];
-  user_id!: string;
+  userId!: string;
   pu!: string;
   pr!: string;
   onlyPublics!: boolean;
@@ -26,26 +26,26 @@ export class HistoryPostsComponent implements OnInit {
   constructor(private router: Router, private _postService: PostService, private _userService: UserService) { }
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
     // a tryCatch may be a good idea
 
-    this._postService.getAllPostsById(this.user_id+'').subscribe(
+    this._postService.getAllPostsById(this.userId+'').subscribe(
       posts => {
         this.myPosts = posts;
-        this.myPublicPosts = posts.filter(post => post.statut == "public");
-        this.myPrivatePosts = posts.filter(post => post.statut == "private");
+        this.myPublicPosts = posts.filter(post => post.postStatus == "public");
+        this.myPrivatePosts = posts.filter(post => post.postStatus == "private");
         //console.log(this.myPosts);
       }
     )
 
-    // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect user_id is given
-    this._userService.getUserById(this.user_id+'').subscribe(
+    // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect userId is given
+    this._userService.getUserById(this.userId+'').subscribe(
       user => {
-        LeftSideBarComponent.user_id = this.user_id;
-        if(user.is_specialist){
+        LeftSideBarComponent.userId = this.userId;
+        if(user.role = 'specialist'){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
         }
-        else if(user.is_admin){
+        else if(user.role == 'admin'){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
         }
         else{

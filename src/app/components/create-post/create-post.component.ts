@@ -15,7 +15,7 @@ import { PostItemComponent } from '../post-item/post-item.component';
 })
 export class CreatePostComponent implements OnInit {
   profile: string = '';
-  user_id!: string;
+  userId!: string;
   user!: User;
 
   // for updating posts
@@ -153,9 +153,9 @@ export class CreatePostComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
 
-    this._userService.getUserById(this.user_id).subscribe((data) => {
+    this._userService.getUserById(this.userId).subscribe((data) => {
       this.user = data;
       this.profile = this._userService.baseUrl + '/file/' + data.picture;
     });

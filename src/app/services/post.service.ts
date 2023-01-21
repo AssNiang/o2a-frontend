@@ -7,16 +7,16 @@ import { Post } from '../models/post';
   providedIn: 'root',
 })
 export class PostService {
-  baseUrl: string = 'http://localhost:5000/api/post';
+  baseUrl: string = 'http://localhost:5000/api/posts';
 
   constructor(private http: HttpClient) {}
 
   createPublicPost(post: Post): Observable<any> {
-    return this.http.post(this.baseUrl + '/public-post', post);
+    return this.http.post(this.baseUrl + '/newPublicPost', post);
   }
 
   createPrivatePost(post: Post): Observable<any> {
-    return this.http.post(this.baseUrl + '/private-post', post);
+    return this.http.post(this.baseUrl + '/newPrivatePost', post);
   }
 
   deletePost(postId: string): Observable<any> {
@@ -28,11 +28,11 @@ export class PostService {
   }
 
   getAllPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.baseUrl + '/');
+    return this.http.get<Post[]>(this.baseUrl + '/allPosts');
   }
 
   getPostById(postId: string): Observable<Post> {
-    return this.http.get<Post>(this.baseUrl + '/' + postId);
+    return this.http.get<Post>(this.baseUrl + '/postDetails' + postId);
   }
 
   getAllPostsById(id: string): Observable<Post[]> {

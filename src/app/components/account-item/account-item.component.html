@@ -5,16 +5,16 @@
   </div>
 
   <div class="col text-end">
-    <span *ngIf="user.is_specialist">
+    <span *ngIf="user.role == 'specialist'">
       <input type="button" (click)="onRetireSpecialist(user)" value="Retirer Spécialiste" class="buttonFormat rounded m-2 p-2">
     </span>
-    <span *ngIf="!user.is_specialist">
+    <span *ngIf="user.role !== 'specialist'">
       <input type="button" (click)="onAddSpecialist(user)" value="Ajouter Spécialiste" class="buttonFormat rounded m-2 p-2">
     </span>
-    <span *ngIf="user.is_locked">
+    <span *ngIf="user.userStatus == 'DELETED'">
       <input type="button" (click)="onBlockAccount(user)" value="Débloquer le compte" class="buttonFormat rounded m-2 p-2">
     </span>
-    <span *ngIf="!user.is_locked">
+    <span *ngIf="user.userStatus !== 'DELETED'">
       <input type="button" (click)="onBlockAccount(user)" value="Bloquer le compte" class="buttonFormat rounded m-2 p-2">
     </span>
 

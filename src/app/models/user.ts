@@ -8,13 +8,14 @@ export class User {
 
   address?: string;
 
-  user_name!: string;
+  username!: string;
 
   email!: string;
 
   password!: string;
+  userStatus!: string;
 
-  is_locked: boolean = false;
+  // is_locked: boolean = false;
 
   picture?: string;
 
@@ -31,13 +32,13 @@ export class User {
 
   // date_of_birth?: Date;
 
-  // sexe?: string;
+  role?: string;
 
   is_patient: boolean = false;
 
-  is_specialist: boolean = false;
+  // is_specialist: boolean = false;
 
-  is_admin: boolean = false;
+  // is_admin: boolean = false;
 
   postLikes?: string[];
 

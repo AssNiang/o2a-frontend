@@ -34,10 +34,10 @@ export class CreateSpecialistComponent implements OnInit {
     this.admin_id = this.router.url.split('/')[2];
     // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect admin_id is given
     this._userService.getUserById(this.admin_id + '').subscribe((user) => {
-      LeftSideBarComponent.user_id = this.admin_id;
-      if (user.is_specialist) {
+      LeftSideBarComponent.userId = this.admin_id;
+      if (user.role = 'specialist') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-      } else if (user.is_admin) {
+      } else if (user.role == 'admin') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
       } else {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';

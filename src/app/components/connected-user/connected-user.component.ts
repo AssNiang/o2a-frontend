@@ -10,25 +10,26 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
   styleUrls: ['./connected-user.component.css'],
 })
 export class ConnectedUserComponent implements OnInit {
-  user_id!: string;
+  userId!: string;
   page_url!: string;
 
   constructor(private router: Router, private _userService: UserService) {}
 
   ngOnInit(): void {
+    console.log(this.userId);
     this.page_url = this.router.url;
-    this.user_id = this.page_url.split('/')[2];
+    this.userId = this.page_url.split('/')[2];
 
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
 
 
-    this._userService.getUserById(this.user_id + '').subscribe((user) => {
+    this._userService.getUserById(this.userId + '').subscribe((user) => {
 
       // refresh the left-side-bar and the app-component
-      LeftSideBarComponent.user_id = this.user_id;
-      if (user.is_specialist) {
+      LeftSideBarComponent.userId = this.userId;
+      if (user.role === 'specialist') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-      } else if (user.is_admin) {
+      } else if (user.role === 'admin') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
       } else {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';

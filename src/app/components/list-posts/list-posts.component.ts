@@ -17,7 +17,7 @@ export class ListPostsComponent implements OnInit {
 
     this._postService.getAllPosts().subscribe(
       posts => {
-        this.allPosts = posts.filter(post => post.statut == "public");
+        this.allPosts = posts.filter(post => post.postStatus == "public");
       }
     )
 

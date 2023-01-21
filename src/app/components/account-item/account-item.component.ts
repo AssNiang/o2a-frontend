@@ -15,7 +15,7 @@ export class AccountItemComponent implements OnInit {
   @Input() user!: User;
   profile: string = '';
   nbPostsSignales: number = 0;
-  user_id: string = '';
+  userId: string = '';
 
   constructor(
     private _userService: UserService,
@@ -25,7 +25,7 @@ export class AccountItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
     if (this.user._id) {
       this._postService
         .getAllPostsById(this.user._id + '')
@@ -40,7 +40,7 @@ export class AccountItemComponent implements OnInit {
   }
 
   onAddSpecialist(user: User) {
-    this.router.navigate(['create-specialist', this.user_id, user._id]);
+    this.router.navigate(['create-specialist', this.userId, user._id]);
   }
 
   onRetireSpecialist(user: User) {
@@ -55,7 +55,7 @@ export class AccountItemComponent implements OnInit {
 
   onBlockAccount(user: User) {
     try {
-      if (this.user.is_locked) {
+      if (this.user.userStatus === 'DELETED') {
         console.log('unblock');
         this._adminService
           .unblockAnAccount(user._id as string)

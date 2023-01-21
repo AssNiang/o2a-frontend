@@ -1,7 +1,7 @@
 export class Post{
   _id?: string;
   posterId!: string;
-  statut!: string;
+  postStatus!: string;
   message!: string;
   picture?: string;
   video?: string;

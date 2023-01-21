@@ -12,18 +12,18 @@ declare const L: any;
   styleUrls: ['./structure-location.component.css'],
 })
 export class StructureLocationComponent implements OnInit {
-  user_id: string = '';
+  userId: string = '';
 
   constructor(private router: Router, private _userService: UserService) {}
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
-    // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect user_id is given
-    this._userService.getUserById(this.user_id + '').subscribe((user) => {
-      LeftSideBarComponent.user_id = this.user_id;
-      if (user.is_specialist) {
+    this.userId = this.router.url.split('/')[2];
+    // refresh the left-side-bar and the app-component-----> could catch an error if an incorrect userId is given
+    this._userService.getUserById(this.userId + '').subscribe((user) => {
+      LeftSideBarComponent.userId = this.userId;
+      if (user.role == 'specialist') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-      } else if (user.is_admin) {
+      } else if (user.role == 'admin') {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
       } else {
         AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';

@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CreateCommentComponent implements OnInit {
   profile: string = '';
-  user_id!: string;
+  userId!: string;
   user!: User;
   postId: string = '';
 
@@ -29,10 +29,10 @@ export class CreateCommentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
     this.postId = this.router.url.split('/')[4];
 
-    this._userService.getUserById(this.user_id).subscribe((data) => {
+    this._userService.getUserById(this.userId).subscribe((data) => {
       this.user = data;
       this.profile = this._userService.baseUrl + '/file/' + data.picture;
     });
@@ -50,7 +50,7 @@ export class CreateCommentComponent implements OnInit {
   }
 
   onSave(send: NgForm) {
-    send.value.commenterId = this.user_id;
+    send.value.commenterId = this.userId;
 
     // create a comment if `toUpdateCommentId` is empty, else update the existing comment
     try {

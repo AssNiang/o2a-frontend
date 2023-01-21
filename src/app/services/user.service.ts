@@ -8,16 +8,16 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  baseUrl: string = 'http://localhost:5000/api/user';
+  baseUrl: string = 'http://localhost:5000/api/users';
 
   constructor(private http: HttpClient) { }
 
   signUpUser(user: User): Observable<any>{
-    return this.http.post(this.baseUrl + '/register', user);
+    return this.http.post('http://localhost:5000/api/auth/signup', user);
   }
 
   signInUser(infos: any): Observable<any>{
-    return this.http.post(this.baseUrl + '/login', infos);
+    return this.http.post('http://localhost:5000/api/auth/signin', infos);
   }
 
   logoutUser():Observable<any>{
@@ -25,19 +25,19 @@ export class UserService {
   }
 
   getUsers():Observable<User[]>{
-    return this.http.get<User[]>(this.baseUrl+'/');
+    return this.http.get<User[]>(this.baseUrl+'/allUsers');
   }
 
   getUserById(id:string):Observable<User>{
-    return this.http.get<User>(this.baseUrl+'/'+id);
+    return this.http.get<User>(this.baseUrl+'/userDetails');
   }
 
   updateUser(user:any){
-    return this.http.put(this.baseUrl+'/'+user.id, user);
+    return this.http.put(this.baseUrl+'/updateUser', user);
   }
 
-  deleteUser(id:string){
-    return this.http.delete(this.baseUrl + '/delete/'+id);
+  changeUserStatusByAdmin(id:string){
+    return this.http.delete(this.baseUrl + '/userStatus/'+id);
   }
 
   // images

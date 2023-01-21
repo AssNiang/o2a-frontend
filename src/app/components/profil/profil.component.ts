@@ -13,7 +13,7 @@ import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 })
 export class ProfilComponent implements OnInit {
   user!: User;
-  user_id!: string;
+  userId!: string;
   showPassword: boolean = false;
   //profile!: File;
   profile: string = '';
@@ -22,17 +22,17 @@ export class ProfilComponent implements OnInit {
   constructor(private router: Router, private _userService: UserService) {}
 
   ngOnInit(): void {
-    this.user_id = this.router.url.split('/')[2];
+    this.userId = this.router.url.split('/')[2];
 
-    this._userService.getUserById(this.user_id).subscribe((user) => {
+    this._userService.getUserById(this.userId).subscribe((user) => {
       this.user = user;
       this.profile = this._userService.baseUrl + '/file/' + user.picture;
 
-      LeftSideBarComponent.user_id = this.user_id;
-        if(user.is_specialist){
+      LeftSideBarComponent.userId = this.userId;
+        if(user.role = 'specialist'){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
         }
-        else if(user.is_admin){
+        else if(user.role == 'admin'){
           AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
         }
         else{
@@ -59,7 +59,7 @@ export class ProfilComponent implements OnInit {
 
       try {
         this._userService
-          .addPicture(this.formData, this.user_id)
+          .addPicture(this.formData, this.userId)
           .subscribe((user) => {
             window.location.reload();
           });
