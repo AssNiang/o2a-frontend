@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { reduce } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
+import { CommentService } from 'src/app/shared/services/comment.service';
 import { PostService } from 'src/app/shared/services/post.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { PostItemComponent } from '../post-item/post-item.component';
@@ -164,6 +165,7 @@ export class CreatePostComponent implements OnInit {
     this.piRef = new PostItemComponent(
       this._userService,
       this._postService,
+      {} as CommentService,
       this.router
     );
 

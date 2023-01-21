@@ -67,29 +67,29 @@
     <div class="row text-center my-2">
       <div class="col">
         <img
-          src="../../../assets/images/heart-svgrepo-com.svg"
+          src="../../../assets/images/like.png"
           width="30px"
           alt=""
           srcset=""
           (click)="onLike()"
           [class]="liked"
         />
-        <span *ngIf="liked" class="m-2">Unlike</span>
-        <span *ngIf="!liked" class="m-2">Like</span>
-        <span class="text-muted">[ {{ nbLikes }} like(s) ]</span>
+        <!-- <span *ngIf="liked" class="m-2">Unlike</span>
+        <span *ngIf="!liked" class="m-2">Like</span> -->
+        <span class="text-muted m-1">{{ nbLikes }}</span>
       </div>
       <div class="col">
         <img
-          src="../../../assets/images/error-svgrepo-com.svg"
+          src="../../../assets/images/signal.png"
           width="30px"
           alt=""
           srcset=""
           (click)="onReport()"
           [class]="reported"
         />
-        <span *ngIf="reported" class="m-2">Unreport</span>
-        <span *ngIf="!reported" class="m-2">Report</span>
-        <span class="text-muted">[ {{ nbReports }} report(s) ]</span>
+        <!-- <span *ngIf="reported" class="m-2">Unreport</span>
+        <span *ngIf="!reported" class="m-2">Report</span> -->
+        <span class="text-muted m-1">{{ nbReports }}</span>
       </div>
 
     </div>

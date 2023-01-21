@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
+import { CommentService } from 'src/app/shared/services/comment.service';
 import { PostService } from 'src/app/shared/services/post.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -28,10 +29,12 @@ export class PostItemComponent implements OnInit {
   reported: string = '';
   nbReports: number | undefined;
   media: string = '';
+  nbComments: number = 0;
 
   constructor(
     private _userService: UserService,
     private _postService: PostService,
+    private _commentService: CommentService,
     private router: Router
   ) {}
 
@@ -73,6 +76,10 @@ export class PostItemComponent implements OnInit {
       this.reported = 'bg-report';
     }
     this.nbReports = this.post.reporters?.length;
+
+    this._commentService.getPostComments(this.post._id+'').subscribe(comments => {
+      this.nbComments = comments.length;
+    })
   }
 
   onDelete() {
