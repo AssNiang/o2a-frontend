@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Specialist } from 'src/app/models/specialist';
 import { User } from 'src/app/models/user';
-import { AdminService } from 'src/app/services/admin.service';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
+import { AdminService } from 'src/app/shared/services/admin.service';
+import { PostService } from 'src/app/shared/services/post.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-account-item',

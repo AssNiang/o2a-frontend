@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   submit(login: NgForm) {
     try {
       this._userService.signInUser(login.value).subscribe((data) => {
-        // console.log(login.value);
+
         //get user by id
         if (data.id) {
           this._userService.getUserById(data.id).subscribe((user) => {
@@ -28,13 +28,28 @@ export class LoginComponent implements OnInit {
             if (user.is_specialist) {
               AppComponent.typeUser = LeftSideBarComponent.typeUser =
                 'specialist';
+
+              // set user role in the localStorage
+              localStorage.setItem('userType', 'specialist')
+
             } else if (user.is_admin) {
               AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
+
+              // set user role in the localStorage
+              localStorage.setItem('userType', 'admin')
+
             } else {
               AppComponent.typeUser = LeftSideBarComponent.typeUser =
                 'connected';
+
+              // set user role in the localStorage
+              localStorage.setItem('userType', 'connected')
+
             }
+
           });
+          // set token in the localStorage
+          localStorage.setItem('token', data.token)
 
           this.router.navigate(['connected-user', data.id]);
         } else if (data.error) {

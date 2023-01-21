@@ -5,8 +5,8 @@ import { Observable, of } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
+import { PostService } from 'src/app/shared/services/post.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 
 import { HistoryPostsComponent } from './history-posts.component';

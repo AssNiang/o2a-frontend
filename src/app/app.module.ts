@@ -29,8 +29,8 @@ import { DiscussionComponent } from './components/discussion/discussion.componen
 import { SenderComponent } from './components/sender/sender.component';
 import { ReceiverComponent } from './components/receiver/receiver.component';
 import { HistoryPostsComponent } from './components/history-posts/history-posts.component';
-import { UserService } from './services/user.service';
-import { PostService } from './services/post.service';
+import { UserService } from './shared/services/user.service';
+import { PostService } from './shared/services/post.service';
 import { NotificationItemComponent } from './components/notification-item/notification-item.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';

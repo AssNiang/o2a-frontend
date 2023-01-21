@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NotificationComponent } from './notification.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { Observable, of } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/user';

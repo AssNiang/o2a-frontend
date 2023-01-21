@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Post } from 'src/app/models/post';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
+import { PostService } from 'src/app/shared/services/post.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 
 @Component({

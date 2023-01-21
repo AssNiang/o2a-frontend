@@ -1,7 +1,8 @@
+import { localizedString } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-left-side-bar',
@@ -17,10 +18,11 @@ export class LeftSideBarComponent implements OnInit {
 
   constructor(private router: Router, private _userService: UserService) {}
 
-  disconnect() {
+  public disconnect() {
     // a tryCatch may be a good idea
 
     this._userService.logoutUser().subscribe();
+      localStorage.clear();
       AppComponent.typeUser = LeftSideBarComponent.typeUser = "unknown";
       this.router.navigate(['']);
   }

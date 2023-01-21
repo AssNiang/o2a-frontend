@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/user';
-import { AdminService } from 'src/app/services/admin.service';
-import { UserService } from 'src/app/services/user.service';
+import { AdminService } from 'src/app/shared/services/admin.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 
 @Component({

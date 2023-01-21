@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CreatePostComponent } from './create-post.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { Observable, of } from 'rxjs';
-import { PostService } from 'src/app/services/post.service';
+import { PostService } from 'src/app/shared/services/post.service';
 import { Post } from 'src/app/models/post';
 
 describe('CreatePostComponent', () => {

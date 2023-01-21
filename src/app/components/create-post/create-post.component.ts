@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { reduce } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
+import { PostService } from 'src/app/shared/services/post.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { PostItemComponent } from '../post-item/post-item.component';
 
 @Component({

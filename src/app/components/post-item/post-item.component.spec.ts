@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PostItemComponent } from './post-item.component';
 import { Post } from 'src/app/models/post';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
+import { PostService } from 'src/app/shared/services/post.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/user';
 

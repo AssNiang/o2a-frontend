@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Comment } from 'src/app/models/comment';
 import { User } from 'src/app/models/user';
-import { CommentService } from 'src/app/services/comment.service';
-import { UserService } from 'src/app/services/user.service';
+import { CommentService } from 'src/app/shared/services/comment.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-comment-item',

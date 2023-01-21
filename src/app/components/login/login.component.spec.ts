@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoginComponent } from './login.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AppComponent } from 'src/app/app.component';

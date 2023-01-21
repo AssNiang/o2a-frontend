@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { LeftSideBarComponent } from '../left-side-bar/left-side-bar.component';
 import { LoginComponent } from '../login/login.component';
 import { RegistrationComponent } from './registration.component';

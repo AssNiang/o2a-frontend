@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
-import { PostService } from 'src/app/services/post.service';
-import { UserService } from 'src/app/services/user.service';
+import { PostService } from 'src/app/shared/services/post.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-post-item',
@@ -38,12 +38,15 @@ export class PostItemComponent implements OnInit {
   ngOnInit(): void {
     this.user_id = this.router.url.split('/')[2];
     try {
-      this._userService
-        .getUserById(this.post.posterId + '')
-        .subscribe((author) => {
-          this.postAuthor = author;
-          this.profile = this._userService.baseUrl + '/file/' + author.picture;
-        });
+      if (this.post.posterId) {
+        this._userService
+          .getUserById(this.post.posterId + '')
+          .subscribe((author) => {
+            this.postAuthor = author;
+            this.profile =
+              this._userService.baseUrl + '/file/' + author.picture;
+          });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -123,8 +126,13 @@ export class PostItemComponent implements OnInit {
   }
 
   onComment(postId: string) {
-    if(this.user_id && postId){
-      this.router.navigate(['connected-user', this.user_id, 'post-detail', postId]);
+    if (this.user_id && postId) {
+      this.router.navigate([
+        'connected-user',
+        this.user_id,
+        'post-detail',
+        postId,
+      ]);
     }
   }
 

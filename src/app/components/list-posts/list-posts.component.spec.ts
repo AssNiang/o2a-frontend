@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ListPostsComponent } from './list-posts.component';
 import { Post } from 'src/app/models/post';
-import { PostService } from 'src/app/services/post.service';
+import { PostService } from 'src/app/shared/services/post.service';
 import { Observable, of } from 'rxjs';
 
 describe('ListPostsComponent', () => {
