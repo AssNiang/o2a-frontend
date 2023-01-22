@@ -15,6 +15,7 @@ import { ReportedPostsComponent } from "./components/reported-posts/reported-pos
 import { AccountsComponent } from "./components/accounts/accounts.component";
 import { StructureLocationComponent } from "./components/structure-location/structure-location.component";
 import { CreateSpecialistComponent } from "./components/create-specialist/create-specialist.component";
+import { ArticleComponent } from "./components/article/article.component";
 
 export const routes: Routes = [
   { path: '', redirectTo:'homeAppli', pathMatch:'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'categories', component: CategoriesComponent},
   { path: 'categories/:id', component: CategoriesComponent},
   { path: 'homeAppli', component: HomeAppliComponent },
+  { path: 'article', component: ArticleComponent },
   { path: 'connected-user/:id', component: ConnectedUserComponent },
   { path: 'profil/:id', component: ProfilComponent},
   { path: 'notification/:id', component: NotificationComponent},
@@ -47,6 +49,7 @@ export const routingComponents = [
   LoginComponent,
   HomeAppliComponent,
   CategoriesComponent,
-  ProfilComponent
+  ProfilComponent,
+  ArticleComponent
 ]
 

@@ -41,6 +41,7 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 import { StructureLocationComponent } from './components/structure-location/structure-location.component';
 import { AccountItemComponent } from './components/account-item/account-item.component';
 import { CreateSpecialistComponent } from './components/create-specialist/create-specialist.component';
+import { ArticleComponent } from './components/article/article.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { CreateSpecialistComponent } from './components/create-specialist/create
     AccountsComponent,
     StructureLocationComponent,
     AccountItemComponent,
-    CreateSpecialistComponent
+    CreateSpecialistComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
