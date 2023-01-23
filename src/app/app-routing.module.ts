@@ -53,8 +53,8 @@ export const routingComponents = [
   RegistrationComponent,
   LoginComponent,
   HomeAppliComponent,
-  CategoriesComponent,
-  ProfilComponent,
-  ArticleComponent
+  // CategoriesComponent,
+  // ProfilComponent,
+  // ArticleComponent
 ]
 
