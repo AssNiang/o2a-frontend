@@ -30,12 +30,11 @@
           </div>
 
           <div
-          class="text-start text-danger p-1 mb-2"
-          *ngIf="first_name.errors?.['minlength']"
-        >
-          * Le champ prénom doit contenir au minimum 2 caractères
-        </div>
-
+            class="text-start text-danger p-1 mb-2"
+            *ngIf="first_name.errors?.['minlength']"
+          >
+            * Le champ prénom doit contenir au minimum 2 caractères
+          </div>
         </div>
 
         <div class="col">
@@ -57,12 +56,11 @@
           </div>
 
           <div
-          class="text-start text-danger p-1 mb-2"
-          *ngIf="last_name.errors?.['minlength']"
-        >
-          * Le champ nom doit contenir au minimum 2 caractères
-        </div>
-
+            class="text-start text-danger p-1 mb-2"
+            *ngIf="last_name.errors?.['minlength']"
+          >
+            * Le champ nom doit contenir au minimum 2 caractères
+          </div>
         </div>
       </div>
 
@@ -187,7 +185,8 @@
         class="text-start text-danger p-1 mb-2"
         *ngIf="passwordConfirmation.errors?.['minlength']"
       >
-        * Le champ confirmation du mot de passe doit contenir au minimum 6 caractères
+        * Le champ confirmation du mot de passe doit contenir au minimum 6
+        caractères
       </div>
 
       <div class="text-start position-relative">
@@ -201,7 +200,8 @@
       </div>
 
       <div class="text-danger" *ngIf="notValid">
-        Echec de la confirmation du mot de passe. Assurez-vous que les mots de passe saisis soient identiques.
+        Echec de la confirmation du mot de passe. Assurez-vous que les mots de
+        passe saisis soient identiques.
       </div>
 
       <div class="text-start p-0 m-0 d-flex border border-danger rounded">
@@ -227,30 +227,33 @@
           conditionsGeneralesUtilisation.errors
         "
       >
-        * Veuillez accepter les conditions générales d'utilisation avant de continuer.
+        * Veuillez accepter les conditions générales d'utilisation avant de
+        continuer.
       </div>
 
       <button
-        type="submit"
+        type="button"
         *ngIf="
-          conditionsGeneralesUtilisation.invalid ||
-          first_name.invalid ||
-          last_name.invalid ||
-          user_name.invalid ||
-          email.invalid ||
-          address.invalid ||
-          user_name.invalid ||
-          password.invalid ||
-          passwordConfirmation.invalid as invalid
+          (conditionsGeneralesUtilisation.invalid ||
+            first_name.invalid ||
+            last_name.invalid ||
+            user_name.invalid ||
+            email.invalid ||
+            address.invalid ||
+            user_name.invalid ||
+            password.invalid ||
+            passwordConfirmation.invalid) &&
+          !firstStepPassed as invalid
         "
         [disabled]="invalid"
         class="bg-disabled"
       >
-        S'inscrire
+        Soumettre
       </button>
 
       <button
-        type="submit"
+        type="button"
+        (click)="passFirstStep(email.value)"
         *ngIf="
           !(
             conditionsGeneralesUtilisation.invalid ||
@@ -262,11 +265,44 @@
             user_name.invalid ||
             password.invalid ||
             passwordConfirmation.invalid
-          )
+          ) && !firstStepPassed
         "
       >
-        S'inscrire
+        Soumettre
       </button>
+
+      <hr *ngIf="firstStepPassed">
+      <div class="my-2" *ngIf="firstStepPassed">Un token vous a été envoyé par mail. Cliquez ici pour vérifier <a href="mailto:{{email.value}}">{{email.value}}</a></div>
+
+      <div class="my-2">
+        <input
+          type="text"
+          name="verificationToken"
+          #verificationToken="ngModel"
+          class="form-control"
+          placeholder="Ecrire ici le token qui vous a été envoyé par mail ..."
+          ngModel
+          required
+          [hidden]="!firstStepPassed"
+        />
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="verificationToken.touched && verificationToken.errors?.['required']"
+      >
+        * Le champ Vérification token est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="codeIncorrect"
+      >
+        * Le code saisi est incorrect. Veuillez réessayer s'il vous plaît.
+      </div>
+
+
+      <button type="submit" *ngIf="firstStepPassed">S'inscrire</button>
     </div>
   </form>
 </mat-card>
