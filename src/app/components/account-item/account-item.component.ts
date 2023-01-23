@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Specialist } from 'src/app/models/specialist';
 import { User } from 'src/app/models/user';
 import { AdminService } from 'src/app/shared/services/admin.service';
+import { MailService } from 'src/app/shared/services/mail.service';
 import { PostService } from 'src/app/shared/services/post.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -16,11 +18,13 @@ export class AccountItemComponent implements OnInit {
   profile: string = '';
   nbPostsSignales: number = 0;
   user_id: string = '';
+  showMailForm: boolean = false;
 
   constructor(
     private _userService: UserService,
     private _postService: PostService,
     private _adminService: AdminService,
+    private _mailService: MailService,
     private router: Router
   ) {}
 
@@ -69,6 +73,27 @@ export class AccountItemComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  onSendMail() {
+    this.showMailForm = true;
+  }
+
+  onCancelSendMail() {
+    this.showMailForm = false;
+  }
+
+  submit(mail: NgForm) {
+    mail.value.destination = this.user.email;
+    this._mailService.sendMail(mail.value).subscribe((data) => {
+      if (data.message) {
+        alert('Le mail a été envoyé avec succès.');
+        mail.reset();
+        this.showMailForm = false;
+      } else if (data.error) {
+        alert("L'envoi du mail a échoué.");
+      }
+    });
   }
 
   reloadComponent() {

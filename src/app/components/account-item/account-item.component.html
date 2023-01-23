@@ -1,28 +1,163 @@
 <div *ngIf="user" class="text-start account rounded shadow m-2 p-2 row">
   <div class="col">
-    <img [src]="profile" alt="" width="50px" height="50px" class="rounded-circle border border-dark mx-2">
-    <span>{{user.first_name}} {{user.last_name}}</span>
+    <img
+      [src]="profile"
+      alt=""
+      width="50px"
+      height="50px"
+      class="rounded-circle border border-dark mx-2"
+    />
+    <span>{{ user.first_name }} {{ user.last_name }}</span>
   </div>
 
   <div class="col text-end">
     <span *ngIf="user.is_specialist">
-      <input type="button" (click)="onRetireSpecialist(user)" value="Retirer Spécialiste" class="buttonFormat rounded m-2 p-2">
+      <input
+        type="button"
+        (click)="onRetireSpecialist(user)"
+        value="Retirer Spécialiste"
+        class="buttonFormat rounded m-2 p-2"
+      />
     </span>
     <span *ngIf="!user.is_specialist">
-      <input type="button" (click)="onAddSpecialist(user)" value="Ajouter Spécialiste" class="buttonFormat rounded m-2 p-2">
+      <input
+        type="button"
+        (click)="onAddSpecialist(user)"
+        value="Ajouter Spécialiste"
+        class="buttonFormat rounded m-2 p-2"
+      />
     </span>
     <span *ngIf="user.is_locked">
-      <input type="button" (click)="onBlockAccount(user)" value="Débloquer le compte" class="buttonFormat rounded m-2 p-2">
+      <input
+        type="button"
+        (click)="onBlockAccount(user)"
+        value="Débloquer le compte"
+        class="buttonFormat rounded m-2 p-2"
+      />
     </span>
     <span *ngIf="!user.is_locked">
-      <input type="button" (click)="onBlockAccount(user)" value="Bloquer le compte" class="buttonFormat rounded m-2 p-2">
+      <input
+        type="button"
+        (click)="onBlockAccount(user)"
+        value="Bloquer le compte"
+        class="buttonFormat rounded m-2 p-2"
+      />
     </span>
-
   </div>
 
-
-  <div class="ms-4 text-danger">
-    >>> Nombre de posts signalés : {{nbPostsSignales}}
+  <div class="m-2 text-danger">
+    Nombre de posts signalés : {{ nbPostsSignales }}
   </div>
 
+  <div>
+    <input
+      *ngIf="!showMailForm"
+      type="button"
+      (click)="onSendMail()"
+      value="Envoyer un email"
+      class="sendMail rounded m-2 p-2"
+    />
+  </div>
+
+  <div>
+    <input
+      *ngIf="showMailForm"
+      type="button"
+      (click)="onCancelSendMail()"
+      value="Annuler l'envoi de l'email"
+      class="sendMail rounded m-2 p-2"
+    />
+  </div>
+
+  <div *ngIf="showMailForm" class="mat-card">
+    <form #mail="ngForm" (ngSubmit)="submit(mail)" class="w-75 m-auto my-3">
+      <div class="form-group fs-6">
+        <div class="my-2"></div>
+
+        <div>
+          Destination :
+          <input
+            type="email"
+            name="destination"
+            #destination="ngModel"
+            class="form-control"
+            [placeholder]="user.email"
+            ngModel
+            disabled="true"
+          />
+        </div>
+
+        <div>
+          Sujet :
+          <input
+            type="text"
+            name="subject"
+            #subject="ngModel"
+            class="form-control"
+            placeholder="Ecrire ici l'objet du mail"
+            minlength="3"
+            ngModel
+            required
+          />
+        </div>
+
+        <div
+          class="text-start text-danger p-1 mb-2"
+          *ngIf="subject.touched && subject.errors?.['required']"
+        >
+          * Le champ sujet est obligatoire.
+        </div>
+
+        <div
+          class="text-start text-danger p-1 mb-2"
+          *ngIf="subject.errors?.['minlength']"
+        >
+          * Le champ sujet est au minimum de 3 caractères.
+        </div>
+
+        <div>
+          contenu :
+          <textarea
+            type="text"
+            name="text"
+            #text="ngModel"
+            class="form-control"
+            placeholder="Ecrire ici le contenu du mail"
+            minlength="10"
+            ngModel
+            required
+          ></textarea>
+        </div>
+
+        <div
+          class="text-start text-danger p-1 mb-2"
+          *ngIf="text.touched && text.errors?.['required']"
+        >
+          * Le champ contenu est obligatoire.
+        </div>
+
+        <div
+          class="text-start text-danger p-1 mb-2"
+          *ngIf="text.errors?.['minlength']"
+        >
+          * Le champ contenu est au minimum de 10 caractères.
+        </div>
+
+        <div class="text-center">
+          <button
+            type="submit"
+            *ngIf="subject.invalid || text.invalid as invalid"
+            [disabled]="invalid"
+            class="bg-disabled"
+          >
+            Envoyer
+          </button>
+
+          <button type="submit" *ngIf="!(subject.invalid || text.invalid)">
+            Envoyer
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

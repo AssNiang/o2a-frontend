@@ -19,6 +19,7 @@ declare const L: any;
 export class StructureLocationComponent implements OnInit {
   user_id: string = '';
   is_admin: boolean = false;
+  showForm: boolean = false;
 
   constructor(
     private router: Router,
@@ -154,6 +155,13 @@ export class StructureLocationComponent implements OnInit {
         maximumAge: 0,
       }
     );
+  }
+
+  onAddStruct() {
+    this.showForm = true;
+  }
+  onCancelAddStruct() {
+    this.showForm = false;
   }
 
   submit(health_struct: NgForm) {

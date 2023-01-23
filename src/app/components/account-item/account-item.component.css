@@ -9,3 +9,40 @@
   border: 1px solid #6f5164;
   background-color: rgb(240, 229, 229);
 }
+
+
+.mat-card {
+  background-color:  #e9c6dd;
+  color: #6F5164;
+  border: solid 2px #6F5164;
+  margin-top: 5px;
+
+}
+
+.sendMail {
+  background-color: #88366a;
+  color: antiquewhite;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+}
+
+button {
+  background-color: #88366a;
+  color: antiquewhite;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+}
+
+
+.bg-disabled {
+  background-color: #bfb6bb;
+
+}
+
+input {
+  border: solid 2px #6F5164;
+  box-shadow: 2px 2px 2px #b5adb2;
+  margin-bottom: 5px;
+}
