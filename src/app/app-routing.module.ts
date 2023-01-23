@@ -17,6 +17,7 @@ import { AccountsComponent } from "./components/accounts/accounts.component";
 import { PostDetailComponent } from "./components/post-detail/post-detail.component";
 import { ConnectedGuard } from "./shared/guards/connected/connected.guard";
 import { AdminGuard } from "./shared/guards/admin/admin.guard";
+import { ArticleComponent } from "./components/article/article.component";
 
 export const routes: Routes = [
   { path: '', redirectTo:'homeAppli', pathMatch:'full' },
@@ -25,7 +26,9 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'categories', component: CategoriesComponent},
   { path: 'categories/:id', component: CategoriesComponent},
+  { path: 'article', component: ArticleComponent },
   { path: 'homeAppli', component: HomeAppliComponent },
+
   { path: 'connected-user/:id', component: ConnectedUserComponent, canActivate: [ConnectedGuard] },
   { path: 'profil/:id', component: ProfilComponent, canActivate: [ConnectedGuard]},
   { path: 'notification/:id', component: NotificationComponent, canActivate: [ConnectedGuard]},
@@ -33,6 +36,7 @@ export const routes: Routes = [
   { path: 'history-posts/:id', component: HistoryPostsComponent, canActivate: [ConnectedGuard]},
   { path: 'connected-user/:id/post-detail/:postId', component: PostDetailComponent, canActivate: [ConnectedGuard]},
   { path: 'structure-location/:postId', component: StructureLocationComponent, canActivate: [ConnectedGuard]},
+
   // admin
   { path: 'reported-posts/:id', component: ReportedPostsComponent, canActivate: [ConnectedGuard, AdminGuard]},
   { path: 'accounts/:userId', component: AccountsComponent, canActivate: [ConnectedGuard, AdminGuard]},
@@ -50,6 +54,7 @@ export const routingComponents = [
   LoginComponent,
   HomeAppliComponent,
   CategoriesComponent,
-  ProfilComponent
+  ProfilComponent,
+  ArticleComponent
 ]
 

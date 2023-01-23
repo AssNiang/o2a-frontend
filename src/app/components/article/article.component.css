@@ -1,0 +1,55 @@
+*{
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  /*background-color: #faf6f9;*/
+}
+
+footer {
+  text-align: center;
+  background-color: #e9c6dd;
+  padding: 20px 0;
+
+}
+header{
+  text-align: center;
+  padding: 20px 0;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ_cNAA3ZzEy8MN5gq-rrHeK6CZjAiHdi88Q&usqp=CAU");
+}
+header h1 {
+  font-size: 36px;
+  color: #814069;
+  font-weight: 1000;
+}
+nav {
+  background-color: #faf6f9;
+  padding: 10px;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+}
+nav li {
+  display: inline-block;
+  margin-right: 10px;
+
+}
+main {
+  margin: 20px;
+  background-color: #faf6f9;
+}
+section h1 {
+  text-align: center;
+  margin-top: -10%;
+  margin-bottom: -3%;
+}
+
+.image{
+  margin-left:-11%;
+  margin-top: -11%;
+}
+
+p,li{
+  font-size: 15px;
+}
