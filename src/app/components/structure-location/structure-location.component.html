@@ -2,3 +2,83 @@
 
 <div id="map"></div>
 
+<div *ngIf="is_admin" class="mat-card">
+  <h2>Ajouter une structure de santé</h2>
+  <form #health_struct="ngForm" (ngSubmit)="submit(health_struct)" class="w-75 m-auto my-3">
+    <div class="form-group text-center">
+      <div class="my-2"></div>
+
+      <input
+        type="text"
+        name="name"
+        #name="ngModel"
+        class="form-control"
+        placeholder="Nom de la structure"
+        ngModel
+        minlength="3"
+        required
+      />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="name.touched && name.errors?.['required']"
+      >
+        * Le champ nom de la structure est obligatoire.
+      </div>
+
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="name.errors?.['minlength']"
+      >
+        * Le champ nom de la structure doit contenir au minimum 3 caractères
+      </div>
+
+      <input
+        type="number"
+        name="latitude"
+        #latitude="ngModel"
+        class="form-control"
+        placeholder="Latitude"
+        ngModel
+        required
+      />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="latitude.touched && latitude.errors?.['required']"
+      >
+        * Le champ latitude est obligatoire.
+      </div>
+
+      <input
+        type="number"
+        name="longitude"
+        #longitude="ngModel"
+        class="form-control"
+        placeholder="Longitude"
+        ngModel
+        required
+      />
+      <div
+        class="text-start text-danger p-1 mb-2"
+        *ngIf="longitude.touched && longitude.errors?.['required']"
+      >
+        * Le champ longitude est obligatoire.
+      </div>
+
+      <button
+        type="submit"
+        *ngIf="name.invalid || latitude.invalid || longitude.invalid as invalid"
+        [disabled]="invalid"
+        class="bg-disabled"
+      >
+        Ajouter
+      </button>
+
+      <button
+        type="submit"
+        *ngIf="!(name.invalid || latitude.invalid || longitude.invalid)"
+      >
+        Ajouter
+      </button>
+    </div>
+  </form>
+</div>

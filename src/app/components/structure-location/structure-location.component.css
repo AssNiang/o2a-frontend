@@ -31,3 +31,35 @@ h1{
   font-weight: bold;
   font-size: 35px;
 }
+
+.mat-card {
+  background-color:  #e9c6dd;
+  color: #6F5164;
+  border: solid 2px #6F5164;
+  margin-top: 10px;
+}
+
+.shadw {
+  border: solid 2px #6F5164;
+  box-shadow: 12px -12px 2px #88366a;
+}
+
+input {
+  border: solid 2px #6F5164;
+  box-shadow: 2px 2px 2px #b5adb2;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #88366a;
+  color: antiquewhite;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+}
+
+
+.bg-disabled {
+  background-color: #bfb6bb;
+
+}
