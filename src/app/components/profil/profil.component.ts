@@ -29,15 +29,13 @@ export class ProfilComponent implements OnInit {
       this.profile = this._userService.baseUrl + '/file/' + user.picture;
 
       LeftSideBarComponent.user_id = this.user_id;
-        if(user.is_specialist){
-          AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
-        }
-        else if(user.is_admin){
-          AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
-        }
-        else{
-          AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';
-        }
+      if (user.is_specialist) {
+        AppComponent.typeUser = LeftSideBarComponent.typeUser = 'specialist';
+      } else if (user.is_admin) {
+        AppComponent.typeUser = LeftSideBarComponent.typeUser = 'admin';
+      } else {
+        AppComponent.typeUser = LeftSideBarComponent.typeUser = 'connected';
+      }
     });
 
     // this._userService.getProfile().subscribe((data) => {
@@ -74,11 +72,19 @@ export class ProfilComponent implements OnInit {
 
     update.value.id = this.user._id;
 
-    this._userService.updateUser(update.value).subscribe();
+    this._userService
+      .updateUser(update.value)
+      .subscribe(() => this.reloadComponent());
   }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
 
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 }

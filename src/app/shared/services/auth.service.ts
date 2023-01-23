@@ -9,10 +9,10 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
   IsLoggedAsAdmin() {
-    return localStorage.getItem('role') == 'admin';
+    return localStorage.getItem('userType') == 'admin';
   }
 
   IsLoggedAsSpecialist() {
-    return localStorage.getItem('role') == 'specialist';
+    return localStorage.getItem('userType') == 'specialist';
   }
 }
